@@ -1,0 +1,182 @@
+/* mpack.css - Styles for new MPACK components */
+
+/* ─── Printing Types ─── */
+.printing-types-section {
+    padding: 100px 5%;
+    background-color: var(--color-white);
+}
+
+.printing-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 0;
+}
+
+.printing-card {
+    padding: 40px;
+    border-radius: 30px;
+    color: var(--color-dark);
+    cursor: default;
+    will-change: transform;
+}
+
+.printing-card.card-blue {
+    background-color: var(--color-lightblue);
+}
+
+.printing-card.card-orange {
+    background-color: #ffe4d6;
+}
+
+.printing-card.card-green {
+    background-color: var(--color-lightgreen);
+}
+
+.printing-card h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.printing-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* ─── Product Categories ─── */
+.categories-section {
+    padding: 100px 5%;
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    overflow: hidden;
+}
+
+.categories-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+.category-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    gap: 40px;
+}
+
+.category-row:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.category-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.category-text h3 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.category-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.category-img-wrapper {
+    flex: 1;
+    min-width: 300px;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.category-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.category-row:hover .category-img {
+    transform: scale(1.05);
+}
+
+/* ─── Industries Carousel ─── */
+.industries-section {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.industries-track {
+    display: flex;
+    gap: 40px;
+    padding: 0 40px;
+    width: max-content;
+    align-items: center;
+    height: 100%;
+}
+
+.industry-card {
+    position: relative;
+    width: 500px;
+    height: 70vh;
+    border-radius: 40px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.industry-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.industry-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 60px 40px 40px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: var(--color-white);
+}
+
+.industry-overlay h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .category-row:nth-child(even) {
+        flex-direction: column;
+    }
+    .category-row {
+        flex-direction: column;
+    }
+    .industry-card {
+        width: 300px;
+        height: 60vh;
+    }
+    .printing-types-grid {
+        grid-template-columns: 1fr;
+    }
+}

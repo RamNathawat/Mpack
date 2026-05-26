@@ -1,0 +1,271 @@
+Project Overview — MPACK Website
+Who the client is
+
+Manas runs/started a packaging solutions business called MPACK.
+The business acts more like a packaging partner/sourcing + printing solutions company rather than a direct manufacturing brand.
+
+He helps businesses get different types of:
+
+Flexible pouches
+Packaging boxes
+Labels
+Sleeves
+Canisters
+Printing solutions
+
+through his vendor network.
+
+He is still expanding vendors/suppliers, so some categories are currently active while others are future-ready offerings.
+
+Main Goal of the Website
+
+The website is not ecommerce.
+
+It is meant to:
+
+Showcase capabilities
+Build trust
+Explain packaging solutions
+Look premium + modern
+Make businesses contact him
+
+The goal is:
+
+“People should understand what all we offer, understand packaging types briefly, then contact us for further discussion.”
+
+No checkout.
+No payment gateway.
+No ordering system.
+
+Purely a:
+
+Portfolio-style
+Lead generation
+Brand presence website
+Design Direction
+Visual style
+
+Client wants:
+
+Colorful
+Friendly
+Modern
+Interactive
+Product-focused
+Visually rich
+Main inspiration/reference
+
+He strongly liked:
+
+Nexibles
+Your portfolio sites
+Especially your:
+Lagunitas bottle animation
+“Call us if you need” section
+Micro interactions
+
+So the site should feel:
+
+playful but premium
+packaging-heavy visually
+animated
+smooth
+modern startup/manufacturer hybrid
+Site Structure
+Likely one-page website
+
+with sections.
+
+Main Sections
+1. Hero Section
+
+Big visual opening.
+
+Probably:
+
+Animated packaging mockups
+Bold headline
+CTA button
+Motion/hover effects
+
+Tone:
+Modern packaging solutions.
+
+2. About / Why MPACK
+
+Short section explaining:
+
+What MPACK does
+Packaging expertise
+Vendor network
+Why businesses should work with them
+
+Could mention:
+
+MOQ flexibility
+End-to-end packaging solutions
+Design help
+Printing guidance
+3. Printing Types
+Categories:
+Digital Printing
+Flexo Printing
+Rotogravure
+
+Each can have:
+
+small explanation
+visuals/mockups
+use cases
+4. Product Categories
+
+This is the biggest section.
+
+A) Flexible Printed Pouches
+
+Subcategories:
+
+3 Side Sealed
+Center Seal
+Stand Up Pouch
+Side Gusset
+Spout Pouch
+Retort Pouch
+Flat Bottom / 5 Panel Pouch
+
+Also split by print type:
+
+Digitally printed
+Flexo printed
+Rotogravure
+B) Packaging Boxes
+Folding carton boxes
+Rigid boxes
+Corrugated boxes
+Drawer/slide boxes
+C) Labels
+Self adhesive labels
+Wrap around labels
+Shrink sleeve labels
+IML labels
+
+Important:
+Some label types are not fully operational yet but should still appear on the site.
+
+D) Sleeves
+Paper printed sleeves
+E) Canisters
+Composite paper canisters
+Tin canisters
+5. Industries Served
+
+Visual industry cards/carousel like Nexibles.
+
+Examples:
+
+Spices
+Dry fruits
+Frozen food
+Retort food
+Coffee
+Snacks
+etc
+6. Services / Additional Solutions
+
+Could include:
+
+Packaging consultation
+Designing help
+Machinery solutions
+Labelling help
+Barcode support
+Converter/vendor sourcing
+7. Testimonials / Clients
+
+Optional section.
+
+Maybe:
+
+Client logos
+Reviews
+Brand cards
+Carousel
+8. Contact / CTA Section
+
+Strong closing section.
+
+Inspired by your “call us if you need” section.
+
+Should feel:
+
+casual
+approachable
+modern
+
+Likely includes:
+
+WhatsApp
+Call
+Email
+Inquiry CTA
+Technical Scope
+Included
+Design
+Development
+Responsive website
+Animations/interactions
+AI-generated packaging mockups
+Domain connection
+Deployment
+Important Business Context
+Future expansion matters
+
+The site must be easy to scale because:
+
+new vendors will be added
+new packaging categories will come later
+some services exist conceptually but not operationally yet
+
+So structure should be modular/flexible.
+
+Current Assets Available
+
+You currently have:
+
+Logo
+Rough category structure
+Visual references
+Design direction
+Product hierarchy
+Basic business understanding
+
+Still pending:
+
+Full finalized text
+Testimonials
+Final contact details
+More detailed business copy
+Possible real packaging references
+Budget / Deal Structure
+Total project: ₹10,000
+50% advance already paid
+Remaining after completion
+Your Role
+
+You are effectively:
+
+Designer
+Developer
+Creative director
+Copy refiner
+Motion designer
+
+because the client is relying on you heavily for:
+
+structure
+execution
+visual quality
+copy polishing
+creative direction
+
+He’s giving broad inputs and trusting you to shape the final experience.

@@ -1,0 +1,99 @@
+.hero-new {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 800px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-lightblue);
+}
+
+.hero-new__bg {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 100%;
+    height: 140%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.hero-new__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(2, 6, 23, 0.1), rgba(2, 6, 23, 0.5));
+    z-index: 2;
+}
+
+.hero-new__content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    max-width: 1000px;
+    padding: 0 20px;
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-new__title {
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+.hero-new__word {
+    display: inline-block;
+    margin-right: 0.2em;
+}
+
+.hero-new__word.is--relative {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-new__underline {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+    color: var(--color-orange);
+}
+
+.hero-new__subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    max-width: 600px;
+    margin-bottom: 40px;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.hero-btn {
+    display: inline-block;
+    padding: 18px 40px;
+    background-color: var(--color-darkblue);
+    color: var(--color-white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px);
+    background-color: var(--color-orange);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
