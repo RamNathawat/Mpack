@@ -192,16 +192,9 @@ export default function VimeoHero() {
                         {/* "we" */}
                         <span className="vimeo-hero__word">we </span>
 
-                        {/* "make" + ⑤ smiley (no animation) */}
+                        {/* "make" */}
                         <span className="vimeo-hero__word is--relative">
                             <span>make </span>
-                            <div className="home-header__smiley">
-                                <img
-                                    src="/assets/VimeoHero SVG/smiley-face.svg"
-                                    alt=""
-                                    className="home-header__smiley-svg"
-                                />
-                            </div>
                         </span>
 
                         {/* "advertising" italic */}
@@ -215,17 +208,8 @@ export default function VimeoHero() {
                         <span className="vimeo-hero__word">the </span>
                         <span className="vimeo-hero__word">new </span>
 
-                        {/* "mainstream" + ⑤ pink star (no spin) + oval underline */}
+                        {/* "mainstream" + oval underline */}
                         <span className="vimeo-hero__word is--relative">
-                            <div className="home-header__star">
-                                <div className="home-header__star-inner">
-                                    <img
-                                        src="/assets/VimeoHero SVG/pink-star.svg"
-                                        alt=""
-                                        className="home-header__star-svg"
-                                    />
-                                </div>
-                            </div>
                             {/* Oval underline */}
                             <img
                                 src="/assets/VimeoHero SVG/oval-underline.svg"

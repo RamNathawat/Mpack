@@ -49,6 +49,11 @@
     color: #fff;
 }
 
+/* Disable difference mode when any popout is opened so the popout renders normally */
+.navbar:has(.nav-hover-trigger:hover) {
+    mix-blend-mode: normal;
+}
+
 /* Re-enable pointer events for the actual interactive items */
 .nav-left, .nav-center, .nav-right {
     pointer-events: auto;
@@ -80,8 +85,10 @@
 }
 
 /* When hover popouts open, turn off difference mode so they render properly over the light popout background */
+.nav-hover-trigger:hover .logo-whatsapp {
+    /* (Handled by the .navbar:has rule above) */
+}
 .nav-hover-trigger:hover .nav-bar__whatsapp-svg {
-    mix-blend-mode: normal !important;
     color: var(--color-dark) !important;
 }
 
@@ -163,7 +170,6 @@
 /* Force text dark when hovering, since popout bg is light */
 .nav-left:hover .logo-work-text {
     color: var(--color-dark) !important;
-    mix-blend-mode: normal !important;
 }
 
 /* The work items layout */
@@ -253,7 +259,7 @@
     padding: 100px 24px 24px 24px;
     align-items: center;
     text-align: center;
-    gap: 20px;
+    gap: 12px;
 }
 
 .nav-right .logo-whatsapp {
@@ -263,12 +269,11 @@
 
 
 .nav-wa-qr {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    top: -60px;
-    border-radius: 0px;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
     object-fit: cover;
+    margin-bottom: 12px;
 }
 
 .nav-wa-title {
@@ -276,7 +281,6 @@
     font-weight: 800;
     letter-spacing: -0.5px;
     text-transform: lowercase;
-    margin-top: -40px;
 }
 
 .nav-wa-desc {
@@ -284,8 +288,7 @@
     font-weight: 500;
     line-height: 1.35;
     opacity: 1;
-    margin-bottom: 28px;
-    /* Large gap to the link */
+    margin-bottom: 20px;
 }
 
 .nav-wa-link {

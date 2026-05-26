@@ -198,7 +198,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* Big TRUUS wordmark */}
+            {/* Big MPACK wordmark */}
             <div className="footer-bottom">
                 <div className="footer-big-text" style={{ padding: '40px 0', display: 'flex', justifyContent: 'center' }}>
                     <h2 style={{ fontSize: 'clamp(5rem, 15vw, 12rem)', fontWeight: '900', letterSpacing: '-0.02em', color: 'var(--color-darkblue)', margin: 0 }}>MPACK</h2>

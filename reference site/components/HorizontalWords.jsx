@@ -13,112 +13,34 @@ const HorizontalWords = () => {
     useEffect(() => {
         const ctx = gsap.context(() => {
             const container = sectionRef.current;
-            const textRef = container.querySelector('.horizontal-words__relative');
-            const letters = container.querySelectorAll('.letter');
+            const letters = container.querySelectorAll('.typewriter-letter');
 
-            // Select the individual stickers instead of just the wrapper
-            // or we select the images directly if they are the elements we want to animate.
-            // The original logic animated .horizontal-words__sticker-svg, but since you have multiple images:
-            const stickers = container.querySelectorAll('.horizontal-words__sticker-watch, .horizontal-words__sticker-cursor, .horizontal-words__sticker-phone');
-
-            // Note: To animate SVG paths with strokeDashoffset, the SVG must be inlined in the HTML,
-            // not loaded via <img> tags. The current setup uses <img> tags, so direct path animation
-            // as written below will not work unless the SVGs are converted to inline <svg> elements.
-            // For the purpose of this exercise, we'll assume the intent is for inline SVGs or
-            // that the querySelectorAll will find nothing and the animation will gracefully skip.
-            const arrows = container.querySelectorAll('.horizontal-words__arrow-svg path, .horizontal-words__arrow-end-svg path');
-
-            // --- ENTRANCE & PINNING LOGIC ---
-            // To make letters start animating as we scroll down from VimeoHero,
-            // we start the horizontal movement as soon as the section enters the viewport (top bottom).
-            const entranceDistance = window.innerHeight;
-            const pinnedDistance = 2500;
+            // Initially hide all letters
+            gsap.set(letters, { opacity: 0 });
 
             const scrollTween = gsap.timeline({
                 scrollTrigger: {
                     trigger: container,
-                    start: "top bottom",
-                    end: () => `+=${entranceDistance + pinnedDistance}`,
+                    start: "top top",
+                    end: "+=1500", // The duration of the scroll pin
                     scrub: 1,
-                    invalidateOnRefresh: true,
+                    pin: true,
+                    pinSpacing: true,
+                    invalidateOnRefresh: true
                 }
             });
 
-            scrollTween
-                .fromTo(textRef, {
-                    x: window.innerWidth // Start words off-screen right
-                }, {
-                    x: window.innerWidth * 0.5,
-                    ease: "none",
-                    duration: entranceDistance
-                })
-                .to(textRef, {
-                    x: () => -(textRef.scrollWidth - window.innerWidth * 0.5),
-                    ease: "none",
-                    duration: pinnedDistance
-                });
-
-            // Separate pinning logic so it only locks when the section hits the top
-            ScrollTrigger.create({
-                trigger: container,
-                start: "top top",
-                end: () => `+=${pinnedDistance}`,
-                pin: true,
-                pinSpacing: true,
-                invalidateOnRefresh: true
-            });
-            // ------------------------------------
-
-            // Bounce each letter randomly
-            letters.forEach((letter) => {
-                gsap.from(letter, {
-                    yPercent: (Math.random() - 0.5) * 500,
-                    rotation: (Math.random() - 0.5) * 60,
-                    ease: "elastic.out(1.2, 1)",
-                    scrollTrigger: {
-                        trigger: letter,
-                        containerAnimation: scrollTween,
-                        start: 'left 90%',
-                        end: 'left 50%', // Finish as it reaches center
-                        scrub: 0.5
-                    }
-                });
-            });
-
-            // Bounce stickers
-            stickers.forEach((sticker) => {
-                gsap.from(sticker, {
-                    scale: 0,
-                    yPercent: (Math.random() - 0.5) * 400,
-                    rotation: (Math.random() - 0.5) * 60,
-                    ease: "elastic.out(1.2, 1)",
-                    scrollTrigger: {
-                        trigger: sticker,
-                        containerAnimation: scrollTween,
-                        start: 'left 90%',
-                        end: 'left 50%', // Finish as it reaches center
-                        scrub: 0.5
-                    }
-                });
-            });
-
-            // Animate Drawing SVG Arrows 
-            arrows.forEach((arrowPath) => {
-                if (arrowPath.getTotalLength) {
-                    const pathLen = arrowPath.getTotalLength();
-                    gsap.set(arrowPath, { strokeDasharray: pathLen, strokeDashoffset: pathLen });
-                    gsap.to(arrowPath, {
-                        strokeDashoffset: 0,
-                        duration: 1,
-                        scrollTrigger: {
-                            trigger: arrowPath.parentElement,
-                            containerAnimation: scrollTween,
-                            start: 'left 90%',
-                            end: 'left 50%', // This is the last arrow's end point
-                            scrub: 0.5
-                        }
-                    });
-                }
+            // Make letters appear one by one with a bouncy pop-in
+            scrollTween.fromTo(letters, {
+                opacity: 0,
+                y: 40,
+                scale: 0.5
+            }, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                ease: "back.out(2.5)",
+                stagger: 0.1
             });
 
         }, sectionRef);
@@ -126,57 +48,34 @@ const HorizontalWords = () => {
         return () => ctx.revert();
     }, []);
 
-    return (
-        <section ref={sectionRef} className="horizontal-words-section content-section">
-            <div className="horizontal-words__relative">
-                <div className="horizontal-words__sticker-svg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 386 127" fill="none" className="horizontal-words__arrow-svg"><path d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118L356.5 105.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" ></path><path d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118L384 97" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" ></path></svg>
-                    <img src="/assets/HorizontalWords SVG/horizontal-words-sticker-thumps-up.svg" className="horizontal-words__sticker-watch" alt="thumbs up sticker" />
-                    <img src="/assets/HorizontalWords SVG/horizontal-words-sticker-cursor.svg" className="horizontal-words__sticker-cursor" alt="cursor sticker" />
-                    <img src="/assets/HorizontalWords SVG/horizontal-words-sticker-phone.svg" className="horizontal-words__sticker-phone" alt="phone sticker" />
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 140 127" fill="none" className="horizontal-words__arrow-end-svg"><path d="M2.03125 2.42188C100.469 2.42188 130.156 52.4219 118.437 125.078L99.6875 107.891" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" ></path><path d="M2.03125 2.42188C100.469 2.42188 130.156 52.4219 118.438 125.078L137.969 110.234" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" ></path></svg>
+    // Split text into lines, then into words, then into letters
+    const line1 = "end to end".split("");
+    const line2 = "packaging".split("");
+    const line3 = "expertise".split("");
 
-                    <h2 className="display horizontal-words__h2" aria-label="End to end packaging expertise">
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>E</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>n</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>d</div>
-                        {" "}
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>t</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>o</div>
-                        {" "}
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>e</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>n</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>d</div>
-                        {" "}
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>p</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>a</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>c</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>k</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>a</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>g</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>i</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>n</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>g</div>
-                        {" "}
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>e</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>x</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>p</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>e</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>r</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>t</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>i</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>s</div>
-                        <div className="letter" aria-hidden="true" style={{ position: "relative", display: "inline-block" }}>e</div>
-                    </h2>
-                </div>
+    const renderLetters = (charArray) => {
+        return charArray.map((char, i) => (
+            <span key={i} className="typewriter-letter" style={{ display: 'inline-block', whiteSpace: char === ' ' ? 'pre' : 'normal' }}>
+                {char}
+            </span>
+        ));
+    };
+
+    return (
+        <section ref={sectionRef} className="horizontal-words-section content-section" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', padding: '0 5vw', overflow: 'hidden' }}>
+            
+            <div style={{ width: '100%', textAlign: 'center' }}>
+                <h2 className="display" style={{ fontSize: '9vw', fontWeight: 1000, textTransform: 'lowercase', lineHeight: 1, margin: 0, color: 'var(--color-dark)' }}>
+                    <div>{renderLetters(line1)}</div>
+                    <div>{renderLetters(line2)}</div>
+                    <div>{renderLetters(line3)}</div>
+                </h2>
             </div>
 
-            <div className="horizontal-words__bottom-text">
-                <div className="horizontal-words__bottom-text-l">
-                    MPACK is your premium packaging partner.<br />
-                    We offer extensive vendor networks, MOQ flexibility,<br />
-                    and bespoke printing solutions for all industries.
-                </div>
+            <div style={{ marginTop: '5vh', maxWidth: '40em', fontSize: '1.3rem', lineHeight: '1.4', fontWeight: 450, textAlign: 'center' }}>
+                MPACK is your premium packaging partner.<br />
+                We offer extensive vendor networks, MOQ flexibility,<br />
+                and bespoke printing solutions for all industries.
             </div>
         </section>
     );

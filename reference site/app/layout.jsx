@@ -4,7 +4,7 @@ export const metadata = {
     title: 'MPACK — Premium Packaging Solutions',
     description: 'MPACK is a premium packaging solutions provider specialising in flexible pouches, canisters, labels, and boxes.',
     icons: {
-        icon: 'https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68381362603d6402ee03c00e_favicon.png',
+        icon: '/favicon.svg',
     },
 };
 
