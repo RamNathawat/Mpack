@@ -11,17 +11,31 @@ export default function Hero() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Parallax effect for the background
+            // Continuous slow pan effect to simulate a video of moving packets
             gsap.to(bgRef.current, {
-                yPercent: 30,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: heroRef.current,
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true
-                }
+                xPercent: -5,
+                yPercent: -5,
+                duration: 20,
+                ease: "sine.inOut",
+                yoyo: true,
+                repeat: -1
             });
+
+            // React to cursor movement
+            const onMouseMove = (e) => {
+                const { clientX, clientY } = e;
+                const xMove = (clientX / window.innerWidth - 0.5) * 30; // max 15px movement
+                const yMove = (clientY / window.innerHeight - 0.5) * 30;
+                
+                gsap.to(bgRef.current, {
+                    x: -xMove,
+                    y: -yMove,
+                    duration: 3.5,
+                    ease: "power3.out"
+                });
+            };
+
+            window.addEventListener('mousemove', onMouseMove);
 
             // Fade in text
             gsap.from(".hero-new__word", {
@@ -32,6 +46,10 @@ export default function Hero() {
                 ease: "power3.out",
                 delay: 0.2
             });
+
+            return () => {
+                window.removeEventListener('mousemove', onMouseMove);
+            };
         }, heroRef);
 
         return () => ctx.revert();
@@ -50,7 +68,6 @@ export default function Hero() {
                 <h1 className="hero-new__title" ref={titleRef}>
                     <span className="hero-new__word">Premium </span>
                     <span className="hero-new__word">Packaging </span>
-                    <br />
                     <span className="hero-new__word is--relative">
                         <em>Solutions</em>
                         <img src="/assets/VimeoHero SVG/oval-underline.svg" alt="" className="hero-new__underline" />

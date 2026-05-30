@@ -53,7 +53,7 @@ export default function ProductCategories() {
     return (
         <section className="categories-section" ref={sectionRef}>
             <div className="title-container" style={{ padding: '40px 20px', textAlign: 'center' }}>
-                <h2 className="main-title" style={{ fontSize: '4rem', marginBottom: '10px' }}>What we <span className="italic-text">make</span></h2>
+                <h2 className="main-title" style={{ fontSize: '4rem', marginBottom: '10px', color: 'var(--color-white)' }}>What we <span className="italic-text">make</span></h2>
             </div>
 
             <div className="categories-container">

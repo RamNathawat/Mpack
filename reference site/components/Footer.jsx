@@ -160,6 +160,7 @@ export default function Footer() {
                 <div className="footer-column">
                     <span className="footer-badge">ready for better packaging?</span>
                     <h3>let's talk</h3>
+                    <img src="/assets/images/logo-mpack.png" alt="MPACK Logo" style={{ width: '220px', height: 'auto', marginTop: '20px', display: 'block' }} />
                 </div>
                 {/* Office */}
                 <div className="footer-column">
