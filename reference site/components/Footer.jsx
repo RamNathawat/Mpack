@@ -159,8 +159,10 @@ export default function Footer() {
                 {/* Jobs */}
                 <div className="footer-column">
                     <span className="footer-badge">ready for better packaging?</span>
-                    <h3>let's talk</h3>
-                    <img src="/assets/images/logo-mpack.png" alt="MPACK Logo" style={{ width: '140px', height: 'auto', marginTop: '30px', display: 'block' }} />
+                    <h3 style={{ fontFamily: 'var(--font-logo)' }}>let's talk</h3>
+                    <svg width="150" height="42" viewBox="0 0 150 55" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginTop: '30px', display: 'block', overflow: 'visible' }}>
+                        <text x="0" y="44" fontFamily="var(--font-logo)" fontWeight="900" fontSize="48" fill="#1D4ED8" letterSpacing="-1px">MPACK</text>
+                    </svg>
                 </div>
                 {/* Office */}
                 <div className="footer-column">
@@ -202,7 +204,7 @@ export default function Footer() {
             {/* Big MPACK wordmark */}
             <div className="footer-bottom">
                 <div className="footer-big-text" style={{ padding: '40px 0', display: 'flex', justifyContent: 'center' }}>
-                    <h2 style={{ fontSize: 'clamp(5rem, 15vw, 12rem)', fontWeight: '900', letterSpacing: '-0.02em', color: 'rgba(0,0,0,0.03)', margin: 0 }}>MPACK</h2>
+                    <h2 style={{ fontFamily: 'var(--font-logo)', fontSize: 'clamp(5rem, 15vw, 12rem)', fontWeight: '900', letterSpacing: '-0.02em', color: 'rgba(0,0,0,0.03)', margin: 0 }}>MPACK</h2>
                 </div>
 
                 <div className="footer-stickers">
