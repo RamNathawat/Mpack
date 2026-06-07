@@ -116,3 +116,133 @@
     z-index: 2;
     white-space: nowrap;
 }
+
+/* Organic Doodle Stickers */
+.ecosystem-badge-wrapper {
+    position: absolute;
+    z-index: 40;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.doodle-click-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: center center;
+}
+
+.ecosystem-badge-wrapper:hover .doodle-click-wrapper {
+    transform: scale(1.15) rotate(-3deg);
+}
+
+.ecosystem-badge-wrapper.expanded .doodle-click-wrapper {
+    transform: scale(0.5);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.doodle-svg {
+    overflow: visible;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.1));
+}
+
+.doodle-bg {
+    stroke: #ffffff;
+    stroke-width: 3px;
+    stroke-linejoin: round;
+}
+
+/* Expanded Card (Organic Sticker style) */
+.eco-badge-expanded {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    pointer-events: none;
+    width: max-content;
+    min-width: 310px;
+    max-width: 350px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 5px solid #ffffff;
+    /* Friendlier, softer organic blob shape */
+    border-radius: 60% 40% 50% 70% / 60% 50% 70% 40%;
+    padding: 50px 45px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Background colors corresponding to sticker blobs */
+.compliance-badge .eco-badge-expanded { background: #94a3b8; }
+.machinery-badge .eco-badge-expanded { background: #fca5a5; }
+.packaging-badge .eco-badge-expanded { background: #fcd34d; }
+.design-badge .eco-badge-expanded { background: #a5b4fc; }
+
+.ecosystem-badge-wrapper.expanded {
+    z-index: 50;
+}
+
+.ecosystem-badge-wrapper.expanded .eco-badge-expanded {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+}
+
+.eco-badge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.eco-badge-header h4 {
+    font-family: var(--font-primary), sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.1;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+}
+
+.eco-badge-expanded p {
+    font-family: var(--font-secondary), sans-serif;
+    font-size: 0.95rem;
+    color: #1e293b;
+    line-height: 1.45;
+    margin: 0;
+    font-weight: 500;
+}
+
+.eco-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 5px;
+}
+
+.eco-badge-expanded .eco-tag {
+    font-family: var(--font-primary), sans-serif;
+    background: transparent;
+    color: #1e293b;
+    border: 2px solid #1e293b;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    display: inline-block;
+    box-sizing: border-box;
+    max-width: 100%;
+    white-space: normal;
+}
+

@@ -31,20 +31,34 @@ export default function Navbar() {
         // ② Start white (on-dark) — video is dark background
         if (navbar) { navbar.classList.add('on-dark'); navbar.classList.remove('on-light'); }
 
+        let lastScrollY = window.scrollY;
+
         const updateNavbarColor = () => {
             if (!navbar || !contentSection || !footerEl) return;
-            const scrollPos = window.scrollY + navbar.offsetHeight / 2;
-            const contentTop = contentSection.getBoundingClientRect().top + window.scrollY;
+            const currentScrollY = window.scrollY;
+            
+            // Smart scroll logic (hide on scroll down, show on scroll up)
+            if (currentScrollY > lastScrollY && currentScrollY > 80) {
+                // Scrolling down - fast hide
+                gsap.to(navbar, { yPercent: -100, duration: 0.15, ease: 'power2.in', overwrite: 'auto' });
+            } else if (currentScrollY < lastScrollY) {
+                // Scrolling up - snappy reveal
+                gsap.to(navbar, { yPercent: 0, duration: 0.25, ease: 'power2.out', overwrite: 'auto' });
+            }
+            lastScrollY = currentScrollY;
+
+            const scrollPos = currentScrollY + navbar.offsetHeight / 2;
+            const contentTop = contentSection.getBoundingClientRect().top + currentScrollY;
 
             const showreelSection = document.querySelector('#showreel-section');
-            const showreelTop = showreelSection ? showreelSection.getBoundingClientRect().top + window.scrollY : Infinity;
+            const showreelTop = showreelSection ? showreelSection.getBoundingClientRect().top + currentScrollY : Infinity;
 
             const serviceCardsSection = document.querySelector('.service-cards-wrapper');
-            const serviceCardsTop = serviceCardsSection ? serviceCardsSection.getBoundingClientRect().top + window.scrollY : Infinity;
+            const serviceCardsTop = serviceCardsSection ? serviceCardsSection.getBoundingClientRect().top + currentScrollY : Infinity;
 
             const doubleMarquee = document.querySelector('.Double-marquee');
-            const doubleMarqueeTop = doubleMarquee ? doubleMarquee.getBoundingClientRect().top + window.scrollY : Infinity;
-            const footerTop = footerEl.getBoundingClientRect().top + window.scrollY;
+            const doubleMarqueeTop = doubleMarquee ? doubleMarquee.getBoundingClientRect().top + currentScrollY : Infinity;
+            const footerTop = footerEl.getBoundingClientRect().top + currentScrollY;
 
             if (scrollPos >= footerTop) {
                 navbar.classList.add('on-dark'); navbar.classList.remove('on-light');

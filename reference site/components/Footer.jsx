@@ -160,7 +160,7 @@ export default function Footer() {
                 <div className="footer-column">
                     <span className="footer-badge">ready for better packaging?</span>
                     <h3>let's talk</h3>
-                    <img src="/assets/images/logo-mpack.png" alt="MPACK Logo" style={{ width: '220px', height: 'auto', marginTop: '20px', display: 'block' }} />
+                    <img src="/assets/images/logo-mpack.png" alt="MPACK Logo" style={{ width: '140px', height: 'auto', marginTop: '30px', display: 'block' }} />
                 </div>
                 {/* Office */}
                 <div className="footer-column">
@@ -202,16 +202,15 @@ export default function Footer() {
             {/* Big MPACK wordmark */}
             <div className="footer-bottom">
                 <div className="footer-big-text" style={{ padding: '40px 0', display: 'flex', justifyContent: 'center' }}>
-                    <h2 style={{ fontSize: 'clamp(5rem, 15vw, 12rem)', fontWeight: '900', letterSpacing: '-0.02em', color: 'var(--color-darkblue)', margin: 0 }}>MPACK</h2>
+                    <h2 style={{ fontSize: 'clamp(5rem, 15vw, 12rem)', fontWeight: '900', letterSpacing: '-0.02em', color: 'rgba(0,0,0,0.03)', margin: 0 }}>MPACK</h2>
                 </div>
 
-                {/* Stickers */}
                 <div className="footer-stickers">
                     <div className="footer-sticker sticker-smiley">
-                        <img src="/assets/Footer-Sticker SVG/footer-sticker-smiley.svg" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
+                        <img src="/assets/stickers/sticker_production_roll.png" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
                     </div>
                     <div className="footer-sticker sticker-heart">
-                        <img src="/assets/Footer-Sticker SVG/footer-sticker-heart.svg" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
+                        <img src="/assets/stickers/sticker_shipping_carton.png" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
                     </div>
                     <div className="footer-sticker sticker-hands">
                         <img src="/assets/Footer-Sticker SVG/footer-sticker-hands.svg" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />

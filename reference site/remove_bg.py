@@ -1,28 +1,36 @@
-import sys
 from PIL import Image
 
-def remove_background(input_path, output_path, tolerance=15):
-    try:
-        img = Image.open(input_path).convert("RGBA")
-        data = img.getdata()
-        
-        # Get background color from top-left corner
-        bg_color = data[0]
-        
-        new_data = []
-        for item in data:
-            # Check if pixel is within tolerance of bg_color
-            if (abs(item[0] - bg_color[0]) <= tolerance and
-                abs(item[1] - bg_color[1]) <= tolerance and
-                abs(item[2] - bg_color[2]) <= tolerance):
-                new_data.append((255, 255, 255, 0)) # transparent
-            else:
-                new_data.append(item)
-                
-        img.putdata(new_data)
-        img.save(output_path, "PNG")
-        print("Success")
-    except Exception as e:
-        print("Error:", e)
+def make_transparent(image_path):
+    img = Image.open(image_path).convert("RGBA")
+    data = img.getdata()
+    
+    # We want to replace the white background with transparent.
+    # To avoid removing white inside the sticker, we do a flood fill from the top-left corner.
+    
+    # We can use ImageDraw.floodfill, but PIL's floodfill doesn't support alpha well directly on the image sometimes.
+    # Better: create a mask.
+    from PIL import ImageDraw
+    
+    # Convert to RGB to do flood fill (to avoid alpha issues)
+    img_rgb = img.convert("RGB")
+    ImageDraw.floodfill(img_rgb, (0, 0), (255, 0, 255), thresh=10)
+    ImageDraw.floodfill(img_rgb, (img.width-1, 0), (255, 0, 255), thresh=10)
+    ImageDraw.floodfill(img_rgb, (0, img.height-1), (255, 0, 255), thresh=10)
+    ImageDraw.floodfill(img_rgb, (img.width-1, img.height-1), (255, 0, 255), thresh=10)
+    
+    new_data = []
+    rgb_data = img_rgb.getdata()
+    orig_data = img.getdata()
+    for i in range(len(rgb_data)):
+        if rgb_data[i] == (255, 0, 255):
+            new_data.append((255, 255, 255, 0)) # transparent
+        else:
+            new_data.append(orig_data[i])
+            
+    img.putdata(new_data)
+    img.save(image_path)
+    print(f"Processed {image_path}")
 
-remove_background('public/assets/images/logo-mpack.jpeg', 'public/assets/images/logo-mpack.png')
+import sys
+for arg in sys.argv[1:]:
+    make_transparent(arg)

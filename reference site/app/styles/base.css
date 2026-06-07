@@ -13,6 +13,17 @@
 
 /* ─── Design Tokens ─────────────────────────────────────────────────────────── */
 :root {
+    --color-alabaster: #FAF8F5;
+    --color-peach: #FFB39B;
+    --color-pistachio: #D2E4C4;
+    --color-azure: #1D4ED8;
+    --color-lemon: #FFF3B0;
+    --color-slate: #1E293B;
+    --color-dark: #1E293B; /* keeping for backwards compatibility */
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --bg-color: var(--color-alabaster);
+    /* Legacy colors */
     --color-green: #29725f;
     --color-lightblue: #e8f0fe;
     --color-darkblue: #1c4ed8;
@@ -20,12 +31,6 @@
     --color-orange: #f5693c;
     --color-maroon: #a0325a;
     --color-pink: #f0befa;
-    --bg-color: #f8fafc;
-    --color-white: #ffffff;
-    --color-black: #000000;
-    --color-dark: #0f172a;
-    --color-black-soft: #1e293b;
-    --color-black-deep: #020617;
 }
 
 /* ─── Reset ─────────────────────────────────────────────────────────────────── */
@@ -36,8 +41,8 @@
 }
 
 ::selection {
-    background-color: var(--color-pink);
-    color: var(--color-black);
+    background-color: var(--color-peach);
+    color: var(--color-slate);
 }
 
 /* Prevent selection on non-text elements */
@@ -55,9 +60,9 @@ object {
 
 /* ─── Base Elements ──────────────────────────────────────────────────────────── */
 body {
-    background-color: var(--bg-color);
+    background-color: var(--color-alabaster);
     font-family: 'Epilogue', sans-serif;
-    color: var(--color-dark);
+    color: var(--color-slate);
     overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;

@@ -1,25 +1,33 @@
-.hero-new {
+/* Wrapper allows 250vh of scrolling */
+.hero-morph-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 250vh; 
+    background-color: var(--color-lightblue);
+    z-index: 10;
+}
+
+/* The pinned container */
+.hero-morph-pinned {
     position: relative;
     width: 100vw;
     height: 100vh;
-    min-height: 800px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-lightblue);
-    left: 50%;
-    transform: translateX(-50%);
 }
 
+/* Background image layer */
 .hero-new__bg {
     position: absolute;
-    top: -10vh;
-    left: -10vw;
-    width: 120vw;
-    height: 120vh;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     z-index: 1;
 }
 
@@ -29,13 +37,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(2, 6, 23, 0.4), rgba(2, 6, 23, 0.7));
+    background: linear-gradient(to bottom, rgba(2, 6, 23, 0.1), rgba(2, 6, 23, 0.3));
     z-index: 2;
 }
 
 .hero-new__content {
     position: relative;
-    z-index: 3;
+    z-index: 5;
     text-align: center;
     max-width: 1000px;
     padding: 0 20px;
@@ -43,20 +51,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    will-change: transform, opacity;
 }
 
 .hero-new__title {
-    font-size: clamp(3rem, 7vw, 6rem);
-    line-height: 1.1;
+    font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 800;
-    margin-bottom: 24px;
-    text-transform: uppercase;
+    line-height: 1.1;
     letter-spacing: -0.02em;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3em;
+    text-shadow: 0 4px 30px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .hero-new__word {
     display: inline-block;
-    margin-right: 0.2em;
 }
 
 .hero-new__word.is--relative {
@@ -78,24 +91,248 @@
     font-size: clamp(1.2rem, 2vw, 1.5rem);
     max-width: 600px;
     margin-bottom: 40px;
-    font-weight: 400;
+    font-weight: 500;
     opacity: 0.9;
+    color: #334155;
+    text-shadow: 0 4px 20px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .hero-btn {
     display: inline-block;
     padding: 18px 40px;
-    background-color: var(--color-darkblue);
+    background-color: #2e68f3; /* Matching screenshot button color */
     color: var(--color-white);
     font-size: 1.1rem;
     font-weight: 600;
     border-radius: 50px;
     text-decoration: none;
     transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
 }
 
 .hero-btn:hover {
     transform: translateY(-3px);
     background-color: var(--color-orange);
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.hero-new__title em {
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 2px #fff;
+    text-shadow: 4px 4px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Product Container */
+.hero-products-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 4;
+}
+
+/* Individual Pouch Wrappers */
+.pouch-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 22vw;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+    perspective: 1000px;
+}
+
+.pouch-inner {
+    width: 100%;
+    height: auto;
+    transition: transform 0.2s ease-out;
+    transform-style: preserve-3d;
+}
+
+.mockup-layer {
+    position: relative;
+    width: 100%;
+    height: auto;
+    transform: scale(2.0);
+    will-change: transform, filter, opacity;
+}
+
+.mockup-layer img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.blank-mockup-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.blank-mockup {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Soft, premium matte finish */
+    filter: grayscale(100%) brightness(1.15) contrast(1.05);
+    transition: filter 0.5s ease;
+}
+
+.printed-mockup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    /* Elegant, soft-feathered mask wipe */
+    -webkit-mask-image: linear-gradient(to right, black 45%, transparent 55%);
+    mask-image: linear-gradient(to right, black 45%, transparent 55%);
+    -webkit-mask-size: 250% 100%;
+    mask-size: 250% 100%;
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+/* --- Process Indicator --- */
+.process-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    justify-content: center;
+}
+
+.process-step {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: color 0.4s ease;
+}
+
+.process-step::after {
+    content: "→";
+    position: absolute;
+    right: -14px;
+    color: rgba(0, 0, 0, 0.2);
+}
+.process-step:last-child::after {
+    display: none;
+}
+
+.process-step.active {
+    color: #3b82f6; /* MPACK Blue */
+}
+
+@media screen and (min-width: 900px) {
+    .process-indicator {
+        justify-content: flex-start;
+    }
+}
+
+.pouch-label-group {
+    opacity: 0;
+    transform: translateY(30px);
+    will-change: opacity, transform;
+    text-align: center;
+    width: 100%;
+    pointer-events: none;
+}
+
+.pouch-label {
+    margin-top: 40px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #1e293b;
+    letter-spacing: -0.03em;
+    text-transform: lowercase;
+    font-family: var(--font-primary), sans-serif;
+    text-shadow: none;
+}
+
+.pouch-desc {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    color: #475569;
+    font-weight: 500;
+    line-height: 1.5;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: var(--font-secondary), sans-serif;
+    letter-spacing: -0.01em;
+    text-shadow: none;
+}
+
+/* Floating printed product label on mockups */
+.floating-product-label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: rgba(0, 0, 0, 0.7);
+    z-index: 20;
+    pointer-events: none;
+    mix-blend-mode: multiply; /* Makes it look printed */
+    will-change: opacity, background-position;
+    
+    /* Glare effect */
+    background: linear-gradient(110deg, rgba(0,0,0,0.8) 0%, rgba(200,200,200,0.5) 50%, rgba(0,0,0,0.8) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    /* Feathered mask to sync with image sweep */
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+    -webkit-mask-size: 200% 100%;
+    -webkit-mask-position: 100% 0%;
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+    mask-size: 200% 100%;
+    mask-position: 100% 0%;
+    opacity: 0; /* Hidden initially, controlled by GSAP mask */
+}
+
+/* Add SVG filter for rough ink bleed texture */
+.floating-product-label {
+    filter: url('#ink-bleed');
+}
+
+.ink-serial {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.4rem;
+    letter-spacing: 0.25em;
+    opacity: 0.7;
+    margin-bottom: 2px;
+}
+
+.ink-title {
+    font-family: var(--font-secondary), sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.ink-meta {
+    font-family: var(--font-primary), sans-serif;
+    font-size: 0.35rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    opacity: 0.6;
+    margin-top: 4px;
+    text-transform: uppercase;
 }

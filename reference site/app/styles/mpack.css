@@ -118,7 +118,7 @@
     height: 100vh;
     width: 100%;
     overflow: hidden;
-    background-color: var(--bg-color);
+    background-color: var(--color-peach);
     position: relative;
     display: flex;
     align-items: center;

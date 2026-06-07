@@ -1,0 +1,292 @@
+/* ecosystem.css - 2D Editorial Elegance */
+
+.ecosystem-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 6vh 5vw;
+    background: rgba(248, 250, 252, 0.98); /* Ultra clean white-slate */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    overflow-y: auto;
+}
+
+.ecosystem-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Close Button */
+.ecosystem-close {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #0f172a;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.ecosystem-close:hover {
+    color: #3b82f6;
+}
+
+.eco-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Header */
+.eco-header {
+    margin-bottom: 4vh;
+    text-align: center;
+}
+
+.eco-header h2 {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1;
+}
+
+.eco-header p {
+    font-size: 1.2rem;
+    color: #64748b;
+    margin: 1rem 0 0 0;
+    font-weight: 500;
+}
+
+/* Accordion */
+.eco-accordion {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #cbd5e1;
+}
+
+/* Row (Default compressed state) */
+.eco-row {
+    width: 100%;
+    border-bottom: 1px solid #cbd5e1;
+    cursor: pointer;
+    overflow: hidden;
+    height: 12vh;
+    min-height: 80px;
+    transition: height 0.6s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.4s ease, background 0.4s ease;
+}
+
+.eco-row.dimmed {
+    opacity: 0.3;
+}
+
+/* Row (Expanded state) */
+.eco-row.active {
+    height: 35vh;
+    min-height: 250px;
+    background: transparent;
+}
+
+/* Row Header */
+.eco-row-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12vh;
+    min-height: 80px;
+    padding: 0 1rem;
+    position: relative;
+    transition: padding 0.4s ease;
+}
+
+.eco-row.active .eco-row-header {
+    /* No padding shift when centered */
+}
+
+.eco-row-num {
+    position: absolute;
+    left: 2rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #94a3b8;
+}
+
+.eco-row-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.eco-row:hover .eco-row-title,
+.eco-row.active .eco-row-title {
+    color: #3b82f6;
+}
+
+/* Plus/Minus Icon */
+.eco-row-icon {
+    position: absolute;
+    right: 2rem;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-line {
+    position: absolute;
+    background: #0f172a;
+    transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.icon-line.horizontal {
+    top: 11px; left: 0; width: 24px; height: 2px;
+}
+
+.icon-line.vertical {
+    top: 0; left: 11px; width: 2px; height: 24px;
+}
+
+.eco-row.active .icon-line.vertical {
+    transform: rotate(90deg); /* Turns the + into a - */
+}
+
+/* Row Content */
+.eco-row-content {
+    padding: 0 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: 0s;
+}
+
+.eco-row.active .eco-row-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+.eco-row-content-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+}
+
+.eco-content-desc {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: #334155;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    max-width: 600px;
+}
+
+.eco-content-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.eco-tag {
+    font-size: 1rem;
+    color: #0f172a;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 50px;
+    background: transparent;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.eco-tag:hover {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 900px) {
+    .eco-header h2 {
+        font-size: 2.5rem;
+    }
+    
+    .eco-row {
+        height: 10vh;
+        min-height: 60px;
+    }
+    
+    .eco-row-header {
+        height: 10vh;
+        min-height: 60px;
+        padding: 0;
+    }
+
+    .eco-row-num {
+        left: 1rem;
+        width: auto;
+        font-size: 1rem;
+    }
+
+    .eco-row-icon {
+        right: 1rem;
+    }
+
+    .eco-row-title {
+        font-size: 1.5rem;
+        white-space: normal;
+        line-height: 1.1;
+    }
+
+    .eco-row.active {
+        height: auto;
+        padding-bottom: 1rem;
+    }
+
+    .eco-row-content-inner {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .eco-content-list {
+        gap: 8px;
+    }
+    
+    .eco-tag {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}

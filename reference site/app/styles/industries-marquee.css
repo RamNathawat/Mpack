@@ -1,0 +1,205 @@
+/* ─── Industries Grid Section (Premium Redesign) ────────────────────────────────────────────── */
+.industries-grid-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--color-cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden; 
+    padding-top: 8vh;
+    padding-bottom: 5vh;
+}
+
+.industries-pin-container {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+.industries-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 5%;
+}
+
+.eyebrow {
+    font-family: var(--font-secondary), sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--color-slate);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Masking wrappers for text reveal */
+.reveal-mask {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.reveal-text {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+}
+
+.industries-header h2 {
+    font-family: var(--font-primary), sans-serif;
+    font-weight: 900;
+    font-size: 5vw;
+    color: var(--color-dark);
+    margin: 0 0 20px 0;
+    text-transform: lowercase;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.industries-header p {
+    font-family: var(--font-secondary), sans-serif;
+    font-size: 1.25rem;
+    color: var(--color-slate);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0; /* Handled by GSAP */
+}
+
+/* Horizontal Track Wrapper */
+.industries-track-wrapper {
+    width: 100%;
+    padding-left: 10vw; 
+    padding-top: 20px;
+    padding-bottom: 60px; /* Provides space for the hover pop and shadow */
+    perspective: 1000px; /* For potential 3D effects */
+}
+
+.industries-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    padding-right: 10vw;
+    will-change: transform;
+}
+
+.industry-card-container {
+    perspective: 1000px;
+}
+
+.industry-card {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    width: 280px;
+    height: auto;
+    padding: 20px 10px;
+    flex-shrink: 0; 
+    will-change: transform;
+}
+
+.industry-sticker-img {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    filter: drop-shadow(4px 12px 25px rgba(0, 0, 0, 0.12));
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                filter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.industry-card:hover .industry-sticker-img {
+    transform: translateY(-15px) scale(1.05) rotate(-3deg);
+    filter: drop-shadow(8px 24px 40px rgba(0, 0, 0, 0.15));
+}
+
+
+/* Staggered card heights for magazine-style rhythm */
+.industry-card-container:nth-child(even) {
+    transform: translateY(40px);
+}
+
+
+
+.industry-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* SVG Draw Animation */
+.industry-svg path,
+.industry-svg circle,
+.industry-svg rect,
+.industry-svg polyline,
+.industry-svg line {
+    vector-effect: non-scaling-stroke;
+    stroke-width: 2px;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: center;
+}
+
+.industry-card h3 {
+    font-family: var(--font-primary), sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: var(--color-dark);
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .industries-pin-container {
+        height: auto;
+        padding: 10vh 0;
+    }
+    
+    .industries-header h2 {
+        font-size: 3rem;
+    }
+    
+    .industries-track-wrapper {
+        padding: 0 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; 
+    }
+    
+    .industries-track-wrapper::-webkit-scrollbar {
+        display: none; 
+    }
+    
+    .industries-track {
+        padding-right: 20px;
+        gap: 20px;
+    }
+    
+    .industry-card {
+        width: 280px;
+        height: 360px;
+        padding: 40px 30px;
+        scroll-snap-align: center;
+    }
+    
+    .industry-icon-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+}

@@ -4,8 +4,7 @@ import SvgSymbols from '@/components/SvgSymbols';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import HorizontalWords from '@/components/HorizontalWords';
-import PrintingTypes from '@/components/PrintingTypes';
-import ProductCategories from '@/components/ProductCategories';
+import PackagingShowcase from '@/components/PackagingShowcase';
 import IndustriesCarousel from '@/components/IndustriesCarousel';
 import ServiceCards from '@/components/ServiceCards';
 import DoubleMarquee from '@/components/DoubleMarquee';
@@ -25,13 +24,9 @@ export default function Home() {
                 <Hero />
             </header>
             <HorizontalWords />
+            <PackagingShowcase />
             <main>
-                <PrintingTypes />
-                <ProductCategories />
                 <IndustriesCarousel />
-                <div className="content-section service-cards-wrapper">
-                    <ServiceCards />
-                </div>
             </main>
             <section className="Double-marquee">
                 <DoubleMarquee />

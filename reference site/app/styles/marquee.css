@@ -1,6 +1,6 @@
 /* ─── Double Marquee Section ─────────────────────────────────────────────── */
 .Double-marquee {
-    background-color: var(--bg-color);
+    background-color: var(--color-azure);
     padding: 40px 60px;
     display: flex;
     justify-content: space-between;
@@ -31,7 +31,7 @@
     font-weight: 1000;
     line-height: 0.95;
     letter-spacing: -2px;
-    color: var(--color-black);
+    color: var(--color-white);
     margin-bottom: 120px;
     margin-right: 50px;
     cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
@@ -142,12 +142,12 @@
 
 .marquee-column::before {
     top: 0;
-    background: linear-gradient(to bottom, var(--bg-color) 0%, transparent 100%);
+    background: linear-gradient(to bottom, var(--color-azure) 0%, transparent 100%);
 }
 
 .marquee-column::after {
     bottom: 0;
-    background: linear-gradient(to top, var(--bg-color) 0%, transparent 100%);
+    background: linear-gradient(to top, var(--color-azure) 0%, transparent 100%);
 }
 
 .marquee-track {
