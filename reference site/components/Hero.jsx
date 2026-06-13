@@ -23,6 +23,9 @@ const Hero = () => {
     const labelRef = useRef(null);
     const canisterRef = useRef(null);
     
+    // Grid Elements
+    const gridHeaderRef = useRef(null);
+    
     // Pouch Inners (for 3D tilt)
     const innersRef = useRef([]);
     const imgsRef = useRef([]);
@@ -42,10 +45,10 @@ const Hero = () => {
             });
             
             // --- 1. INITIAL EDITORIAL STATE (Framing the text) ---
-            gsap.set(pouchRef.current, { x: '-28vw', y: '-35vh', rotation: -10, scale: 1.85 }); // Top Left
-            gsap.set(boxRef.current, { x: '28vw', y: '-35vh', rotation: 12, scale: 1.75 }); // Top Right
-            gsap.set(labelRef.current, { x: '-28vw', y: '20vh', rotation: -15, scale: 1.7 }); // Bottom Left
-            gsap.set(canisterRef.current, { x: '28vw', y: '20vh', rotation: 10, scale: 1.75 }); // Bottom Right
+            gsap.set(pouchRef.current, { x: '-32vw', y: '-30vh', rotation: -10, scale: 1.8 }); // Top Left
+            gsap.set(boxRef.current, { x: '35vw', y: '-30vh', rotation: 12, scale: 1.45 }); // Top Right
+            gsap.set(labelRef.current, { x: '-32vw', y: '25vh', rotation: -15, scale: 1.7 }); // Bottom Left
+            gsap.set(canisterRef.current, { x: '32vw', y: '25vh', rotation: 10, scale: 1.75 }); // Bottom Right
 
             // Entrance Animation (Text)
             gsap.from(".hero-new__word", {
@@ -112,20 +115,28 @@ const Hero = () => {
             const gridEase = "power3.inOut";
             
             morphTl.fromTo(pouchRef.current, 
-                { x: '-28vw', y: '-35vh', rotation: -10, scale: 1.85 }, 
-                { x: '-38vw', y: '-8vh', rotation: 0, scale: 1.2, duration: 1.5, ease: gridEase }, 0);
+                { x: '-32vw', y: '-30vh', rotation: -10, scale: 1.8 }, 
+                { x: '-38vw', y: '-8vh', rotation: 0, scale: 1.4, duration: 1.5, ease: gridEase }, 0);
                 
             morphTl.fromTo(boxRef.current,    
-                { x: '28vw', y: '-35vh', rotation: 12, scale: 1.75 }, 
+                { x: '35vw', y: '-30vh', rotation: 12, scale: 1.45 }, 
                 { x: '-13vw', y: '-8vh', rotation: 0, scale: 1.2, duration: 1.5, ease: gridEase }, 0);
                 
             morphTl.fromTo(labelRef.current,   
-                { x: '-28vw', y: '20vh', rotation: -15, scale: 1.7 }, 
-                { x: '13vw',  y: '-8vh', rotation: 0, scale: 1.2, duration: 1.5, ease: gridEase }, 0);
+                { x: '-32vw', y: '25vh', rotation: -15, scale: 1.7 }, 
+                { x: '13vw',  y: '-8vh', rotation: 0, scale: 1.4, duration: 1.5, ease: gridEase }, 0);
                 
             morphTl.fromTo(canisterRef.current,  
-                { x: '28vw', y: '20vh', rotation: 10, scale: 1.75 }, 
-                { x: '38vw',  y: '-8vh', rotation: 0, scale: 1.2, duration: 1.5, ease: gridEase }, 0);
+                { x: '32vw', y: '25vh', rotation: 10, scale: 1.75 }, 
+                { x: '38vw',  y: '-8vh', rotation: 0, scale: 1.4, duration: 1.5, ease: gridEase }, 0);
+
+            // Minimize and fade out the blobs as the mockups move into the grid
+            morphTl.to(".mockup-backdrop", {
+                scale: 0,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power2.inOut"
+            }, 0);
 
             // Dynamically add shadow as they reach the grid (position 2)
             morphTl.fromTo([imgsRef.current[1], imgsRef.current[2]],
@@ -164,6 +175,13 @@ const Hero = () => {
                 0.8
             );
 
+            // Fade in grid title
+            morphTl.fromTo(gridHeaderRef.current,
+                { opacity: 0, y: -20 },
+                { opacity: 1, y: 0, duration: 1.0, ease: "power2.out" },
+                0.6 // Starts appearing as products settle into grid
+            );
+
         }, wrapperRef);
 
         return () => ctx.revert();
@@ -181,16 +199,16 @@ const Hero = () => {
             const relX = e.clientX - rect.left - rect.width / 2;
             const relY = e.clientY - rect.top - rect.height / 2;
             
-            // Calculate rotation (max 15 degrees)
-            const rotY = (relX / (rect.width / 2)) * 15;
-            const rotX = (relY / (rect.height / 2)) * -15;
+            // Calculate rotation (max 4 degrees for subtle feel)
+            const rotY = (relX / (rect.width / 2)) * 4;
+            const rotX = (relY / (rect.height / 2)) * -4;
 
             gsap.to(inner, {
                 rotationY: rotY,
                 rotationX: rotX,
-                duration: 0.4,
-                ease: "power2.out",
-                transformPerspective: 900
+                duration: 0.8,
+                ease: "power3.out",
+                transformPerspective: 1200
             });
         };
 
@@ -200,8 +218,8 @@ const Hero = () => {
             gsap.to(inner, {
                 rotationY: 0,
                 rotationX: 0,
-                duration: 0.7,
-                ease: "elastic.out(1, 0.5)" // Satisfying snap back
+                duration: 1.2,
+                ease: "elastic.out(1, 0.75)" // Satisfying, heavy snap back
             });
         };
 
@@ -298,110 +316,112 @@ const Hero = () => {
             </svg>
 
             <div className="hero-morph-pinned" ref={pinnedRef}>
-                
-                {/* Clean Background Image Layer */}
-                <div 
-                    className="hero-new__bg" 
-                    style={{ backgroundImage: `url('/assets/images/clean_hero_bg.png')` }}
-                />
-                
-                <div className="hero-new__overlay" />
-
+                <div className="hero-studio-background" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1, overflow: 'hidden' }}>
+                    <div className="hero-blueprint-master-bg"></div>
+                </div>
                 <div className="hero-products-container">
+                    
+                    {/* Grid Title that fades in */}
+                    <div className="hero-grid-header" ref={gridHeaderRef}>
+                        <h2 className="hero-grid-title">our <span className="hero-grid-title-italic">Primary</span> range</h2>
+                    </div>
+
                     {/* Pouch */}
                     <div className="pouch-wrapper" ref={pouchRef}>
                         <div className="pouch-inner" ref={addToRefs(innersRef.current)}>
-                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)}>
-                                <div className="floating-product-label" style={{ top: '42%', left: '50%', transform: 'translate(-50%, -50%) rotate(-8deg)' }}>
-                                    <span className="ink-serial">01 — FLX-STD</span>
-                                    <span className="ink-title">Pouch</span>
-                                    <span className="ink-meta">MATTE / 100% REC</span>
-                                </div>
+                            <div className="mockup-backdrop bubble-green"></div>
+                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ WebkitMaskImage: 'url(/assets/hero-section/blank_pouch.png)', maskImage: 'url(/assets/hero-section/blank_pouch.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }}>
+
                                 <div className="blank-mockup-container">
-                                    <img src="/assets/images/blank_pouch.png" alt="Blank Pouch" className="blank-mockup" />
+                                    <img src="/assets/hero-section/competitor_pouch.png" alt="Competitor Pouch" className="blank-mockup" style={{ mixBlendMode: 'darken' }} />
                                 </div>
-                                <img src="/assets/images/vibe_pouch_noshadow.png" alt="Flexible Pouches" className="printed-mockup" />
+                                <img src="/assets/hero-section/emerald_pouch.png" alt="Flexible Pouches" className="printed-mockup" />
                             </div>
                         </div>
                         <div className="pouch-label-group" ref={addToRefs(labelsRef.current)}>
-                            <div className="pouch-label">Flexible Pouches</div>
-                            <div className="pouch-desc">Stand-up, flat bottom, and spout pouches.</div>
+                            <div className="pouch-label">Flexible <span className="pouch-label-italic">Pouches</span></div>
+                            <div className="pouch-desc">Serving food, beverage, nutraceutical, pet care, and home care brands.</div>
                         </div>
                     </div>
                     
                     {/* Box */}
-                    <div className="pouch-wrapper" ref={boxRef}>
+                    <div className="pouch-wrapper box-wrapper" ref={boxRef}>
                         <div className="pouch-inner" ref={addToRefs(innersRef.current)}>
-                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)}>
-                                <div className="floating-product-label" style={{ top: '45%', left: '50%', transform: 'translate(-50%, -50%) rotate(12deg)' }}>
-                                    <span className="ink-serial">02 — RGD-PRM</span>
-                                    <span className="ink-title">Box</span>
-                                    <span className="ink-meta">EMBOSSED / LUX</span>
-                                </div>
+                            <div className="mockup-backdrop bubble-peach"></div>
+                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ WebkitMaskImage: 'url(/assets/hero-section/blank_box.png)', maskImage: 'url(/assets/hero-section/blank_box.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }}>
+
                                 <div className="blank-mockup-container">
-                                    <img src="/assets/images/blank_box.png" alt="Blank Box" className="blank-mockup" />
+                                    <img src="/assets/hero-section/competitor_box.png" alt="Competitor Box" className="blank-mockup" style={{ mixBlendMode: 'darken' }} />
                                 </div>
-                                <img src="/assets/images/vibe_box.png" alt="Rigid Boxes" className="printed-mockup" />
+                                <img src="/assets/hero-section/terracotta_box.png" alt="Rigid Boxes" className="printed-mockup" />
                             </div>
                         </div>
                         <div className="pouch-label-group" ref={addToRefs(labelsRef.current)}>
-                            <div className="pouch-label">Rigid Boxes</div>
-                            <div className="pouch-desc">Premium custom boxes for retail and e-commerce.</div>
+                            <div className="pouch-label">Customised <span className="pouch-label-italic">Boxes</span></div>
+                            <div className="pouch-desc">Supporting retail, e-commerce, cosmetics, electronics, and premium gifting sectors.</div>
                         </div>
                     </div>
                     
                     {/* Label */}
-                    <div className="pouch-wrapper" ref={labelRef}>
+                    <div className="pouch-wrapper label-wrapper" ref={labelRef}>
                         <div className="pouch-inner" ref={addToRefs(innersRef.current)}>
-                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)}>
-                                <div className="floating-product-label" style={{ top: '40%', left: '37%', transform: 'translate(-50%, -50%) rotate(-28deg)' }}>
-                                    <span className="ink-serial">03 — RLL-ADH</span>
-                                    <span className="ink-title">Label</span>
-                                    <span className="ink-meta">GLOSS / DIE-CUT</span>
-                                </div>
+                            <div className="mockup-backdrop bubble-yellow"></div>
+                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ WebkitMaskImage: 'url(/assets/hero-section/blank_label.png)', maskImage: 'url(/assets/hero-section/blank_label.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }}>
+
                                 <div className="blank-mockup-container">
-                                    <img src="/assets/images/blank_label.png" alt="Blank Label" className="blank-mockup" />
+                                    <img src="/assets/hero-section/competitor_label.png" alt="Competitor Label" className="blank-mockup" style={{ mixBlendMode: 'darken' }} />
                                 </div>
-                                <img src="/assets/images/mockup_label.png" alt="Custom Labels" className="printed-mockup" />
+                                <img src="/assets/hero-section/mockup_label.png" alt="Custom Labels" className="printed-mockup" />
                             </div>
                         </div>
                         <div className="pouch-label-group" ref={addToRefs(labelsRef.current)}>
-                            <div className="pouch-label">Custom Labels</div>
-                            <div className="pouch-desc">High-quality roll and sheet labels for any product.</div>
+                            <div className="pouch-label">Bespoke <span className="pouch-label-italic">Labels</span></div>
+                            <div className="pouch-desc">Tailored for FMCG, food, beverage, healthcare, and personal care industries.</div>
                         </div>
                     </div>
                     
                     {/* Canister */}
                     <div className="pouch-wrapper" ref={canisterRef}>
                         <div className="pouch-inner" ref={addToRefs(innersRef.current)}>
-                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)}>
-                                <div className="floating-product-label" style={{ top: '55%', left: '50%', transform: 'translate(-50%, -50%) rotate(-32deg)' }}>
-                                    <span className="ink-serial">04 — CYL-ECO</span>
-                                    <span className="ink-title">Canister</span>
-                                    <span className="ink-meta">KRAFT / FOOD SAFE</span>
-                                </div>
+                            <div className="mockup-backdrop bubble-blue"></div>
+                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ WebkitMaskImage: 'url(/assets/hero-section/blank_canister.png)', maskImage: 'url(/assets/hero-section/blank_canister.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }}>
+
                                 <div className="blank-mockup-container">
-                                    <img src="/assets/images/blank_canister.png" alt="Blank Canister" className="blank-mockup" />
+                                    <img src="/assets/hero-section/competitor_canister.png" alt="Competitor Canister" className="blank-mockup" style={{ mixBlendMode: 'darken' }} />
                                 </div>
-                                <img src="/assets/images/mockup_canister_noshadow.png" alt="Paper Canisters" className="printed-mockup" />
+                                <img src="/assets/hero-section/midnight_canister.png" alt="Paper Canisters" className="printed-mockup" />
                             </div>
                         </div>
                         <div className="pouch-label-group" ref={addToRefs(labelsRef.current)}>
-                            <div className="pouch-label">Paper Canisters</div>
-                            <div className="pouch-desc">Eco-friendly cylindrical packaging for powders and snacks.</div>
+                            <div className="pouch-label">Premium <span className="pouch-label-italic">Canisters</span></div>
+                            <div className="pouch-desc">Perfect for coffee, tea, dry fruits, supplements, confectionery, and luxury products.</div>
                         </div>
                     </div>
                 </div>
 
                 <div className="hero-new__content">
-                    <h1 className="hero-new__title" ref={titleRef}>
-                        <span className="hero-new__word">Premium </span>
-                        <br />
-                        <span className="hero-new__word">Packaging </span>
-                        <br />
-                        <span className="hero-new__word is--relative">
-                            <em>Solutions</em>
-                            <img src="/assets/VimeoHero SVG/oval-underline.svg" alt="" className="hero-new__underline" />
+                    <h1 className="hero-new__title" ref={titleRef} style={{ flexDirection: 'column', gap: 0 }}>
+                        <span className="hero-new__word" style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#64748b', marginBottom: '1rem' }}>Premium</span>
+                        <span className="hero-new__word" style={{ fontSize: 'clamp(3.5rem, 9vw, 7.5rem)', lineHeight: 0.9, position: 'relative', zIndex: 2 }}>Packaging</span>
+                        <span className="hero-new__word is--relative" style={{ color: '#2e68f3' }}>
+                            <span className="hero-new__hatch-text" style={{ position: 'relative', zIndex: 1 }}>Solutions</span>
+                            <svg 
+                                className="hero-new__underline" 
+                                style={{ bottom: '-5px', overflow: 'visible', zIndex: 0 }} 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                width="120%" 
+                                viewBox="0 0 608 100" 
+                                fill="none"
+                            >
+                                <path 
+                                    className="hero-new__underline-path"
+                                    d="M322.902 98.9997C232.515 99.0422 140.637 94.7899 58.0275 80.853C31.532 76.3775 2.92086 69.1167 1.08733 58.1139C-0.222339 50.1514 13.3981 42.965 28.5701 37.4583C61.2714 25.5944 103.362 18.1423 146.239 12.7206C228.606 2.3131 316.878 -1.23755 403.155 2.36627C456.307 4.58809 509.519 9.62707 555.338 20.109C581.41 26.0728 606.777 35.279 606.999 46.8453C607.12 53.7659 597.831 60.3569 584.835 65.1939C571.839 70.0309 555.398 73.3158 538.675 76.0266C463.097 88.252 379.057 89.8891 297.011 91.3668" 
+                                    stroke="#ffffff" 
+                                    strokeWidth="3" 
+                                    strokeLinecap="round" 
+                                    strokeLinejoin="round" 
+                                />
+                            </svg>
                         </span>
                     </h1>
                     
@@ -409,9 +429,20 @@ const Hero = () => {
                         Your trusted partner for bespoke packaging, from concept to shelf-ready production.
                     </p>
 
-                    <div className="hero-new__cta hero-new__word" ref={btnRef}>
+                    <div className="hero-new__cta hero-new__word" ref={btnRef} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
                         <a href="#explore" onClick={handleScrollClick} className="hero-btn" data-cursor-text="Scroll">Scroll to Interact</a>
+                        
+                        <div className="hero-scroll-arrows">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2e68f3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="m7 6 5 5 5-5"/>
+                                <path d="m7 13 5 5 5-5"/>
+                            </svg>
+                        </div>
                     </div>
+
+                    {/* Floating Background Swatches */}
+                    <div className="hero-floating-element element-blue-stripes"></div>
+                    <div className="hero-floating-element element-green-solid"></div>
                 </div>
                 
             </div>

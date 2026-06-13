@@ -3,7 +3,7 @@
     position: relative;
     width: 100vw;
     height: 250vh; 
-    background-color: var(--color-lightblue);
+    background-color: #f5eedf; /* Richer beige background */
     z-index: 10;
 }
 
@@ -18,28 +18,7 @@
     justify-content: center;
 }
 
-/* Background image layer */
-.hero-new__bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 1;
-}
 
-.hero-new__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(2, 6, 23, 0.1), rgba(2, 6, 23, 0.3));
-    z-index: 2;
-}
 
 .hero-new__content {
     position: relative;
@@ -47,7 +26,7 @@
     text-align: center;
     max-width: 1000px;
     padding: 0 20px;
-    color: var(--color-white);
+    color: #1e293b;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,17 +34,17 @@
 }
 
 .hero-new__title {
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     color: #0f172a;
     margin-bottom: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.3em;
-    text-shadow: 0 4px 30px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
+    gap: 0.2em;
+    /* Clean editorial look without shadow */
 }
 
 .hero-new__word {
@@ -77,24 +56,51 @@
     display: inline-block;
 }
 
+.hero-new__hatch-text {
+    color: #2e68f3;
+}
+
+@keyframes draw-hatch-text {
+    to {
+        -webkit-mask-position: 0 0;
+        mask-position: 0 0;
+    }
+}
+
 .hero-new__underline {
     position: absolute;
     bottom: -10px;
-    left: 0;
-    width: 100%;
+    left: -10%;
+    width: 120%;
     height: auto;
     z-index: -1;
-    color: var(--color-orange);
+    color: inherit;
+    pointer-events: none;
+}
+
+.hero-new__underline-path {
+    stroke-dasharray: 1450;
+    stroke-dashoffset: 1450;
+    animation: draw-hero-underline 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards 1.0s;
+}
+
+@keyframes draw-hero-underline {
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
 .hero-new__subtitle {
     font-size: clamp(1.2rem, 2vw, 1.5rem);
     max-width: 600px;
-    margin-bottom: 40px;
+    margin-bottom: 20px; /* Reduced to bring button closer */
     font-weight: 500;
     opacity: 0.9;
-    color: #334155;
-    text-shadow: 0 4px 20px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
+    color: #475569;
+}
+
+.hero-new__cta {
+    margin-top: 10px; /* Reduced to bring button closer */
 }
 
 .hero-btn {
@@ -118,9 +124,8 @@
 
 .hero-new__title em {
     font-style: italic;
-    color: transparent;
-    -webkit-text-stroke: 2px #fff;
-    text-shadow: 4px 4px 0 rgba(255, 255, 255, 0.2);
+    color: #eab308; /* Friendly warm accent, e.g. yellow/gold */
+    font-weight: 800;
 }
 
 /* Product Container */
@@ -132,6 +137,100 @@
     height: 100vh;
     z-index: 4;
 }
+
+.hero-grid-header {
+    position: absolute;
+    top: 10vh; /* Moved up slightly */
+    left: 0;
+    width: 100vw;
+    text-align: center;
+    z-index: 5;
+    opacity: 0; /* Managed by GSAP */
+    pointer-events: none;
+}
+
+.hero-grid-title {
+    font-family: var(--font-primary), sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 800; /* Bold sans-serif for the primary word */
+    color: #C44D33; /* Deep Premium Terracotta */
+    letter-spacing: -0.04em; /* Tightened slightly */
+    text-transform: lowercase;
+    margin: 0;
+}
+
+.hero-grid-title-italic {
+    font-family: 'Times New Roman', Times, serif; /* Elegant italic serif */
+    font-style: italic;
+    font-weight: 400; /* Delicate weight */
+    text-transform: none;
+    padding: 0 0.08em;
+}
+
+.hero-blueprint-master-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/images/hero-background-new.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.35; /* Lowered opacity to let the beige wall show through */
+    mix-blend-mode: multiply; /* Blends the ink with the beige background */
+}
+
+/* --- Backdrop Blobs (Liquid Animation) --- */
+@keyframes blob-morph {
+    0%, 100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+}
+
+.mockup-backdrop {
+    position: absolute;
+    width: 85%; /* Standard size */
+    max-width: 260px;
+    aspect-ratio: 1; /* Reset to 1:1 so morphing works perfectly */
+    z-index: -1;
+    opacity: 0.95; /* Keep vibrant pop color */
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation: blob-morph 12s ease-in-out infinite;
+}
+
+/* Pouch Blob: Mint (Anchors bottom-left like reference) */
+.bubble-green { 
+    background-color: #00FFFF; 
+    top: 75%; left: 30%; transform: translate(-50%, -50%) translateZ(-40px);
+    animation-delay: 0s;
+} 
+
+/* Box Blob: Coral (Peeking from top-right like reference) */
+.bubble-peach { 
+    background-color: #FF00FF; 
+    top: 5%; left: 95%; transform: translate(-50%, -50%) translateZ(-40px);
+    width: 75%; /* Slightly smaller */
+    animation-delay: -3s;
+    animation-duration: 15s;
+} 
+
+/* Label Blob: Lavender (Anchors bottom-left like reference) */
+.bubble-yellow { 
+    background-color: #000000; 
+    top: 60%; left: 15%; transform: translate(-50%, -50%) translateZ(-40px);
+    width: 80%;
+    animation-delay: -7s;
+    animation-duration: 10s;
+} 
+
+/* Canister Blob: Mustard (Anchors bottom-right like reference) */
+.bubble-blue { 
+    background-color: #FFFF00; 
+    top: 60%; left: 70%; transform: translate(-50%, -50%) translateZ(-40px);
+    animation-delay: -5s;
+    animation-duration: 14s;
+}  
 
 /* Individual Pouch Wrappers */
 .pouch-wrapper {
@@ -180,8 +279,7 @@
     width: 100%;
     height: auto;
     display: block;
-    /* Soft, premium matte finish */
-    filter: grayscale(100%) brightness(1.15) contrast(1.05);
+    /* Removed grayscale to show custom competitor brand colors */
     transition: filter 0.5s ease;
 }
 
@@ -252,28 +350,32 @@
 }
 
 .pouch-label {
-    margin-top: 40px;
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: #1e293b;
-    letter-spacing: -0.03em;
+    margin-top: 55px; /* Fine-tuned spacing */
+    font-size: 1.4rem; /* Slightly larger for editorial feel */
+    font-weight: 700; /* Bold sans-serif */
+    color: #334155; 
+    letter-spacing: -0.02em; /* Tighter letter spacing */
     text-transform: lowercase;
     font-family: var(--font-primary), sans-serif;
-    text-shadow: none;
+}
+
+.pouch-label-italic {
+    font-family: 'Times New Roman', Times, serif; /* Elegant italic serif */
+    font-style: italic;
+    font-weight: 400; /* Delicate weight */
+    color: #C44D33; /* Deep Premium Terracotta */
 }
 
 .pouch-desc {
     margin-top: 12px;
-    font-size: 0.95rem;
-    color: #475569;
-    font-weight: 500;
-    line-height: 1.5;
-    max-width: 85%;
+    font-size: 0.85rem; 
+    color: #64748b; 
+    font-weight: 400; 
+    line-height: 1.5; /* Slightly tighter than 1.6 */
+    max-width: 75%; /* More constrained to prevent orphans */
     margin-left: auto;
     margin-right: auto;
     font-family: var(--font-secondary), sans-serif;
-    letter-spacing: -0.01em;
-    text-shadow: none;
 }
 
 /* Floating printed product label on mockups */
@@ -335,4 +437,47 @@
     opacity: 0.6;
     margin-top: 4px;
     text-transform: uppercase;
+}
+
+/* --- Hero Scroll Arrows --- */
+.hero-scroll-arrows {
+    animation: bounce-arrows 2s infinite ease-in-out;
+}
+
+@keyframes bounce-arrows {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+}
+
+/* --- Floating Background Swatches --- */
+.hero-floating-element {
+    position: absolute;
+    z-index: -2;
+    pointer-events: none;
+    opacity: 0.2;
+}
+
+.element-blue-stripes {
+    width: 200px;
+    height: 160px;
+    bottom: -220px;
+    left: 20%;
+    transform: rotate(-10deg);
+    background: repeating-linear-gradient(
+        transparent,
+        transparent 6px,
+        #2e68f3 6px,
+        #2e68f3 10px
+    );
+}
+
+.element-green-solid {
+    width: 180px;
+    height: 220px;
+    bottom: -260px;
+    right: 25%;
+    transform: rotate(15deg);
+    background-color: #88e6b5; 
+    opacity: 0.3;
 }

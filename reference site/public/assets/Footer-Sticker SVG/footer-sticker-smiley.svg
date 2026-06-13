@@ -1,9 +1,0 @@
-<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-  <!-- Pouch body -->
-  <path d="M30 20 C25 20, 20 40, 20 90 C20 105, 30 110, 60 110 C90 110, 100 105, 100 90 C100 40, 95 20, 90 20 Z" fill="#EFBBD8" stroke="#1c1c1c" stroke-width="6" stroke-linejoin="round"/>
-  <!-- Top seal -->
-  <path d="M25 35 L95 35 M22 45 L98 45" stroke="#1c1c1c" stroke-width="6" stroke-linecap="round"/>
-  <!-- Label -->
-  <rect x="40" y="60" width="40" height="30" rx="5" fill="#fff" stroke="#1c1c1c" stroke-width="5" transform="rotate(-5 60 75)"/>
-  <circle cx="60" cy="75" r="5" fill="#1c1c1c"/>
-</svg>

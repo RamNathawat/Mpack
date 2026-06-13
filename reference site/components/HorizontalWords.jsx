@@ -10,25 +10,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ComplianceIcon = () => (
     <div className="doodle-svg">
-        <img src="/assets/stickers/compliance.png" alt="Compliance Sticker" style={{ width: '280px', height: '280px', objectFit: 'contain' }} />
+        <img src="/assets/end-to-end-section/compliance.png" alt="Compliance Sticker" style={{ width: '280px', height: '280px', objectFit: 'contain' }} />
     </div>
 );
 
 const MachineryIcon = () => (
     <div className="doodle-svg">
-        <img src="/assets/stickers/machinery.png" alt="Machinery Sticker" style={{ width: '280px', height: '280px', objectFit: 'contain' }} />
+        <img src="/assets/end-to-end-section/machinery_new.png" alt="Machinery Sticker" style={{ width: '280px', height: '280px', objectFit: 'contain' }} />
     </div>
 );
 
 const PackagingIcon = () => (
     <div className="doodle-svg">
-        <img src="/assets/stickers/packaging.png" alt="Packaging Sticker" style={{ width: '280px', height: '280px', objectFit: 'contain' }} />
+        <img src="/assets/end-to-end-section/packaging_new.png" alt="Packaging Sticker" style={{ width: '280px', height: '280px', objectFit: 'contain' }} />
     </div>
 );
 
 const DesignIcon = () => (
     <div className="doodle-svg">
-        <img src="/assets/stickers/design.png" alt="Design Sticker" style={{ width: '280px', height: '280px', objectFit: 'contain' }} />
+        <img src="/assets/end-to-end-section/design_new.png" alt="Design Sticker" style={{ width: '280px', height: '280px', objectFit: 'contain' }} />
     </div>
 );
 
@@ -79,6 +79,9 @@ const Badge = ({ data, isExpanded, onHover, onLeave }) => {
         >
             <div className="doodle-click-wrapper">
                 <LabelComponent />
+            </div>
+            <div className="permanent-sticker-title">
+                <span>{data.label}</span>
             </div>
             <div className="eco-badge-expanded">
                 <div className="eco-badge-header">
@@ -226,7 +229,7 @@ const HorizontalWords = () => {
     // Split text into lines, then into words, then into letters
     const line1 = "end to end".split("");
     const line2 = "packaging".split("");
-    const line3 = "expertise".split("");
+    const line3 = "solutions".split("");
 
     const renderLetters = (charArray) => {
         return charArray.map((char, i) => (
@@ -237,23 +240,23 @@ const HorizontalWords = () => {
     };
 
     return (
-        <section ref={sectionRef} className="horizontal-words-section content-section" style={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', padding: '0 5vw', overflow: 'hidden', backgroundColor: 'var(--bg-color)' }}>
+        <section ref={sectionRef} className="horizontal-words-section content-section" style={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', padding: '0 5vw', overflow: 'hidden', backgroundColor: '#f5eedf' }}>
             
             {/* Depth of Field Parallax Packaging - Scaled & Placed in Negative Space Gaps */}
             <div className="parallax-bg-1" style={{ position: 'absolute', top: '35%', left: '-12%', width: '38vw', zIndex: 1, filter: 'blur(8px)', opacity: 0.85 }}>
-                <img src="/assets/images/vibe_pouch_noshadow.png" alt="Pouch" style={{ width: '100%', height: 'auto', transform: 'rotate(15deg)' }} />
+                <img src="/assets/hero-section/emerald_pouch.png" alt="Pouch" style={{ width: '100%', height: 'auto', transform: 'rotate(15deg)', WebkitMaskImage: 'url(/assets/hero-section/blank_pouch.png)', maskImage: 'url(/assets/hero-section/blank_pouch.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }} />
             </div>
 
             <div className="parallax-bg-2" style={{ position: 'absolute', bottom: '-15%', left: '35%', width: '28vw', zIndex: 1, filter: 'blur(3px)', opacity: 0.95 }}>
-                <img src="/assets/images/mockup_canister_noshadow.png" alt="Canister" style={{ width: '100%', height: 'auto', transform: 'rotate(85deg)' }} />
+                <img src="/assets/hero-section/midnight_canister.png" alt="Canister" style={{ width: '100%', height: 'auto', transform: 'rotate(85deg)', WebkitMaskImage: 'url(/assets/hero-section/blank_canister.png)', maskImage: 'url(/assets/hero-section/blank_canister.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }} />
             </div>
 
             <div className="parallax-bg-3" style={{ position: 'absolute', top: '-15%', left: '45%', width: '35vw', zIndex: 1, filter: 'blur(12px)', opacity: 0.7 }}>
-                <img src="/assets/images/vibe_box.png" alt="Box" style={{ width: '100%', height: 'auto', transform: 'rotate(-10deg)' }} />
+                <img src="/assets/hero-section/terracotta_box.png" alt="Box" style={{ width: '100%', height: 'auto', transform: 'rotate(-10deg)', WebkitMaskImage: 'url(/assets/hero-section/blank_box.png)', maskImage: 'url(/assets/hero-section/blank_box.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }} />
             </div>
 
             <div className="parallax-bg-4" style={{ position: 'absolute', top: '38%', right: '-12%', width: '42vw', zIndex: 3, filter: 'blur(5px)' }}>
-                <img src="/assets/images/mockup_label.png" alt="Label" style={{ width: '100%', height: 'auto', transform: 'rotate(-20deg)' }} />
+                <img src="/assets/hero-section/mockup_label.png" alt="Label" style={{ width: '100%', height: 'auto', transform: 'rotate(-20deg)', WebkitMaskImage: 'url(/assets/hero-section/blank_label.png)', maskImage: 'url(/assets/hero-section/blank_label.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }} />
             </div>
 
             {stickersData.map(data => (
@@ -267,10 +270,46 @@ const HorizontalWords = () => {
             ))}
 
             <div style={{ position: 'relative', width: '100%', textAlign: 'center', zIndex: 10 }}>
-                <h2 className="display" style={{ fontSize: '6vw', fontWeight: 1000, textTransform: 'lowercase', lineHeight: 1, margin: 0, color: 'var(--color-dark)', position: 'relative', zIndex: 10 }}>
-                    <div>{renderLetters(line1)}</div>
-                    <div>{renderLetters(line2)}</div>
-                    <div>{renderLetters(line3)}</div>
+                <h2 className="display" style={{ 
+                    lineHeight: 0.85, 
+                    margin: 0, 
+                    position: 'relative', 
+                    zIndex: 10
+                }}>
+                    <div style={{
+                        fontFamily: "var(--font-serif), serif",
+                        fontStyle: 'italic',
+                        fontWeight: 600,
+                        fontSize: '3vw',
+                        letterSpacing: '0.02em',
+                        marginBottom: '-0.5vw',
+                        marginRight: '25vw',
+                        color: '#000000'
+                    }}>
+                        {renderLetters(line1)}
+                    </div>
+                    <div style={{
+                        fontFamily: "'Epilogue', sans-serif",
+                        fontWeight: 800,
+                        fontSize: '9vw',
+                        letterSpacing: '-0.05em',
+                        textTransform: 'lowercase',
+                        color: 'var(--color-maroon)'
+                    }}>
+                        {renderLetters(line2)}
+                    </div>
+                    <div style={{
+                        fontFamily: "var(--font-serif), serif",
+                        fontStyle: 'italic',
+                        fontWeight: 400,
+                        fontSize: '6.5vw',
+                        letterSpacing: '0.01em',
+                        marginTop: '-1.5vw',
+                        marginLeft: '15vw',
+                        color: '#000000'
+                    }}>
+                        {renderLetters(line3)}
+                    </div>
                 </h2>
                 
                 {/* Die-Cut Label Hover Hint */}
@@ -284,23 +323,22 @@ const HorizontalWords = () => {
                         alignItems: 'center',
                         gap: '12px',
                         padding: '10px 24px',
-                        border: '2px dashed var(--color-dark)',
+                        border: '1.5px dashed #000000',
                         borderRadius: '50px',
                         background: 'transparent'
                     }}
                 >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--color-dark)" stroke="none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#000000" stroke="none">
                         <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
                     </svg>
                     <span style={{ 
-                        fontFamily: 'var(--font-primary), sans-serif', 
-                        fontSize: '0.9rem', 
-                        fontWeight: '800', 
-                        color: 'var(--color-dark)', 
-                        letterSpacing: '0.04em',
-                        textTransform: 'lowercase'
+                        fontFamily: "'Epilogue', sans-serif", 
+                        fontSize: '0.95rem', 
+                        fontWeight: '600', 
+                        color: '#000000', 
+                        letterSpacing: '-0.02em',
                     }}>hover over stickers to explore</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--color-dark)" stroke="none">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#000000" stroke="none">
                         <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
                     </svg>
                 </div>

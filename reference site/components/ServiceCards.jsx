@@ -80,8 +80,8 @@ function initCardAnimations() {
         cards.forEach((card, index) => {
             card.addEventListener('mouseenter', () => {
                 if (leaveTimeout) { clearTimeout(leaveTimeout); leaveTimeout = null; }
-                const hoverGap = 120;
-                const clusterGap = 150;
+                const hoverGap = 100;
+                const clusterGap = 110;
                 const cardWidth = 320;
                 const hoveredLeft = cards[index].offsetLeft;
                 const leftCards = [];
@@ -96,7 +96,7 @@ function initCardAnimations() {
                 const targetCommonTop = 50;
                 const moveY = targetCommonTop - currentTop;
 
-                gsap.to(cards[index], { x: 0, y: moveY, rotation: 0, scale: 1.08, duration: 0.9, ease: 'elastic.out(1, 0.5)', overwrite: true });
+                gsap.to(cards[index], { x: 0, y: moveY, rotation: 0, scale: 1.08, duration: 0.6, ease: 'power3.out', overwrite: true });
 
                 if (rightCards.length) {
                     const clusterStart = hoveredLeft + cardWidth + hoverGap;
@@ -105,7 +105,7 @@ function initCardAnimations() {
                         const targetX = Math.max(targetAbsLeft - item.card.offsetLeft, 10);
                         const angleRad = originalData[item.index].rotation * (Math.PI / 180);
                         const targetY = targetX * Math.tan(angleRad);
-                        gsap.to(item.card, { x: targetX, y: targetY, rotation: originalData[item.index].rotation, scale: 1, duration: 1.0, ease: 'elastic.out(1, 0.5)', overwrite: true });
+                        gsap.to(item.card, { x: targetX, y: targetY, rotation: originalData[item.index].rotation, scale: 1, duration: 0.6, ease: 'power3.out', overwrite: true });
                     });
                 }
 
@@ -117,7 +117,7 @@ function initCardAnimations() {
                         const targetX = Math.min(targetAbsLeft - item.card.offsetLeft, -10);
                         const angleRad = originalData[item.index].rotation * (Math.PI / 180);
                         const targetY = targetX * Math.tan(angleRad);
-                        gsap.to(item.card, { x: targetX, y: targetY, rotation: originalData[item.index].rotation, scale: 1, duration: 1.0, ease: 'elastic.out(1, 0.5)', overwrite: true });
+                        gsap.to(item.card, { x: targetX, y: targetY, rotation: originalData[item.index].rotation, scale: 1, duration: 0.6, ease: 'power3.out', overwrite: true });
                     });
                 }
             });
@@ -125,7 +125,7 @@ function initCardAnimations() {
             card.addEventListener('mouseleave', () => {
                 leaveTimeout = setTimeout(() => {
                     cards.forEach((c, i) => {
-                        gsap.to(c, { x: 0, y: 0, scale: 1, rotation: originalData[i].rotation, duration: 1.0, ease: 'elastic.out(1, 0.5)', overwrite: true, zIndex: i + 1 });
+                        gsap.to(c, { x: 0, y: 0, scale: 1, rotation: originalData[i].rotation, duration: 0.6, ease: 'power3.out', overwrite: true, zIndex: i + 1 });
                     });
                 }, 80);
             });

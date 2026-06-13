@@ -6,11 +6,11 @@ import '../app/styles/packaging-showcase.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const techData = {
-    "Digital Printing": { name: "Digital Printing", img: "/assets/mockups/tech_digital_same_1780305468051.png" },
-    "Flexographic Printing": { name: "Flexographic Printing", img: "/assets/mockups/tech_flexo_consistent_1780305154097.png" }, // Source design
-    "Rotogravure Printing": { name: "Rotogravure Printing", img: "/assets/mockups/tech_roto_same_1780305486698.png" },
-    "Offset Printing": { name: "Offset Printing", img: "/assets/mockups/tech_offset_consistent_1780305189707.png" },
-    "In-Mould Labelling": { name: "In-Mould Labelling", img: "/assets/mockups/tech_inmould_consistent_1780305208240.png" }
+    "Digital Printing": { name: "Digital Printing", img: "/assets/our-range-section/tech_digital_same_1780305468051.png" },
+    "Flexographic Printing": { name: "Flexographic Printing", img: "/assets/our-range-section/tech_flexo_consistent_1780305154097.png" }, // Source design
+    "Rotogravure Printing": { name: "Rotogravure Printing", img: "/assets/our-range-section/tech_roto_same_1780305486698.png" },
+    "Offset Printing": { name: "Offset Printing", img: "/assets/our-range-section/tech_offset_consistent_1780305189707.png" },
+    "In-Mould Labelling": { name: "In-Mould Labelling", img: "/assets/our-range-section/tech_inmould_consistent_1780305208240.png" }
 };
 
 const showcaseData = {
@@ -18,40 +18,40 @@ const showcaseData = {
         title: "Pouches",
         technologies: ["Digital Printing", "Flexographic Printing", "Rotogravure Printing"],
         variants: [
-            { id: 'p1', name: "Stand-Up Pouch", desc: "Versatile and prominent on shelves.", img: "/assets/mockups/pouches_mockup_1780303304206.png" },
-            { id: 'p2', name: "Flat Bottom Pouch", desc: "Maximum volume and stability.", img: "/assets/mockups/pouches_mockup_1780303304206.png" },
-            { id: 'p3', name: "Spout Pouch", desc: "Perfect for liquids and semi-solids.", img: "/assets/mockups/pouches_mockup_1780303304206.png" },
-            { id: 'p4', name: "Three Side Seal Pouch", desc: "Economical and efficient for single-use.", img: "/assets/mockups/pouches_mockup_1780303304206.png" }
+            { id: 'p1', name: "Stand-Up Pouch", desc: "Versatile and prominent on shelves.", img: "/assets/our-range-section/pouches_mockup_1780303304206.png" },
+            { id: 'p2', name: "Flat Bottom Pouch", desc: "Maximum volume and stability.", img: "/assets/our-range-section/pouches_mockup_1780303304206.png" },
+            { id: 'p3', name: "Spout Pouch", desc: "Perfect for liquids and semi-solids.", img: "/assets/our-range-section/pouches_mockup_1780303304206.png" },
+            { id: 'p4', name: "Three Side Seal Pouch", desc: "Economical and efficient for single-use.", img: "/assets/our-range-section/pouches_mockup_1780303304206.png" }
         ]
     },
     boxes: {
         title: "Boxes",
         technologies: ["Digital Printing", "Offset Printing"],
         variants: [
-            { id: 'b1', name: "Folding Carton", desc: "Classic lightweight packaging.", img: "/assets/mockups/boxes_mockup_1780303320244.png" },
-            { id: 'b2', name: "Rigid Box", desc: "Premium unboxing experience.", img: "/assets/mockups/boxes_mockup_1780303320244.png" },
-            { id: 'b3', name: "Mailer Box", desc: "Durable and ecommerce ready.", img: "/assets/mockups/boxes_mockup_1780303320244.png" },
-            { id: 'b4', name: "Corrugated Box", desc: "Heavy duty shipping protection.", img: "/assets/mockups/boxes_mockup_1780303320244.png" }
+            { id: 'b1', name: "Folding Carton", desc: "Classic lightweight packaging.", img: "/assets/our-range-section/boxes_mockup_1780303320244.png" },
+            { id: 'b2', name: "Rigid Box", desc: "Premium unboxing experience.", img: "/assets/our-range-section/boxes_mockup_1780303320244.png" },
+            { id: 'b3', name: "Mailer Box", desc: "Durable and ecommerce ready.", img: "/assets/our-range-section/boxes_mockup_1780303320244.png" },
+            { id: 'b4', name: "Corrugated Box", desc: "Heavy duty shipping protection.", img: "/assets/our-range-section/boxes_mockup_1780303320244.png" }
         ]
     },
     labels: {
         title: "Labels",
         technologies: ["Digital Printing", "Flexographic Printing", "In-Mould Labelling"],
         variants: [
-            { id: 'l1', name: "Roll Labels", desc: "High volume automated application.", img: "/assets/mockups/labels_mockup_1780303339862.png" },
-            { id: 'l2', name: "Sheet Labels", desc: "Perfect for small batch manual application.", img: "/assets/mockups/labels_mockup_1780303339862.png" },
-            { id: 'l3', name: "In-Mould Labels", desc: "Seamless integration with containers.", img: "/assets/mockups/labels_mockup_1780303339862.png" },
-            { id: 'l4', name: "Custom Product Labels", desc: "Bespoke shapes and finishes.", img: "/assets/mockups/labels_mockup_1780303339862.png" }
+            { id: 'l1', name: "Roll Labels", desc: "High volume automated application.", img: "/assets/our-range-section/labels_mockup_1780303339862.png" },
+            { id: 'l2', name: "Sheet Labels", desc: "Perfect for small batch manual application.", img: "/assets/our-range-section/labels_mockup_1780303339862.png" },
+            { id: 'l3', name: "In-Mould Labels", desc: "Seamless integration with containers.", img: "/assets/our-range-section/labels_mockup_1780303339862.png" },
+            { id: 'l4', name: "Custom Product Labels", desc: "Bespoke shapes and finishes.", img: "/assets/our-range-section/labels_mockup_1780303339862.png" }
         ]
     },
     canisters: {
         title: "Canisters",
         technologies: ["Digital Printing", "Offset Printing"],
         variants: [
-            { id: 'c1', name: "Tea Canister", desc: "Airtight and elegant.", img: "/assets/mockups/canisters_mockup_1780303355600.png" },
-            { id: 'c2', name: "Snack Canister", desc: "Durable and resealable.", img: "/assets/mockups/canisters_mockup_1780303355600.png" },
-            { id: 'c3', name: "Protein Canister", desc: "Large volume moisture protection.", img: "/assets/mockups/canisters_mockup_1780303355600.png" },
-            { id: 'c4', name: "Premium Paper Canister", desc: "Eco-friendly luxury.", img: "/assets/mockups/canisters_mockup_1780303355600.png" }
+            { id: 'c1', name: "Tea Canister", desc: "Airtight and elegant.", img: "/assets/our-range-section/canisters_mockup_1780303355600.png" },
+            { id: 'c2', name: "Snack Canister", desc: "Durable and resealable.", img: "/assets/our-range-section/canisters_mockup_1780303355600.png" },
+            { id: 'c3', name: "Protein Canister", desc: "Large volume moisture protection.", img: "/assets/our-range-section/canisters_mockup_1780303355600.png" },
+            { id: 'c4', name: "Premium Paper Canister", desc: "Eco-friendly luxury.", img: "/assets/our-range-section/canisters_mockup_1780303355600.png" }
         ]
     }
 };

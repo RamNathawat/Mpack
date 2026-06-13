@@ -209,10 +209,10 @@ export default function Footer() {
 
                 <div className="footer-stickers">
                     <div className="footer-sticker sticker-smiley">
-                        <img src="/assets/stickers/sticker_production_roll.png" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
+                        <img src="/assets/footer-section/sticker_production_roll.png" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
                     </div>
                     <div className="footer-sticker sticker-heart">
-                        <img src="/assets/stickers/sticker_shipping_carton.png" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
+                        <img src="/assets/footer-section/sticker_shipping_carton.png" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
                     </div>
                     <div className="footer-sticker sticker-hands">
                         <img src="/assets/Footer-Sticker SVG/footer-sticker-hands.svg" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />

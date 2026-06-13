@@ -6,12 +6,12 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import '../app/styles/industries-marquee.css';
 
 const industries = [
-    { name: "Pet Care", icon: <img src="/assets/stickers/pet_care_sticker.png" alt="Pet Care" className="industry-sticker-img" />, color: "#e07940", lightColor: "rgba(255, 179, 155, 0.45)" }, 
-    { name: "Food & Beverage", icon: <img src="/assets/stickers/food_bev_sticker.png" alt="Food & Beverage" className="industry-sticker-img" />, color: "#5a8a3c", lightColor: "rgba(210, 228, 196, 0.5)" }, 
-    { name: "Pharma & Healthcare", icon: <img src="/assets/stickers/pharma_sticker.png" alt="Pharma & Healthcare" className="industry-sticker-img" />, color: "#c25a7a", lightColor: "rgba(240, 190, 250, 0.4)" }, 
-    { name: "Personal Care", icon: <img src="/assets/stickers/personal_care_sticker.png" alt="Personal Care" className="industry-sticker-img" />, color: "#7c6bc4", lightColor: "rgba(200, 185, 245, 0.4)" }, 
-    { name: "Home Care", icon: <img src="/assets/stickers/home_care_sticker.png" alt="Home Care" className="industry-sticker-img" />, color: "#2d7d9a", lightColor: "rgba(180, 225, 240, 0.45)" }, 
-    { name: "Agriculture", icon: <img src="/assets/stickers/agriculture_sticker.png" alt="Agriculture" className="industry-sticker-img" />, color: "#b8942d", lightColor: "rgba(255, 243, 176, 0.5)" }, 
+    { name: "Pet Care", icon: <img src="/assets/industries-section/pet_care_sticker.png" alt="Pet Care" className="industry-sticker-img" />, color: "#e07940", lightColor: "rgba(255, 179, 155, 0.45)" }, 
+    { name: "Food & Beverage", icon: <img src="/assets/industries-section/food_bev_sticker.png" alt="Food & Beverage" className="industry-sticker-img" />, color: "#5a8a3c", lightColor: "rgba(210, 228, 196, 0.5)" }, 
+    { name: "Pharma & Healthcare", icon: <img src="/assets/industries-section/pharma_sticker.png" alt="Pharma & Healthcare" className="industry-sticker-img" />, color: "#c25a7a", lightColor: "rgba(240, 190, 250, 0.4)" }, 
+    { name: "Personal Care", icon: <img src="/assets/industries-section/personal_care_sticker.png" alt="Personal Care" className="industry-sticker-img" />, color: "#7c6bc4", lightColor: "rgba(200, 185, 245, 0.4)" }, 
+    { name: "Home Care", icon: <img src="/assets/industries-section/home_care_sticker.png" alt="Home Care" className="industry-sticker-img" />, color: "#2d7d9a", lightColor: "rgba(180, 225, 240, 0.45)" }, 
+    { name: "Agriculture", icon: <img src="/assets/industries-section/agriculture_sticker.png" alt="Agriculture" className="industry-sticker-img" />, color: "#b8942d", lightColor: "rgba(255, 243, 176, 0.5)" }, 
 ];
 
 export default function IndustriesCarousel() {

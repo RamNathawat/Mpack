@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import HorizontalWords from '@/components/HorizontalWords';
 import PackagingShowcase from '@/components/PackagingShowcase';
-import IndustriesCarousel from '@/components/IndustriesCarousel';
+import IndustriesMarquee from '@/components/IndustriesMarquee';
 import ServiceCards from '@/components/ServiceCards';
 import DoubleMarquee from '@/components/DoubleMarquee';
 import Footer from '@/components/Footer';
@@ -26,7 +26,7 @@ export default function Home() {
             <HorizontalWords />
             <PackagingShowcase />
             <main>
-                <IndustriesCarousel />
+                <IndustriesMarquee />
             </main>
             <section className="Double-marquee">
                 <DoubleMarquee />
