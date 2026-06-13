@@ -111,12 +111,8 @@ const HorizontalWords = () => {
             const scrollTween = gsap.timeline({
                 scrollTrigger: {
                     trigger: container,
-                    start: "top top",
-                    end: "+=1500", // The duration of the scroll pin
-                    scrub: 1,
-                    pin: true,
-                    pinSpacing: true,
-                    invalidateOnRefresh: true
+                    start: "top bottom", // Trigger as soon as the top edge is visible
+                    toggleActions: "play none none reverse"
                 }
             });
 

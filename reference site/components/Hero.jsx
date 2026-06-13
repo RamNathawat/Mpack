@@ -287,22 +287,28 @@ const Hero = () => {
 
     const handleScrollClick = (e) => {
         e.preventDefault();
+        
+        // Use slideshow logic if available
+        if (window.__slideshowStops && window.__lenis) {
+            const stops = window.__slideshowStops();
+            const currentScroll = window.scrollY;
+            const nextStop = stops.find(pos => pos > currentScroll + 50);
+            if (nextStop !== undefined) {
+                window.__lenis.scrollTo(nextStop, { duration: 4.5, lock: true });
+                return;
+            }
+        }
+
+        // Fallback
         if (wrapperRef.current) {
             const rect = wrapperRef.current.getBoundingClientRect();
-            // Calculate absolute scroll position of the end of the pinned section
             const targetScroll = rect.top + window.scrollY + rect.height - window.innerHeight;
             
-            // Native smooth scroll is too fast. Let's use GSAP to animate a proxy object 
-            // for a slow, 2.5-second cinematic scroll timeline.
-            const scrollProxy = { y: window.scrollY };
-            gsap.to(scrollProxy, {
-                y: targetScroll,
-                duration: 2.8,
-                ease: "power3.inOut",
-                onUpdate: () => {
-                    window.scrollTo(0, scrollProxy.y);
-                }
-            });
+            if (window.__lenis) {
+                window.__lenis.scrollTo(targetScroll, { duration: 1.5 });
+            } else {
+                window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+            }
         }
     };
 

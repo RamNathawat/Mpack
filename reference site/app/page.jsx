@@ -19,19 +19,23 @@ export default function Home() {
             <SvgSymbols />
             <SmoothScroll />
             <CursorBubble />
-            <header className="main-header">
+            <header className="main-header slideshow-stop">
                 <Navbar />
                 <Hero />
             </header>
-            <HorizontalWords />
-            <PackagingShowcase />
-            <main>
+            <div className="slideshow-stop">
+                <HorizontalWords />
+            </div>
+            <div className="slideshow-stop">
+                <PackagingShowcase />
+            </div>
+            <main className="slideshow-stop">
                 <IndustriesMarquee />
             </main>
-            <section className="Double-marquee">
+            <section className="Double-marquee slideshow-stop">
                 <DoubleMarquee />
             </section>
-            <footer className="main-footer">
+            <footer className="main-footer slideshow-stop">
                 <Footer />
             </footer>
             <TransitionScribble />
