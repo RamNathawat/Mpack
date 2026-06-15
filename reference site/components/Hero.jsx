@@ -195,51 +195,9 @@ const Hero = () => {
         return () => ctx.revert();
     }, []);
 
-    // 3D Tilt Logic & Cursor Parallax
+    // Cursor Parallax Logic
     useEffect(() => {
-        // 3D Pouch Tilt
-        const handlePouchMove = (e, index) => {
-            if (!isGridState.current) return; // Only tilt when in grid mode
-            const inner = innersRef.current[index];
-            if (!inner) return;
-
-            const rect = inner.getBoundingClientRect();
-            const relX = e.clientX - rect.left - rect.width / 2;
-            const relY = e.clientY - rect.top - rect.height / 2;
-            
-            // Calculate rotation (max 4 degrees for subtle feel)
-            const rotY = (relX / (rect.width / 2)) * 4;
-            const rotX = (relY / (rect.height / 2)) * -4;
-
-            gsap.to(inner, {
-                rotationY: rotY,
-                rotationX: rotX,
-                duration: 0.8,
-                ease: "power3.out",
-                transformPerspective: 1200
-            });
-        };
-
-        const handlePouchLeave = (index) => {
-            const inner = innersRef.current[index];
-            if (!inner) return;
-            gsap.to(inner, {
-                rotationY: 0,
-                rotationX: 0,
-                duration: 1.2,
-                ease: "elastic.out(1, 0.75)" // Satisfying, heavy snap back
-            });
-        };
-
-        const wrappers = [pouchRef, boxRef, labelRef, canisterRef];
-        wrappers.forEach((ref, i) => {
-            if (ref.current) {
-                ref.current.addEventListener("mousemove", (e) => handlePouchMove(e, i));
-                ref.current.addEventListener("mouseleave", () => handlePouchLeave(i));
-            }
-        });
-
-        // Chaotic Cursor Parallax (Hero State)
+        // Chaotic Cursor Parallax (Globally active)
         const parallaxQuicks = [
             { x: gsap.quickTo(imgsRef.current[0], "x", { duration: 0.8, ease: "power3.out" }), y: gsap.quickTo(imgsRef.current[0], "y", { duration: 0.8, ease: "power3.out" }), factor: -0.04 },
             { x: gsap.quickTo(imgsRef.current[1], "x", { duration: 1.2, ease: "power3.out" }), y: gsap.quickTo(imgsRef.current[1], "y", { duration: 1.2, ease: "power3.out" }), factor: 0.03 },
@@ -248,12 +206,6 @@ const Hero = () => {
         ];
 
         const handleHeroParallax = (e) => {
-            if (isGridState.current) {
-                // Return to neutral when in grid state
-                parallaxQuicks.forEach(pq => { pq.x(0); pq.y(0); });
-                return;
-            }
-            
             const cx = window.innerWidth / 2;
             const cy = window.innerHeight / 2;
             const dx = e.clientX - cx;
@@ -277,12 +229,6 @@ const Hero = () => {
         window.addEventListener("mousemove", handleHeroParallax);
 
         return () => {
-            wrappers.forEach((ref, i) => {
-                if (ref.current) {
-                    ref.current.removeEventListener("mousemove", (e) => handlePouchMove(e, i));
-                    ref.current.removeEventListener("mouseleave", () => handlePouchLeave(i));
-                }
-            });
             window.removeEventListener("mousemove", handleHeroParallax);
         };
     }, []);
