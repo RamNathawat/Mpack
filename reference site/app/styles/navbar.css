@@ -33,6 +33,40 @@
     transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* "why?" text under MPACK logo */
+.logo-why-text {
+    position: fixed;
+    top: 75px; /* Sit just below the fixed MPACK logo with a gap */
+    left: 50%;
+    font-family: 'Courgette', 'Yellowtail', cursive; /* Script font used in hero */
+    font-size: 2.5rem; /* Slightly larger for better readability */
+    font-weight: 700;
+    color: var(--color-maroon, #B1536E);
+    /* Creates a solid beige 'sticker' halo around the text to protect it from dark images, plus a soft shadow to lift it */
+    text-shadow: 
+        -2px -2px 0 #f5eedf,  
+         2px -2px 0 #f5eedf,
+        -2px  2px 0 #f5eedf,
+         2px  2px 0 #f5eedf,
+         0px  3px 0 #f5eedf,
+         0px -3px 0 #f5eedf,
+         3px  0px 0 #f5eedf,
+        -3px  0px 0 #f5eedf,
+         0px  6px 12px rgba(0,0,0,0.15);
+    transform: translateX(-50%) rotate(-10deg);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.logo-why-text.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) rotate(-10deg) scale(1.1);
+}
+
 .navbar {
     position: fixed;
     top: 0;

@@ -36,14 +36,20 @@ export default function Navbar() {
         const updateNavbarColor = () => {
             if (!navbar || !contentSection || !footerEl) return;
             const currentScrollY = window.scrollY;
-            
-            // Smart scroll logic (hide on scroll down, show on scroll up)
-            if (currentScrollY > lastScrollY && currentScrollY > 80) {
-                // Scrolling down - fast hide
-                gsap.to(navbar, { yPercent: -100, duration: 0.15, ease: 'power2.in', overwrite: 'auto' });
-            } else if (currentScrollY < lastScrollY) {
-                // Scrolling up - snappy reveal
-                gsap.to(navbar, { yPercent: 0, duration: 0.25, ease: 'power2.out', overwrite: 'auto' });
+            // Removed auto-hide logic to keep Navbar constant
+
+            // "Why?" text visibility logic
+            const logoWhy = document.querySelector('.logo-why-text');
+            const hwSection = document.querySelector('.horizontal-words-section');
+            if (logoWhy && hwSection) {
+                const hwTop = hwSection.getBoundingClientRect().top + currentScrollY;
+                const hwBottom = hwTop + hwSection.offsetHeight;
+                const midScreen = currentScrollY + window.innerHeight / 2;
+                if (midScreen >= hwTop && midScreen <= hwBottom) {
+                    logoWhy.classList.add('visible');
+                } else {
+                    logoWhy.classList.remove('visible');
+                }
             }
             lastScrollY = currentScrollY;
 
@@ -341,6 +347,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
+            <div className="logo-why-text">why?</div>
         </>
     );
 }

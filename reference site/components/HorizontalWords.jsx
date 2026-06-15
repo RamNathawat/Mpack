@@ -16,7 +16,7 @@ const ComplianceIcon = () => (
 
 const MachineryIcon = () => (
     <div className="doodle-svg">
-        <img src="/assets/end-to-end-section/machinery_new.png" alt="Machinery Sticker" style={{ width: '280px', height: '280px', objectFit: 'contain' }} />
+        <img src="/assets/end-to-end-section/machinery_new.png" alt="Machinery Sticker" style={{ width: '360px', height: '360px', objectFit: 'contain', transform: 'translate(20px, -20px)' }} />
     </div>
 );
 
@@ -108,10 +108,25 @@ const HorizontalWords = () => {
             // Initially hide all letters
             gsap.set(letters, { opacity: 0 });
 
+            // 1. The Main Pinning Trigger to "Stop" the section
+            ScrollTrigger.create({
+                trigger: container,
+                start: "top top",
+                end: "+=1000", // Pin for 1000px of scrolling
+                pin: true,
+                snap: {
+                    snapTo: [0, 1], // Snap to the start or end of the pin
+                    duration: { min: 0.5, max: 1.0 },
+                    delay: 0.1,
+                    ease: "power2.inOut"
+                }
+            });
+
+            // 2. The Text Entrance Animation
             const scrollTween = gsap.timeline({
                 scrollTrigger: {
                     trigger: container,
-                    start: "top bottom", // Trigger as soon as the top edge is visible
+                    start: "top 60%", // Play the bouncy text just as it comes into full view
                     toggleActions: "play none none reverse"
                 }
             });
@@ -150,27 +165,27 @@ const HorizontalWords = () => {
             }, "+=0.5");
 
             // Parallax effect for the floating packaging mockups
-            // Values dramatically reduced so they stay safely in their "negative space" gaps
+            // Scrubbed specifically while the section is pinned
             gsap.to(".parallax-bg-1", {
                 y: 50,
                 rotation: 20, // starts at 15
                 ease: "none",
                 scrollTrigger: {
                     trigger: container,
-                    start: "top bottom",
-                    end: "bottom top",
+                    start: "top top",
+                    end: "+=1000",
                     scrub: 1
                 }
             });
 
             gsap.to(".parallax-bg-2", {
-                y: 30,
-                rotation: 190, // starts at 85
+                y: 120,
+                rotation: 210, // starts at 85
                 ease: "none",
                 scrollTrigger: {
                     trigger: container,
-                    start: "top bottom",
-                    end: "bottom top",
+                    start: "top top",
+                    end: "+=1000",
                     scrub: 1.5
                 }
             });
@@ -181,8 +196,8 @@ const HorizontalWords = () => {
                 ease: "none",
                 scrollTrigger: {
                     trigger: container,
-                    start: "top bottom",
-                    end: "bottom top",
+                    start: "top top",
+                    end: "+=1000",
                     scrub: 0.8
                 }
             });
@@ -193,8 +208,8 @@ const HorizontalWords = () => {
                 ease: "none",
                 scrollTrigger: {
                     trigger: container,
-                    start: "top bottom",
-                    end: "bottom top",
+                    start: "top top",
+                    end: "+=1000",
                     scrub: 1.2
                 }
             });

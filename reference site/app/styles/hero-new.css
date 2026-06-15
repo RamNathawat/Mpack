@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Yellowtail&display=swap');
+
 /* Wrapper allows 250vh of scrolling */
 .hero-morph-wrapper {
     position: relative;
@@ -79,9 +81,9 @@
 }
 
 .hero-new__underline-path {
-    stroke-dasharray: 1450;
-    stroke-dashoffset: 1450;
-    animation: draw-hero-underline 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards 1.0s;
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: draw-hero-underline 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards 1.0s;
 }
 
 @keyframes draw-hero-underline {
@@ -106,7 +108,9 @@
 .hero-btn {
     display: inline-block;
     padding: 18px 40px;
-    background-color: #2e68f3; /* Matching screenshot button color */
+    background-color: #0F1E2C; /* Deep Navy */
+    text-transform: uppercase;
+    letter-spacing: 1px;
     color: var(--color-white);
     font-size: 1.1rem;
     font-weight: 600;
@@ -118,14 +122,15 @@
 
 .hero-btn:hover {
     transform: translateY(-3px);
-    background-color: var(--color-orange);
+    background-color: #0b1520; /* Darker Navy hover */
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 .hero-new__title em {
-    font-style: italic;
-    color: #eab308; /* Friendly warm accent, e.g. yellow/gold */
-    font-weight: 800;
+    font-family: 'Courgette', 'Yellowtail', cursive;
+    font-style: normal;
+    color: #0F1E2C; /* Dark Navy to match image */
+    font-weight: 400;
 }
 
 /* Product Container */

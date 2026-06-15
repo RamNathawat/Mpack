@@ -45,10 +45,10 @@ const Hero = () => {
             });
             
             // --- 1. INITIAL EDITORIAL STATE (Framing the text) ---
-            gsap.set(pouchRef.current, { x: '-32vw', y: '-30vh', rotation: -10, scale: 1.8 }); // Top Left
-            gsap.set(boxRef.current, { x: '35vw', y: '-30vh', rotation: 12, scale: 1.45 }); // Top Right
-            gsap.set(labelRef.current, { x: '-32vw', y: '25vh', rotation: -15, scale: 1.7 }); // Bottom Left
-            gsap.set(canisterRef.current, { x: '32vw', y: '25vh', rotation: 10, scale: 1.75 }); // Bottom Right
+            gsap.set(pouchRef.current, { x: '-40vw', y: '-35vh', rotation: -10, scale: 1.2 }); // Top Left
+            gsap.set(boxRef.current, { x: '40vw', y: '-35vh', rotation: 12, scale: 1.1 }); // Top Right
+            gsap.set(labelRef.current, { x: '-40vw', y: '35vh', rotation: -15, scale: 1.2 }); // Bottom Left
+            gsap.set(canisterRef.current, { x: '40vw', y: '35vh', rotation: 10, scale: 1.2 }); // Bottom Right
 
             // Entrance Animation (Text)
             gsap.from(".hero-new__word", {
@@ -158,6 +158,14 @@ const Hero = () => {
                 webkitMaskPosition: "0% 0%",
                 maskPosition: "0% 0%",
                 duration: printDuration,
+                ease: "power2.inOut",
+                stagger: 0.15
+            }, 0.3);
+
+            // Concurrently fade out the old competitor mockups behind them
+            morphTl.to(".blank-mockup-container", {
+                opacity: 0,
+                duration: printDuration * 0.8,
                 ease: "power2.inOut",
                 stagger: 0.15
             }, 0.3);
@@ -336,12 +344,11 @@ const Hero = () => {
                     <div className="pouch-wrapper" ref={pouchRef}>
                         <div className="pouch-inner" ref={addToRefs(innersRef.current)}>
                             <div className="mockup-backdrop bubble-green"></div>
-                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ WebkitMaskImage: 'url(/assets/hero-section/blank_pouch.png)', maskImage: 'url(/assets/hero-section/blank_pouch.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }}>
-
-                                <div className="blank-mockup-container">
-                                    <img src="/assets/hero-section/competitor_pouch.png" alt="Competitor Pouch" className="blank-mockup" style={{ mixBlendMode: 'darken' }} />
+                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ aspectRatio: '1 / 1', position: 'relative', width: '100%' }}>
+                                <img src="/assets/hero-section/emerald_pouch.png" alt="Flexible Pouches" className="printed-mockup" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(0.85)' }} />
+                                <div className="blank-mockup-container" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+                                    <img src="/assets/hero-section/competitor_pouch.png" alt="Competitor Pouch" className="blank-mockup" style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'darken' }} />
                                 </div>
-                                <img src="/assets/hero-section/emerald_pouch.png" alt="Flexible Pouches" className="printed-mockup" />
                             </div>
                         </div>
                         <div className="pouch-label-group" ref={addToRefs(labelsRef.current)}>
@@ -354,15 +361,14 @@ const Hero = () => {
                     <div className="pouch-wrapper box-wrapper" ref={boxRef}>
                         <div className="pouch-inner" ref={addToRefs(innersRef.current)}>
                             <div className="mockup-backdrop bubble-peach"></div>
-                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ WebkitMaskImage: 'url(/assets/hero-section/blank_box.png)', maskImage: 'url(/assets/hero-section/blank_box.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }}>
-
-                                <div className="blank-mockup-container">
-                                    <img src="/assets/hero-section/competitor_box.png" alt="Competitor Box" className="blank-mockup" style={{ mixBlendMode: 'darken' }} />
+                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ aspectRatio: '1 / 1', position: 'relative', width: '100%' }}>
+                                <img src="/assets/hero-section/terracotta_box.png" alt="Rigid Boxes" className="printed-mockup" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.15)' }} />
+                                <div className="blank-mockup-container" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+                                    <img src="/assets/hero-section/competitor_box.png" alt="Competitor Box" className="blank-mockup" style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'darken' }} />
                                 </div>
-                                <img src="/assets/hero-section/terracotta_box.png" alt="Rigid Boxes" className="printed-mockup" />
                             </div>
                         </div>
-                        <div className="pouch-label-group" ref={addToRefs(labelsRef.current)}>
+                        <div className="pouch-label-group" ref={addToRefs(labelsRef.current)} style={{ paddingTop: '45px' }}>
                             <div className="pouch-label">Customised <span className="pouch-label-italic">Boxes</span></div>
                             <div className="pouch-desc">Supporting retail, e-commerce, cosmetics, electronics, and premium gifting sectors.</div>
                         </div>
@@ -372,12 +378,11 @@ const Hero = () => {
                     <div className="pouch-wrapper label-wrapper" ref={labelRef}>
                         <div className="pouch-inner" ref={addToRefs(innersRef.current)}>
                             <div className="mockup-backdrop bubble-yellow"></div>
-                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ WebkitMaskImage: 'url(/assets/hero-section/blank_label.png)', maskImage: 'url(/assets/hero-section/blank_label.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }}>
-
-                                <div className="blank-mockup-container">
-                                    <img src="/assets/hero-section/competitor_label.png" alt="Competitor Label" className="blank-mockup" style={{ mixBlendMode: 'darken' }} />
+                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ aspectRatio: '1 / 1', position: 'relative', width: '100%' }}>
+                                <img src="/assets/hero-section/mockup_label.png" alt="Custom Labels" className="printed-mockup" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.0)' }} />
+                                <div className="blank-mockup-container" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+                                    <img src="/assets/hero-section/competitor_label.png" alt="Competitor Label" className="blank-mockup" style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'darken' }} />
                                 </div>
-                                <img src="/assets/hero-section/mockup_label.png" alt="Custom Labels" className="printed-mockup" />
                             </div>
                         </div>
                         <div className="pouch-label-group" ref={addToRefs(labelsRef.current)}>
@@ -390,12 +395,11 @@ const Hero = () => {
                     <div className="pouch-wrapper" ref={canisterRef}>
                         <div className="pouch-inner" ref={addToRefs(innersRef.current)}>
                             <div className="mockup-backdrop bubble-blue"></div>
-                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ WebkitMaskImage: 'url(/assets/hero-section/blank_canister.png)', maskImage: 'url(/assets/hero-section/blank_canister.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }}>
-
-                                <div className="blank-mockup-container">
-                                    <img src="/assets/hero-section/competitor_canister.png" alt="Competitor Canister" className="blank-mockup" style={{ mixBlendMode: 'darken' }} />
+                            <div className="mockup-layer" ref={addToRefs(imgsRef.current)} style={{ aspectRatio: '1 / 1', position: 'relative', width: '100%' }}>
+                                <img src="/assets/hero-section/midnight_canister.png" alt="Paper Canisters" className="printed-mockup" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.05)' }} />
+                                <div className="blank-mockup-container" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+                                    <img src="/assets/hero-section/competitor_canister.png" alt="Competitor Canister" className="blank-mockup" style={{ width: '100%', height: '100%', objectFit: 'contain', mixBlendMode: 'darken' }} />
                                 </div>
-                                <img src="/assets/hero-section/midnight_canister.png" alt="Paper Canisters" className="printed-mockup" />
                             </div>
                         </div>
                         <div className="pouch-label-group" ref={addToRefs(labelsRef.current)}>
@@ -406,42 +410,61 @@ const Hero = () => {
                 </div>
 
                 <div className="hero-new__content">
-                    <h1 className="hero-new__title" ref={titleRef} style={{ flexDirection: 'column', gap: 0 }}>
-                        <span className="hero-new__word" style={{ fontSize: 'clamp(1rem, 2vw, 1.5rem)', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#64748b', marginBottom: '1rem' }}>Premium</span>
-                        <span className="hero-new__word" style={{ fontSize: 'clamp(3.5rem, 9vw, 7.5rem)', lineHeight: 0.9, position: 'relative', zIndex: 2 }}>Packaging</span>
-                        <span className="hero-new__word is--relative" style={{ color: '#2e68f3' }}>
-                            <span className="hero-new__hatch-text" style={{ position: 'relative', zIndex: 1 }}>Solutions</span>
-                            <svg 
-                                className="hero-new__underline" 
-                                style={{ bottom: '-5px', overflow: 'visible', zIndex: 0 }} 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                width="120%" 
-                                viewBox="0 0 608 100" 
-                                fill="none"
-                            >
-                                <path 
-                                    className="hero-new__underline-path"
-                                    d="M322.902 98.9997C232.515 99.0422 140.637 94.7899 58.0275 80.853C31.532 76.3775 2.92086 69.1167 1.08733 58.1139C-0.222339 50.1514 13.3981 42.965 28.5701 37.4583C61.2714 25.5944 103.362 18.1423 146.239 12.7206C228.606 2.3131 316.878 -1.23755 403.155 2.36627C456.307 4.58809 509.519 9.62707 555.338 20.109C581.41 26.0728 606.777 35.279 606.999 46.8453C607.12 53.7659 597.831 60.3569 584.835 65.1939C571.839 70.0309 555.398 73.3158 538.675 76.0266C463.097 88.252 379.057 89.8891 297.011 91.3668" 
-                                    stroke="#ffffff" 
-                                    strokeWidth="3" 
-                                    strokeLinecap="round" 
-                                    strokeLinejoin="round" 
-                                />
+                    <h1 className="hero-new__title" ref={titleRef} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0, textAlign: 'center' }} aria-label="Premium Packaging Solutions">
+                        
+                        {/* Curved Text SVG */}
+                        <svg width="100%" height="auto" style={{ maxWidth: '1200px', overflow: 'visible', marginTop: '20px' }} viewBox="0 0 1000 280" aria-hidden="true">
+                            <g style={{ transform: 'scale(2.15)', transformOrigin: 'center' }}>
+                                <path id="curve-premium" d="M 50,130 Q 500,90 950,130" fill="transparent" />
+                                <path id="curve-packaging" d="M 20,240 Q 500,200 980,240" fill="transparent" />
+                                
+                                <text style={{ fontFamily: "'Druk Wide Super', 'Druk Wide', 'Arial Black', Impact, sans-serif", fontSize: '100px', textTransform: 'uppercase', fill: '#0F1E2C', letterSpacing: '5px' }}>
+                                    <textPath href="#curve-premium" startOffset="50%" textAnchor="middle">
+                                        PREMIUM
+                                    </textPath>
+                                </text>
+                                
+                                <text style={{ fontFamily: "'Druk Wide Super', 'Druk Wide', 'Arial Black', Impact, sans-serif", fontSize: '100px', textTransform: 'uppercase', fill: '#E95545', letterSpacing: '0px' }}>
+                                    <textPath href="#curve-packaging" startOffset="50%" textAnchor="middle">
+                                        PACKAGING
+                                    </textPath>
+                                </text>
+                            </g>
+                        </svg>
+
+                        <span className="hero-new__word is--relative" style={{ fontSize: 'clamp(4rem, 7.5vw, 8rem)', lineHeight: 0.9, color: '#0F1E2C', marginTop: '40px' }}>
+                            {/* Sparks to the left */}
+                            <svg style={{ position: 'absolute', left: '-40px', top: '15%', width: '35px', height: '35px', zIndex: 0, overflow: 'visible' }} viewBox="0 0 40 40" fill="none" stroke="#B4E810" strokeWidth="4" strokeLinecap="round">
+                                <path d="M30,10 L10,0" />
+                                <path d="M25,20 L5,20" />
+                                <path d="M30,30 L10,40" />
+                            </svg>
+                            
+                            {/* Marker Highlight Behind Text */}
+                            <svg style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) rotate(-2deg)', width: '130%', height: '140%', zIndex: 0, pointerEvents: 'none', overflow: 'visible' }} viewBox="0 0 300 80" preserveAspectRatio="none">
+                                <path d="M15,35 Q40,15 150,20 T290,25 Q295,55 150,65 T5,45 Z" fill="#DDF839" />
+                            </svg>
+
+                            <em style={{ position: 'relative', zIndex: 1, padding: '0 10px' }}>Solutions</em>
+                            
+                            {/* Two hand-drawn underlines */}
+                            <svg style={{ position: 'absolute', bottom: '-5px', left: '10%', width: '80%', height: '20px', zIndex: 0, overflow: 'visible' }} viewBox="0 0 200 30" preserveAspectRatio="none" fill="none" stroke="#0F1E2C" strokeWidth="3" strokeLinecap="round">
+                                <path d="M10,10 Q100,0 190,12" />
+                                <path d="M30,22 Q110,15 170,25" strokeWidth="2" />
                             </svg>
                         </span>
                     </h1>
                     
-                    <p className="hero-new__subtitle hero-new__word" ref={subtitleRef}>
+                    <p className="hero-new__subtitle hero-new__word" ref={subtitleRef} style={{ marginTop: '20px', color: '#2C2723' }}>
                         Your trusted partner for bespoke packaging, from concept to shelf-ready production.
                     </p>
 
-                    <div className="hero-new__cta hero-new__word" ref={btnRef} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
-                        <a href="#explore" onClick={handleScrollClick} className="hero-btn" data-cursor-text="Scroll">Scroll to Interact</a>
+                    <div className="hero-new__cta hero-new__word" ref={btnRef} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', marginTop: '20px' }}>
+                        <a href="#explore" onClick={handleScrollClick} className="hero-btn" data-cursor-text="Scroll">SCROLL TO EXPLORE</a>
                         
-                        <div className="hero-scroll-arrows">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2e68f3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="m7 6 5 5 5-5"/>
-                                <path d="m7 13 5 5 5-5"/>
+                        <div className="hero-scroll-arrows" style={{ position: 'relative', top: '-30px' }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0F1E2C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'rotate(15deg)' }}>
+                                <path d="M16 4 C16 10 10 14 6 18 M6 18 V10 M6 18 H14" />
                             </svg>
                         </div>
                     </div>
