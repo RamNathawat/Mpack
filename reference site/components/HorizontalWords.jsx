@@ -36,7 +36,7 @@ const stickersData = [
     {
         id: "compliance",
         label: "Compliance Guidance",
-        desc: "Navigate complex packaging regulations with confidence. We ensure your packaging meets all necessary industry standards.",
+        desc: "We provide support to ensure your packaging meets all necessary industry standards and navigate complex regulations.",
         content: ["Rules & Regulations", "Label Support"],
         LabelComponent: ComplianceIcon,
         style: { top: 'calc(12% - 50px)', left: '8%' }
@@ -44,23 +44,23 @@ const stickersData = [
     {
         id: "machinery",
         label: "Machinery Assistance",
-        desc: "Need to automate your packaging line? We supply and support top-tier packaging machinery to streamline your operations.",
+        desc: "We help you with connections to top-tier machinery experts to streamline your operations.",
         content: ["Pouch & Labelling Machines", "Batch Coding Machines", "Convertors"],
         LabelComponent: MachineryIcon,
-        style: { top: 'calc(18% - 50px)', right: '8%' }
+        style: { top: 'calc(18% - 50px)', right: '2%' }
     },
     {
         id: "packaging",
         label: "Complete Packaging Solutions",
-        desc: "From initial concept to final shelf-ready product, we provide an extensive range of packaging formats to meet any brand requirement.",
-        content: ["Pouches / Boxes", "Labels & Canisters"],
+        desc: "From initial concept to final shelf-ready product, we provide an extensive range of packaging options to meet any brand requirement.",
+        content: ["Pouches / Boxes", "Labels / Canisters"],
         LabelComponent: PackagingIcon,
         style: { top: 'calc(60% - 50px)', left: '8%' }
     },
     {
         id: "design",
         label: "Design Support",
-        desc: "Our pre-press and design experts ensure your artwork is perfectly optimized for production, preventing costly printing errors.",
+        desc: "Our pre-press and on-call graphic designers ensure your artwork is perfectly optimized for printing, preventing costly printing errors.",
         content: ["Artworks", "Changes & Corrections", "KLDs"],
         LabelComponent: DesignIcon,
         style: { top: 'calc(65% - 50px)', right: '8%' }
@@ -73,7 +73,6 @@ const Badge = ({ data, isExpanded, onHover, onLeave }) => {
         <div 
             className={`ecosystem-badge-wrapper ${isExpanded ? 'expanded' : ''} ${data.id}-badge`}
             style={data.style}
-            data-cursor-text="why mpack"
             onMouseEnter={onHover}
             onMouseLeave={onLeave}
         >
@@ -89,7 +88,7 @@ const Badge = ({ data, isExpanded, onHover, onLeave }) => {
                 </div>
                 <p>{data.desc}</p>
                 <div className="eco-tags">
-                    {data.content.map(tag => <span key={tag} className="eco-tag">{tag}</span>)}
+                    {data.content.map(tag => <span key={tag} className="eco-tag" style={tag === "KLDs" ? { textTransform: 'none' } : {}}>{tag}</span>)}
                 </div>
             </div>
         </div>
