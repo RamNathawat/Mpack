@@ -317,7 +317,7 @@ export default function Navbar() {
             <nav className="navbar">
                 <div className="nav-left"></div>
                 <div className="nav-center" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
-                    <svg className="logo-mpack" data-cursor-text="Back to Top" width="150" height="42" viewBox="0 0 150 55" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
+                    <svg className="logo-mpack" width="150" height="42" viewBox="0 0 150 55" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
                         <text x="2" y="44" fontFamily="var(--font-logo)" fontWeight="900" fontSize="48" fill="currentColor" letterSpacing="-1px">MPACK</text>
                     </svg>
                 </div>

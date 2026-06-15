@@ -402,7 +402,7 @@ const Hero = () => {
                     </h1>
                     
                     <p className="hero-new__subtitle hero-new__word" ref={subtitleRef} style={{ marginTop: '20px', color: '#2C2723' }}>
-                        Your trusted partner for bespoke packaging, from concept to shelf-ready production.
+                        Your trusted partner for bespoke packaging, from concept to shelf-ready product.
                     </p>
 
                     <div className="hero-new__cta hero-new__word" ref={btnRef} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', marginTop: '20px' }}>
