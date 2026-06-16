@@ -248,7 +248,7 @@ const Hero = () => {
             const currentScroll = window.scrollY;
             const nextStop = stops.find(pos => pos > currentScroll + 50);
             if (nextStop !== undefined) {
-                window.__lenis.scrollTo(nextStop, { duration: 4.5, lock: true });
+                window.__lenis.scrollTo(nextStop, { duration: 6.5, lock: true }); // Slower slideshow scroll
                 return;
             }
         }
@@ -259,7 +259,7 @@ const Hero = () => {
             const targetScroll = rect.top + window.scrollY + rect.height - window.innerHeight;
             
             if (window.__lenis) {
-                window.__lenis.scrollTo(targetScroll, { duration: 1.5 });
+                window.__lenis.scrollTo(targetScroll, { duration: 3.5 }); // Slower fallback scroll
             } else {
                 window.scrollTo({ top: targetScroll, behavior: 'smooth' });
             }
@@ -405,10 +405,10 @@ const Hero = () => {
                         Your trusted partner for bespoke packaging, from concept to shelf-ready product.
                     </p>
 
-                    <div className="hero-new__cta hero-new__word" ref={btnRef} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem', marginTop: '20px' }}>
+                    <div className="hero-new__cta hero-new__word" ref={btnRef} style={{ position: 'relative', marginTop: '20px' }}>
                         <a href="#explore" onClick={handleScrollClick} className="hero-btn" data-cursor-text="Scroll">SCROLL TO EXPLORE</a>
                         
-                        <div className="hero-scroll-arrows" style={{ position: 'relative', top: '-30px' }}>
+                        <div className="hero-scroll-arrows" style={{ position: 'absolute', right: '-60px', top: '-10px' }}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0F1E2C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'rotate(15deg)' }}>
                                 <path d="M16 4 C16 10 10 14 6 18 M6 18 V10 M6 18 H14" />
                             </svg>

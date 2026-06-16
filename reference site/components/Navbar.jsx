@@ -47,14 +47,22 @@ export default function Navbar() {
                 const midScreen = currentScrollY + window.innerHeight / 2;
                 if (midScreen >= hwTop && midScreen <= hwBottom) {
                     logoWhy.classList.add('visible');
+                    navbar.classList.add('show-icon');
                 } else {
                     logoWhy.classList.remove('visible');
+                    navbar.classList.remove('show-icon');
                 }
             }
             lastScrollY = currentScrollY;
 
             const scrollPos = currentScrollY + navbar.offsetHeight / 2;
             const contentTop = contentSection.getBoundingClientRect().top + currentScrollY;
+
+            if (currentScrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
 
             const showreelSection = document.querySelector('#showreel-section');
             const showreelTop = showreelSection ? showreelSection.getBoundingClientRect().top + currentScrollY : Infinity;
@@ -316,10 +324,9 @@ export default function Navbar() {
             <div className="nav-overlay"></div>
             <nav className="navbar">
                 <div className="nav-left"></div>
-                <div className="nav-center" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
-                    <svg className="logo-mpack" width="150" height="42" viewBox="0 0 150 55" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
-                        <text x="2" y="44" fontFamily="var(--font-logo)" fontWeight="900" fontSize="48" fill="currentColor" letterSpacing="-1px">MPACK</text>
-                    </svg>
+                <div className="nav-center" style={{ position: 'absolute', left: 'calc(50% - 15px)', cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
+                    <img src="/assets/hero-section/logo_mpack-removebg.png" alt="MPACK Logo" className="logo-mpack-icon" />
+                    <span className="logo-mpack-text">MPACK</span>
                 </div>
                 <div className="nav-right" style={{ cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
                     <div className="nav-hover-trigger">

@@ -253,20 +253,20 @@ const HorizontalWords = () => {
         <section ref={sectionRef} className="horizontal-words-section content-section" style={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', padding: '0 5vw', overflow: 'hidden', backgroundColor: '#f5eedf' }}>
             
             {/* Depth of Field Parallax Packaging - Scaled & Placed in Negative Space Gaps */}
-            <div className="parallax-bg-1" style={{ position: 'absolute', top: '35%', left: '-12%', width: '38vw', zIndex: 1, filter: 'blur(8px)', opacity: 0.85 }}>
-                <img src="/assets/hero-section/emerald_pouch.png" alt="Pouch" style={{ width: '100%', height: 'auto', transform: 'rotate(15deg)', WebkitMaskImage: 'url(/assets/hero-section/blank_pouch.png)', maskImage: 'url(/assets/hero-section/blank_pouch.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }} />
+            <div className="parallax-bg-1" style={{ position: 'absolute', top: '35%', left: '-12%', width: '38vw', zIndex: 1, filter: 'blur(4.5px)', opacity: 0.85 }}>
+                <img src="/assets/hero-section/emerald_pouch.png" alt="Pouch" style={{ width: '100%', height: 'auto', transform: 'rotate(15deg)' }} />
             </div>
 
-            <div className="parallax-bg-2" style={{ position: 'absolute', bottom: '-15%', left: '35%', width: '28vw', zIndex: 1, filter: 'blur(3px)', opacity: 0.95 }}>
-                <img src="/assets/hero-section/midnight_canister.png" alt="Canister" style={{ width: '100%', height: 'auto', transform: 'rotate(85deg)', WebkitMaskImage: 'url(/assets/hero-section/blank_canister.png)', maskImage: 'url(/assets/hero-section/blank_canister.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }} />
+            <div className="parallax-bg-2" style={{ position: 'absolute', bottom: '-15%', left: '35%', width: '28vw', zIndex: 1, filter: 'blur(2.5px)', opacity: 0.95 }}>
+                <img src="/assets/hero-section/midnight_canister.png" alt="Canister" style={{ width: '100%', height: 'auto', transform: 'rotate(85deg)' }} />
             </div>
 
-            <div className="parallax-bg-3" style={{ position: 'absolute', top: '-15%', left: '45%', width: '35vw', zIndex: 1, filter: 'blur(12px)', opacity: 0.7 }}>
-                <img src="/assets/hero-section/terracotta_box.png" alt="Box" style={{ width: '100%', height: 'auto', transform: 'rotate(-10deg)', WebkitMaskImage: 'url(/assets/hero-section/blank_box.png)', maskImage: 'url(/assets/hero-section/blank_box.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }} />
+            <div className="parallax-bg-3" style={{ position: 'absolute', top: '-15%', left: '45%', width: '35vw', zIndex: 1, filter: 'blur(7px)', opacity: 0.7 }}>
+                <img src="/assets/hero-section/terracotta_box.png" alt="Box" style={{ width: '100%', height: 'auto', transform: 'rotate(-10deg)' }} />
             </div>
 
-            <div className="parallax-bg-4" style={{ position: 'absolute', top: '38%', right: '-12%', width: '42vw', zIndex: 3, filter: 'blur(5px)' }}>
-                <img src="/assets/hero-section/mockup_label.png" alt="Label" style={{ width: '100%', height: 'auto', transform: 'rotate(-20deg)', WebkitMaskImage: 'url(/assets/hero-section/blank_label.png)', maskImage: 'url(/assets/hero-section/blank_label.png)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat' }} />
+            <div className="parallax-bg-4" style={{ position: 'absolute', top: '38%', right: '-12%', width: '42vw', zIndex: 3, filter: 'blur(3.5px)' }}>
+                <img src="/assets/hero-section/mockup_label.png" alt="Label" style={{ width: '100%', height: 'auto', transform: 'rotate(-20deg)' }} />
             </div>
 
             {stickersData.map(data => (

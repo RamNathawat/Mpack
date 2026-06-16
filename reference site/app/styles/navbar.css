@@ -36,10 +36,10 @@
 /* "why?" text under MPACK logo */
 .logo-why-text {
     position: fixed;
-    top: 75px; /* Sit just below the fixed MPACK logo with a gap */
-    left: 50%;
+    top: 65px; /* Adjusted down to match the MPACK text which is pushed down by the M icon */
+    left: calc(50% - 105px); /* Moved further left so question mark does not hide behind MPACK */
     font-family: 'Courgette', 'Yellowtail', cursive; /* Script font used in hero */
-    font-size: 2.5rem; /* Slightly larger for better readability */
+    font-size: 1.9rem; /* Scaled up proportionally */
     font-weight: 700;
     color: var(--color-maroon, #B1536E);
     /* Creates a solid beige 'sticker' halo around the text to protect it from dark images, plus a soft shadow to lift it */
@@ -53,7 +53,8 @@
          3px  0px 0 #f5eedf,
         -3px  0px 0 #f5eedf,
          0px  6px 12px rgba(0,0,0,0.15);
-    transform: translateX(-50%) rotate(-10deg);
+    transform-origin: right bottom;
+    transform: translateX(-100%) rotate(-15deg);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
@@ -64,7 +65,7 @@
 .logo-why-text.visible {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) rotate(-10deg) scale(1.1);
+    transform: translateX(-100%) rotate(-15deg) scale(1);
 }
 
 .navbar {
@@ -79,8 +80,6 @@
     background: transparent;
     z-index: 1000;
     pointer-events: none; /* Let clicks pass through empty areas */
-    mix-blend-mode: difference;
-    color: #fff;
     transition: opacity 0.3s ease;
 }
 
@@ -99,16 +98,64 @@ body.ecosystem-open .navbar {
     pointer-events: auto;
 }
 
-/* We don't need JS on-dark/on-light classes anymore because mix-blend-mode difference handles it perfectly pixel-by-pixel */
-.navbar.on-dark, .navbar.on-light {
-    /* Kept for compatibility but disabled */
+/* Toggle colors for icons since mix-blend-mode is removed */
+.navbar.on-dark .nav-bar__whatsapp-svg,
+.navbar.on-dark .logo-work-text {
+    color: #fff;
 }
 
-.logo-mpack {
+.navbar.on-light .nav-bar__whatsapp-svg,
+.navbar.on-light .logo-work-text {
+    color: #0F1E2C;
+}
+
+.nav-center {
+    position: absolute;
+    top: 10px;
+    transform: translateX(-50%) translateY(25px); /* shifted up to avoid overlap with hero text */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.navbar.scrolled .nav-center {
+    transform: translateX(-50%) translateY(0); /* normal position when scrolled */
+}
+
+.logo-mpack-icon {
     display: block;
-    width: 150px;
-    height: auto;
-    color: #fff;
+    width: auto;
+    height: 80px; /* adjusted icon size */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.navbar.scrolled:not(.show-icon) .logo-mpack-icon {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    position: absolute;
+    bottom: 100%; /* keep it out of flow visually so it doesn't add height */
+}
+
+/* Force visibility when show-icon is active to override any hidden state */
+.navbar.show-icon .logo-mpack-icon {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    position: static !important;
+    visibility: visible !important;
+}
+
+.logo-mpack-text {
+        transform: translateY(0px); /* shift down further from top edge */
+    font-family: var(--font-logo), sans-serif;
+    font-weight: 900;
+    font-size: 3rem; /* Scaled up for better readability */
+    color: #0F1E2C; /* Official dark navy */
+    letter-spacing: -1px;
+    line-height: 1;
+    transition: color 0.3s ease, font-size 0.3s ease;
 }
 
 .logo-mpack path,
@@ -121,7 +168,7 @@ body.ecosystem-open .navbar {
     width: 32px;
     height: auto;
     display: block;
-    color: #fff;
+    transition: color 0.3s ease;
 }
 
 /* When hover popouts open, turn off difference mode so they render properly over the light popout background */
