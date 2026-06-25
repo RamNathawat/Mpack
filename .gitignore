@@ -1,0 +1,14 @@
+# Mac / OS
+.DS_Store
+Thumbs.db
+
+# Root reference folders & scratch
+/Truus.co-Awwward-Website-main/
+/nexibles/
+/pouchwale/
+/scratch/
+
+# Reference materials & heavy venvs inside Next.js project
+/reference site/reference/
+/reference site/public/types of printing section+pouches/
+/reference site/*.log

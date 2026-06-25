@@ -47,10 +47,8 @@ export default function Navbar() {
                 const midScreen = currentScrollY + window.innerHeight / 2;
                 if (midScreen >= hwTop && midScreen <= hwBottom) {
                     logoWhy.classList.add('visible');
-                    navbar.classList.add('show-icon');
                 } else {
                     logoWhy.classList.remove('visible');
-                    navbar.classList.remove('show-icon');
                 }
             }
             lastScrollY = currentScrollY;
@@ -86,6 +84,23 @@ export default function Navbar() {
                 navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
             } else {
                 navbar.classList.add('on-dark'); navbar.classList.remove('on-light');
+            }
+
+            // Hide MPACK logo when over Printing & Pouches section
+            const printingSection = document.querySelector('.printing-pouches-section');
+            const navCenter = document.querySelector('.nav-center');
+            if (printingSection && navCenter) {
+                const pTop = printingSection.getBoundingClientRect().top + currentScrollY;
+                const pBottom = pTop + printingSection.offsetHeight;
+                // If the top of the viewport is within the printing section
+                if (currentScrollY >= pTop - 100 && currentScrollY <= pBottom - 100) {
+                    navCenter.style.opacity = '0';
+                    navCenter.style.pointerEvents = 'none';
+                    navCenter.style.transition = 'opacity 0.3s ease';
+                } else {
+                    navCenter.style.opacity = '1';
+                    navCenter.style.pointerEvents = 'auto';
+                }
             }
         };
 

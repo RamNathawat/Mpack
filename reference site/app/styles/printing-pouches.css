@@ -1,0 +1,667 @@
+.printing-pouches-section {
+    position: relative;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #f5eedf;
+    font-family: 'Epilogue', sans-serif;
+}
+
+.printing-pouches-container {
+    display: flex;
+    flex-wrap: nowrap;
+    width: fit-content;
+    height: 100vh;
+    padding: 0;
+    align-items: center;
+}
+
+.pouches-track {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    align-items: center;
+    background-color: #f5eedf;
+}
+
+/* ─── Intro Slide ─── */
+.printing-intro-slide {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6vh 5vw 4vh 5vw;
+    position: relative;
+    background-color: #f5eedf;
+    z-index: 10;
+}
+
+/* Faint dot-grid texture */
+.printing-intro-slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--color-slate) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* ─── Staggered Header ─── */
+.printing-header {
+    width: 100%;
+    margin-bottom: 3vh;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.typewriter-letter {
+    display: inline-block;
+}
+
+/* ─── Stacked Cards Container ─── */
+.stacked-cards-area {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 62vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+/* ─── Individual Stacked Card ─── */
+.stack-card {
+    position: absolute;
+    width: 310px;
+    height: clamp(380px, 55vh, 470px);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 4.8rem 1.6rem 1.8rem;
+    cursor: pointer;
+    overflow: visible;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
+    transform-origin: center center;
+    will-change: transform;
+    transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s ease;
+}
+
+.stack-card:hover {
+    box-shadow: 0 35px 80px rgba(0, 0, 0, 0.22);
+    width: 520px;
+    z-index: 20 !important;
+}
+
+
+/* ─── Card Colors (Saturated Truus style) ─── */
+.stack-card.card-digital {
+    background-color: #B488E8; /* Bright Purple/Pink */
+    color: #000000;
+}
+
+.stack-card.card-flexo {
+    background-color: #55956D; /* Forest Green */
+    color: #FFFFFF;
+}
+
+.stack-card.card-roto {
+    background-color: #F87B51; /* Vibrant Orange */
+    color: #000000;
+}
+
+/* ─── Truus-style Stacked Positions ─── */
+.stack-card.card-digital {
+    left: calc(50% - 495px); /* Perfectly centered: -495px to left */
+    top: 55px;
+    z-index: 1;
+}
+
+.stack-card.card-flexo {
+    left: calc(50% - 155px); /* -155px to center */
+    top: 15px;
+    z-index: 3;
+}
+
+.stack-card.card-roto {
+    left: calc(50% + 185px); /* +185px to right */
+    top: 45px;
+    z-index: 2;
+}
+
+/* ─── Sticker (Protrudes Above Card) ─── */
+.stack-sticker {
+    position: absolute;
+    z-index: 20;
+    pointer-events: none;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.12));
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Per-card sticker position + rotation */
+/* Anchored to the LEFT so they stay planted when the right side expands */
+.stack-card.card-digital .stack-sticker {
+    width: 125px;
+    top: -55px;
+    left: 170px;
+    transform: rotate(5deg);
+}
+
+.stack-card.card-flexo .stack-sticker {
+    width: 115px;
+    top: -50px;
+    left: 175px;
+    transform: rotate(-3deg);
+}
+
+.stack-card.card-roto .stack-sticker {
+    width: 130px;
+    top: -55px;
+    left: 165px;
+    transform: rotate(4deg);
+}
+
+.stack-sticker-svg {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    /* Hand-drawn SVGs already include the white die-cut backing */
+}
+
+/* ─── Card Title (Bold, Bottom-Aligned like Truus) ─── */
+.stack-card-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    font-family: 'Epilogue', sans-serif;
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+    text-transform: lowercase;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+
+/* SVG divider line under title */
+.stack-card-divider {
+    width: 260px; /* Fixed width prevents stretching into the expanded panel area */
+    height: 12px;
+    display: block;
+    margin: 12px 0 20px;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+.stack-card-divider path {
+    opacity: 0.8;
+}
+
+/* ─── Bullet List (Visible by Default like Truus) ─── */
+.stack-card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+.stack-card-list li {
+    font-size: 1.15rem;
+    font-weight: 500;
+    font-family: 'DM Sans', 'Epilogue', sans-serif;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    opacity: 0.95;
+}
+
+/* Diamond bullet (✦) */
+.stack-bullet {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* ─── Expanded Panel (Slides in from Right on Hover) ─── */
+.stack-expanded-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 210px;
+    height: 100%;
+    border-radius: 0 14px 14px 0;
+    padding: 1.8rem 1.2rem 1.2rem; /* Tightened padding */
+    opacity: 0;
+    transform: translateX(20px);
+    pointer-events: none;
+    transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Tighter gap */
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    z-index: 5;
+    /* Semi-transparent darker shade of the card */
+    background: rgba(0,0,0,0.06);
+    border-left: 1px dashed rgba(0,0,0,0.1);
+}
+
+.stack-expanded-panel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.stack-card:hover .stack-expanded-panel {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Expanded Panel Header */
+.exp-panel-heading {
+    font-family: var(--font-serif), serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-bottom: 2px;
+    letter-spacing: 0.01em;
+}
+
+/* Data Rows */
+.exp-data-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 5px; /* Tighter border bottom */
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+}
+
+.exp-data-label {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    opacity: 0.4;
+}
+
+.exp-data-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* Pros/Cons mini */
+.exp-spec-title {
+    font-family: var(--font-serif), serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    opacity: 0.6;
+    margin-top: 6px;
+    margin-bottom: 4px;
+}
+
+.exp-spec-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exp-spec-list li {
+    font-size: 0.78rem;
+    font-weight: 500;
+    margin-bottom: 3px;
+    opacity: 0.75;
+    line-height: 1.3;
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+.exp-spec-list li::before {
+    content: '·';
+    font-weight: bold;
+    opacity: 0.5;
+}
+
+.exp-best-for {
+    margin-top: auto;
+    font-family: var(--font-serif), serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    opacity: 0.5;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+/* ─── Hover Hint ─── */
+.printing-hover-hint {
+    position: absolute;
+    bottom: 2.5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 24px;
+    border: 1.5px dashed rgba(0,0,0,0.2);
+    border-radius: 50px;
+    background: transparent;
+    pointer-events: none;
+}
+
+.printing-hover-hint span {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-slate);
+    letter-spacing: -0.02em;
+    opacity: 0.45;
+}
+
+/* ─── Pouch Cards ─── */
+.pouch-card {
+    position: relative;
+    width: 65vw;
+    max-width: 900px;
+    height: 100vh;
+    padding: 10vh 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pouch-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    mix-blend-mode: multiply;
+    filter: contrast(1.08) drop-shadow(0 30px 60px rgba(0,0,0,0.15));
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pouch-card:hover .pouch-image-wrapper {
+    transform: scale(1.04) translateY(-15px);
+}
+
+.pouch-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* ─── Slide 2: Simple Card Grid Layout ─── */
+.pouches-simple-slide {
+    width: 100vw;
+    height: 100vh;
+    padding: 6vh 0 4vh 0; /* Removed side padding for edge-to-edge marquee */
+    position: relative;
+    background-color: #f5eedf; /* Using the global beige */
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-start; /* Push header up */
+    z-index: 10;
+}
+
+/* Faint dot-grid texture to match previous slide */
+.pouches-simple-slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--color-slate) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+.pouches-marquee-wrapper {
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2vw;
+    margin-top: 0vh; /* Changed from 2vh to 0 since we're adding padding */
+    padding: 3vh 0;  /* Added padding to prevent hover clipping */
+}
+
+.pouches-simple-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 2vw;
+    width: max-content;
+    z-index: 10;
+}
+
+/* ─── Interactive Arrows ─── */
+.marquee-nav-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2vw;
+    pointer-events: none; /* Let clicks pass through except on buttons */
+    z-index: 20;
+}
+
+.marquee-arrow-btn {
+    pointer-events: auto;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--color-slate);
+    background-color: transparent;
+    color: var(--color-slate);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.marquee-arrow-btn:hover {
+    background-color: var(--color-slate);
+    color: #f5eedf;
+    transform: scale(1.05);
+}
+
+.marquee-arrow-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.simple-card {
+    width: clamp(250px, 23vw, 400px);
+    height: clamp(350px, 45vh, 520px);
+    /* Removed white background and box-shadow to let products float */
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* Push content to bottom */
+    padding: 1vh 1vw;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.simple-card:hover {
+    transform: translateY(-15px);
+}
+
+.simple-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+
+.simple-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Removed multiply blend mode since we have real transparent PNGs now */
+    filter: drop-shadow(0 25px 25px rgba(0,0,0,0.15));
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.simple-card:hover .simple-img {
+    transform: scale(1.08) rotate(2deg);
+    filter: drop-shadow(0 35px 35px rgba(0,0,0,0.2));
+}
+
+.simple-label {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1.8vw; /* Large, bold typography matching Primary Range */
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-transform: lowercase;
+    color: var(--color-slate);
+    text-align: center;
+    margin-top: auto;
+    transition: color 0.3s ease;
+}
+
+.simple-card:hover .simple-label {
+    color: var(--color-orange); /* Fun pop of color on hover */
+}
+
+/* ─── Retort Pouch Hover Flames ─── */
+.pouch-flame {
+    position: absolute;
+    width: 6.5vw; /* Slightly larger for the solid graphic */
+    bottom: 12%; /* Higher up to align with the middle-bottom of the pouch */
+    opacity: 0;
+    z-index: -1; /* Behind the pouch image */
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: drop-shadow(0 10px 20px rgba(227, 48, 28, 0.3));
+    pointer-events: none;
+}
+
+.flame-left {
+    left: 50%;
+    margin-left: -15%; /* Tucked completely behind the center pouch */
+    transform: translateY(20px) rotate(15deg) scale(0.6);
+}
+
+.flame-right {
+    right: 50%;
+    margin-right: -15%; /* Tucked completely behind the center pouch */
+    transform: scaleX(-1) translateY(20px) rotate(15deg) scale(0.6); /* Mirrored to face outwards */
+}
+
+/* Reveal and peek out on hover */
+.simple-card:hover .pouch-flame {
+    opacity: 1;
+}
+
+.simple-card:hover .flame-left {
+    left: 50%;
+    margin-left: -45%; /* Push out significantly further */
+    transform: translateY(0px) rotate(-15deg) scale(1);
+}
+
+.simple-card:hover .flame-right {
+    right: 50%;
+    margin-right: -45%; /* Push out significantly further */
+    transform: scaleX(-1) translateY(0px) rotate(-15deg) scale(1);
+}
+
+/* ─── Heatable Badge specific ─── */
+.simple-heat-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--color-orange);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 30px;
+    border: 3px solid white; /* Upgraded to look like a thick premium die-cut sticker */
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    box-shadow: 0 8px 15px rgba(234, 88, 12, 0.3);
+    z-index: 5;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.simple-card:hover .simple-heat-badge {
+    animation: heatPulse 1.5s infinite;
+}
+
+@keyframes heatPulse {
+    0% { transform: scale(1); box-shadow: 0 8px 15px rgba(234, 88, 12, 0.3); }
+    50% { transform: scale(1.08); box-shadow: 0 12px 25px rgba(234, 88, 12, 0.5); }
+    100% { transform: scale(1); box-shadow: 0 8px 15px rgba(234, 88, 12, 0.3); }
+}
+
+.simple-heat-badge svg {
+    width: 10px;
+    height: 10px;
+}
+
+.pouch-title {
+    font-size: clamp(2rem, 4vw, 5rem);
+    font-weight: 800;
+    margin-top: 3rem;
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--color-slate);
+    letter-spacing: -0.03em;
+}
+
+.heat-vector {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    background: var(--color-orange);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+}
+
+.heat-vector svg {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+}

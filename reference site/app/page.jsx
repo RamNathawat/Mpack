@@ -4,7 +4,8 @@ import SvgSymbols from '@/components/SvgSymbols';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import HorizontalWords from '@/components/HorizontalWords';
-import PackagingShowcase from '@/components/PackagingShowcase';
+
+import PrintingAndPouches from '@/components/PrintingAndPouches';
 import IndustriesMarquee from '@/components/IndustriesMarquee';
 import ServiceCards from '@/components/ServiceCards';
 import DoubleMarquee from '@/components/DoubleMarquee';
@@ -27,8 +28,9 @@ export default function Home() {
                 <HorizontalWords />
             </div>
             <div className="slideshow-stop">
-                <PackagingShowcase />
+                <PrintingAndPouches />
             </div>
+
             <main className="slideshow-stop">
                 <IndustriesMarquee />
             </main>

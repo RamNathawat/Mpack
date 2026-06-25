@@ -36,10 +36,10 @@
 /* "why?" text under MPACK logo */
 .logo-why-text {
     position: fixed;
-    top: 65px; /* Adjusted down to match the MPACK text which is pushed down by the M icon */
-    left: calc(50% - 105px); /* Moved further left so question mark does not hide behind MPACK */
+    top: 0px; /* Shifted down to prevent cutoff and perfectly match the visual overlap */
+    left: calc(50% - 98px); /* Shifted right to overlap the 'M' closely */
     font-family: 'Courgette', 'Yellowtail', cursive; /* Script font used in hero */
-    font-size: 1.9rem; /* Scaled up proportionally */
+    font-size: 1.9rem; /* Restored original size */
     font-weight: 700;
     color: var(--color-maroon, #B1536E);
     /* Creates a solid beige 'sticker' halo around the text to protect it from dark images, plus a soft shadow to lift it */
@@ -59,7 +59,7 @@
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
     pointer-events: none;
-    z-index: 999;
+    z-index: 1005; /* Increased to render in front of the navbar (which is z-index 1000) */
 }
 
 .logo-why-text.visible {
@@ -111,8 +111,8 @@ body.ecosystem-open .navbar {
 
 .nav-center {
     position: absolute;
-    top: 10px;
-    transform: translateX(-50%) translateY(25px); /* shifted up to avoid overlap with hero text */
+    top: 25px;
+    transform: translateX(-50%) translateY(0); /* Shifted to navbar placement */
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     display: flex;
     flex-direction: column;
@@ -151,7 +151,7 @@ body.ecosystem-open .navbar {
         transform: translateY(0px); /* shift down further from top edge */
     font-family: var(--font-logo), sans-serif;
     font-weight: 900;
-    font-size: 3rem; /* Scaled up for better readability */
+    font-size: 3rem; /* Restored original size */
     color: #0F1E2C; /* Official dark navy */
     letter-spacing: -1px;
     line-height: 1;
