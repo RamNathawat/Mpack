@@ -9,97 +9,165 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Clean, precision Line Art style stickers
 const DigitalSticker = () => (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', overflow: 'visible', filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.1))' }}>
-        {/* Clean geometric die-cut backing */}
-        <rect x="10" y="15" width="80" height="70" rx="12" fill="#FFFFFF" transform="rotate(-4 50 50)" />
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', overflow: 'visible', filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.14))' }}>
+        {/* Clean geometric die-cut backing with bold outline */}
+        <rect x="12" y="10" width="76" height="80" rx="14" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" transform="rotate(-3 50 50)" />
         
-        {/* Subtle offset color highlight */}
-        <rect x="25" y="30" width="50" height="35" rx="4" fill="#06B6D4" opacity="0.2" transform="rotate(2 50 50)" />
+        {/* Artistic crosshair (+) top right */}
+        <path d="M 82 12 L 82 24 M 76 18 L 88 18" stroke="#1C1917" strokeWidth="3" strokeLinecap="round" />
 
-        <g stroke="#1C1917" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            {/* Monitor Frame */}
-            <rect x="20" y="25" width="60" height="40" rx="4" />
-            {/* Screen */}
-            <rect x="25" y="30" width="50" height="30" rx="2" />
-            {/* Stand */}
-            <path d="M 40 65 L 40 75" />
-            <path d="M 60 65 L 60 75" />
-            <path d="M 30 75 L 70 75" />
-            {/* Minimal line art sparkle */}
-            <path d="M 85 15 L 85 25 M 80 20 L 90 20" strokeWidth="2" />
-        </g>
+        {/* Subtle purple shadow glow */}
+        <rect x="25" y="35" width="50" height="35" rx="6" fill="#A855F7" opacity="0.15" />
+
+        {/* Top Feeder / Open Lid */}
+        <path d="M 32 40 L 36 24 L 64 24 L 68 40 Z" fill="#D8B4FE" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
+        <path d="M 37 36 L 40 28 L 60 28 L 63 36 Z" fill="#A855F7" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
+
+        {/* Main Printer Body Box */}
+        <rect x="20" y="40" width="60" height="26" rx="5" fill="#C084FC" stroke="#1C1917" strokeWidth="2.5" />
+        <circle cx="73" cy="48" r="2" fill="#FACC15" stroke="#1C1917" strokeWidth="1" />
+        <rect x="28" y="52" width="44" height="6" rx="2" fill="#3B0764" stroke="#1C1917" strokeWidth="2" />
+
+        {/* Printed Paper Sheet emerging from slot */}
+        <path d="M 32 55 L 68 55 L 75 86 L 25 86 Z" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
+
+        {/* 4 Colorful Vibrant Print Squares (CMYK grid) */}
+        <path d="M 34 60 L 48 60 L 47 70 L 32 70 Z" fill="#FACC15" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M 52 60 L 66 60 L 68 70 L 53 70 Z" fill="#FB923C" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M 31 73 L 47 73 L 45 83 L 28 83 Z" fill="#22C55E" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
+        <path d="M 53 73 L 69 73 L 72 83 L 55 83 Z" fill="#EC4899" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
     </svg>
 );
 
 const FlexoSticker = () => (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', overflow: 'visible', filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.1))' }}>
-        {/* Clean geometric die-cut backing */}
-        <rect x="15" y="10" width="70" height="80" rx="12" fill="#FFFFFF" transform="rotate(4 50 50)" />
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', overflow: 'visible', filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.14))' }}>
+        {/* Clean geometric die-cut backing with bold outline matching Digital sticker */}
+        <rect x="12" y="10" width="76" height="80" rx="14" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" transform="rotate(3 50 50)" />
         
-        {/* Subtle offset color highlight */}
-        <rect x="30" y="20" width="45" height="25" rx="10" fill="#EC4899" opacity="0.15" transform="rotate(-6 50 50)" />
+        {/* Artistic crosshair (+) top right */}
+        <path d="M 82 12 L 82 24 M 76 18 L 88 18" stroke="#1C1917" strokeWidth="3" strokeLinecap="round" />
 
-        <g stroke="#1C1917" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            {/* Roller Cylinder */}
-            <rect x="35" y="20" width="40" height="20" rx="6" />
-            <line x1="45" y1="20" x2="45" y2="40" />
-            <line x1="65" y1="20" x2="65" y2="40" />
-            
-            {/* Roller Arm */}
-            <path d="M 25 65 L 25 35 C 25 30, 30 25, 35 25 L 75 25" />
-            
-            {/* Handle Base */}
-            <rect x="20" y="65" width="10" height="20" rx="3" />
-            <line x1="22" y1="70" x2="28" y2="70" strokeWidth="1.5" />
-            <line x1="22" y1="75" x2="28" y2="75" strokeWidth="1.5" />
-        </g>
+        {/* Angled subtle green shadow glow */}
+        <polygon points="20,40 75,30 80,65 25,75" rx="6" fill="#22C55E" opacity="0.15" />
+
+        {/* Base Bar slanting up to right in isometric view */}
+        <polygon points="16,66 78,54 82,58 20,72" fill="#1E293B" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
+
+        {/* Right Side Bracket (Further back, smaller and higher) */}
+        <path d="M 68 22 C 68 17, 76 15, 76 20 L 76 52 C 76 57, 68 59, 68 54 Z" fill="#334155" stroke="#1C1917" strokeWidth="2.5" />
+
+        {/* Dual Angled Rollers (Top White, Bottom Green with Orange Core) */}
+        <path d="M 28 30 L 68 22 C 71 22, 71 32, 68 32 L 28 40 C 25 40, 25 30, 28 30 Z" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
+        <path d="M 28 42 L 68 34 C 71 34, 71 46, 68 46 L 28 54 C 25 54, 25 42, 28 42 Z" fill="#22C55E" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
+        <ellipse cx="28" cy="48" rx="2.5" ry="5" fill="#F97316" stroke="#1C1917" strokeWidth="1.5" transform="rotate(-10 28 48)" />
+
+        {/* Left Side Bracket (Prominent front side pillar) */}
+        <path d="M 18 30 C 18 24, 28 22, 28 28 L 28 64 C 28 70, 18 72, 18 66 Z" fill="#334155" stroke="#1C1917" strokeWidth="2.5" />
+        <ellipse cx="23" cy="34" rx="3.5" ry="4.5" fill="#FACC15" stroke="#1C1917" strokeWidth="1.5" transform="rotate(-10 23 34)" />
+
+        {/* Flowing Printed Paper Sheet cascading forward at isometric angle */}
+        <polygon points="30,48 66,40 78,82 36,88" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
+
+        {/* Printed Green Leaf & Orange Pattern Blocks angled along sheet */}
+        <path d="M 40 58 C 40 54, 50 52, 52 57 C 54 62, 42 64, 40 58 Z" fill="#22C55E" stroke="#1C1917" strokeWidth="1.5" />
+        <path d="M 56 55 C 56 51, 66 49, 68 54 C 70 59, 58 61, 56 55 Z" fill="#16A34A" stroke="#1C1917" strokeWidth="1.5" />
+        <polygon points="38,76 52,73 54,83 40,86" fill="#F97316" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
+        <polygon points="58,72 72,69 74,79 60,82" fill="#FACC15" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
     </svg>
 );
 
 const RotoSticker = () => (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', overflow: 'visible', filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.1))' }}>
-        {/* Clean geometric die-cut backing */}
-        <rect x="15" y="10" width="70" height="80" rx="12" fill="#FFFFFF" transform="rotate(-2 50 50)" />
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', overflow: 'visible', filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.14))' }}>
+        {/* Clean geometric die-cut backing matching Digital & Flexo sticker style */}
+        <rect x="12" y="10" width="76" height="80" rx="14" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" transform="rotate(-3 50 50)" />
         
-        {/* Subtle offset color highlight */}
-        <rect x="30" y="25" width="40" height="50" rx="4" fill="#F59E0B" opacity="0.2" transform="rotate(6 50 50)" />
+        {/* Artistic crosshair (+) top right */}
+        <path d="M 82 12 L 82 24 M 76 18 L 88 18" stroke="#1C1917" strokeWidth="3" strokeLinecap="round" />
 
-        <g stroke="#1C1917" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            {/* Cylinder Body */}
-            <rect x="30" y="25" width="40" height="50" rx="2" />
-            {/* Top/Bottom caps */}
-            <ellipse cx="50" cy="25" rx="20" ry="6" />
-            <ellipse cx="50" cy="75" rx="20" ry="6" />
-            {/* Axis pins */}
-            <path d="M 50 12 L 50 19" />
-            <path d="M 50 81 L 50 88" />
-            {/* Engraving lines */}
-            <line x1="35" y1="40" x2="65" y2="40" strokeDasharray="4 4" />
-            <line x1="35" y1="50" x2="65" y2="50" strokeDasharray="4 4" />
-            <line x1="35" y1="60" x2="65" y2="60" strokeDasharray="4 4" />
+        {/* Subtle orange shadow glow angled under cylinder */}
+        <polygon points="20,55 75,40 80,65 25,80" rx="8" fill="#F97316" opacity="0.15" />
+
+        {/* Angled Horizontal Rotogravure Cylinder (Rotated -15 deg to match isometric reference) */}
+        <g transform="rotate(-15 50 52)">
+            {/* Back / Right End Cap */}
+            <ellipse cx="76" cy="52" rx="7" ry="18" fill="#1E293B" stroke="#1C1917" strokeWidth="2.5" />
+            
+            {/* Vibrant Orange Engraved Cylinder Main Body */}
+            <rect x="28" y="34" width="48" height="36" fill="#F97316" stroke="#1C1917" strokeWidth="2.5" />
+            
+            {/* Dark Slate Collar Bands near left and right ends */}
+            <rect x="68" y="34" width="5" height="36" fill="#1E293B" stroke="#1C1917" strokeWidth="2.5" />
+            <rect x="33" y="34" width="5" height="36" fill="#1E293B" stroke="#1C1917" strokeWidth="2.5" />
+            
+            {/* Engraved Metallic White Highlight Sweep across orange cylinder surface */}
+            <path d="M 40 40 L 64 40 C 66 40, 66 46, 64 46 L 40 46 C 38 46, 38 40, 40 40 Z" fill="#FFFFFF" opacity="0.85" />
+            <path d="M 46 50 L 62 50 C 63 50, 63 54, 62 54 L 46 54 C 45 54, 45 50, 46 50 Z" fill="#FFFFFF" opacity="0.6" />
+
+            {/* Front / Left Circular End Cap facing viewer */}
+            <ellipse cx="28" cy="52" rx="8" ry="18" fill="#1E293B" stroke="#1C1917" strokeWidth="2.5" />
+            <ellipse cx="26" cy="52" rx="5.5" ry="13" fill="#334155" stroke="#1C1917" strokeWidth="1.5" />
+            
+            {/* Orange Center Axle Hub & Core */}
+            <ellipse cx="25" cy="52" rx="3" ry="7" fill="#F97316" stroke="#1C1917" strokeWidth="1.5" />
+            <circle cx="25" cy="52" r="1.5" fill="#0F172A" />
         </g>
     </svg>
 );
 
-const FlameVector = ({ className }) => (
+const UpgradedHeatVector = ({ className }) => (
+    <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
+        {/* Sleek dynamic rising heat steam waves */}
+        <path d="M 20 85 C 20 55, 40 40, 20 5" stroke="url(#heatWaveGrad1)" strokeWidth="6" strokeLinecap="round" />
+        <path d="M 50 95 C 50 65, 70 50, 50 10" stroke="url(#heatWaveGrad2)" strokeWidth="7.5" strokeLinecap="round" />
+        <path d="M 80 85 C 80 55, 60 40, 80 15" stroke="url(#heatWaveGrad1)" strokeWidth="5.5" strokeLinecap="round" />
+        <defs>
+            <linearGradient id="heatWaveGrad1" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stopColor="#ea580c" stopOpacity="0" />
+                <stop offset="50%" stopColor="#f97316" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#ef4444" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="heatWaveGrad2" x1="0%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stopColor="#c2410c" stopOpacity="0" />
+                <stop offset="55%" stopColor="#fbbf24" stopOpacity="1" />
+                <stop offset="100%" stopColor="#f97316" stopOpacity="0" />
+            </linearGradient>
+        </defs>
+    </svg>
+);
+
+const IceVector = ({ className }) => (
     <svg className={className} viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-        {/* Outer Red Flame */}
-        <path fill="#e3301c" d="M304.7 3.3c-2.4-4-8.2-4.6-11.4-1.2-44.5 47-97.1 113.8-97.1 184.9 0 3.3.4 6.5.9 9.6C153 176 112 216 112 268c0 79.5 64.5 144 144 144s144-64.5 144-144c0-82.5-62-156-83.8-243.6-.5-2.2-2.3-3.8-4.5-4.4-.3-.2-.6-.4-1-.4zM245.5 119.5c15.8-19.5 29.8-38 41.5-55.6 15.6 67.5 73.1 133 73.1 204.1 0 57.5-46.5 104-104 104s-104-46.5-104-104c0-37.4 20-72 51.5-91.5-1.9 11.2-2.5 22.8-.5 34.6 1.1 6.5 8.9 9.6 14.1 5.4 39.4-31.5 59.5-70.5 28.3-97z"/>
-        {/* Middle Orange Flame */}
-        <path fill="#fa8214" d="M256 168c-12.7 34.6-47.5 76-47.5 116 0 26.2 21.3 47.5 47.5 47.5S303.5 310.2 303.5 284c0-44.2-30.8-73.4-47.5-116z"/>
-        {/* Inner Yellow Flame */}
-        <path fill="#fddb33" d="M256 232c-6.8 18.2-24.5 40.8-24.5 60 0 13.5 11 24.5 24.5 24.5s24.5-11 24.5-24.5c0-23.2-15.9-38.3-24.5-60z"/>
+        {/* Main large ice cube */}
+        <path fill="#0284c7" d="M256 100L100 180v150l156 80 156-80V180L256 100z"/>
+        <path fill="#38bdf8" d="M256 250L100 180v150l156 80V250z"/>
+        <path fill="#0ea5e9" d="M256 250l156-70v150l-156 80V250z"/>
+        <path fill="#bae6fd" d="M256 100L100 180l156 70 156-70L256 100z"/>
+        {/* Floating ice cube top left */}
+        <g transform="translate(-40, -40) scale(0.5)">
+            <path fill="#0284c7" d="M256 100L100 180v150l156 80 156-80V180L256 100z"/>
+            <path fill="#38bdf8" d="M256 250L100 180v150l156 80V250z"/>
+            <path fill="#0ea5e9" d="M256 250l156-70v150l-156 80V250z"/>
+            <path fill="#bae6fd" d="M256 100L100 180l156 70 156-70L256 100z"/>
+        </g>
+        {/* Floating ice cube bottom right */}
+        <g transform="translate(140, 140) scale(0.4)">
+            <path fill="#0284c7" d="M256 100L100 180v150l156 80 156-80V180L256 100z"/>
+            <path fill="#38bdf8" d="M256 250L100 180v150l156 80V250z"/>
+            <path fill="#0ea5e9" d="M256 250l156-70v150l-156 80V250z"/>
+            <path fill="#bae6fd" d="M256 100L100 180l156 70 156-70L256 100z"/>
+        </g>
     </svg>
 );
 
 const POUCHES = [
-    { file: '3_side_seal-removebg-preview.png', name: '3 Side Seal' },
-    { file: '5_panel_pouch-removebg-preview.png', name: '5 Panel Pouch' },
-    { file: 'Center_Seal_Side_gusset_pouch-removebg-preview.png', name: 'Center Seal Side Gusset' },
-    { file: 'Center_seal-removebg-preview.png', name: 'Center Seal' },
-    { file: 'Retort_pouch_-_add_heat_vector_to_denote_that_you_can_heat_it-removebg-preview.png', name: 'Retort Pouch', isRetort: true },
-    { file: 'Spout_pouch-removebg-preview.png', name: 'Spout Pouch' },
-    { file: 'Stand_Up_Pouch-removebg-preview.png', name: 'Stand Up Pouch' }
+    { file: '3_side_seal-removebg-preview.png', name: '3 Side Seal', subtitle: 'Spices, powders & dry ingredients.' },
+    { file: '5_panel_pouch-removebg-preview.png', name: '5 Panel Pouch', subtitle: 'Box-like structure with 5 printable panels.' },
+    { file: 'Center_Seal_Side_gusset_pouch-removebg-preview.png', name: 'Center Seal Side Gusset', subtitle: 'Expandable sides for bulk volume & coffee.' },
+    { file: 'Center_seal-removebg-preview.png', name: 'Center Seal', subtitle: 'Balanced sealing for maximum protection.' },
+    { file: 'Gemini_Generated_Image_s7b4xls7b4xls7b4-removebg-preview.png', name: 'Flat Bottom Pouch', subtitle: 'Extra stability. Maximum shelf impact.', isFreezable: true, customStyle: { transform: 'scale(1.75)' } },
+    { file: 'Retort_pouch_-_add_heat_vector_to_denote_that_you_can_heat_it-removebg-preview.png', name: 'Retort Pouch', subtitle: 'Heat resistant up to 130°C. Ready-to-cook.', isRetort: true },
+    { file: 'Spout_pouch-removebg-preview.png', name: 'Spout Pouch', subtitle: 'Easy pour. Mess-free liquid dispensing.' },
+    { file: 'Stand_Up_Pouch-removebg-preview.png', name: 'Stand Up Pouch', subtitle: 'Perfect for liquids, powders & everyday essentials.' }
 ];
 
 const PRINTING_TYPES = [
@@ -155,78 +223,120 @@ const PRINTING_TYPES = [
     }
 ];
 
+const FrostWipeCanvas = ({ isActive }) => {
+    const canvasRef = useRef(null);
+    const hasWipedRef = useRef(false);
+    const [showHint, setShowHint] = useState(true);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const parent = canvas.parentElement;
+        const width = parent?.clientWidth || 300;
+        const height = parent?.clientHeight || 400;
+        canvas.width = width;
+        canvas.height = height;
+
+        // Draw frosted translucent layer
+        ctx.globalCompositeOperation = 'source-over';
+        const grad = ctx.createLinearGradient(0, 0, width, height);
+        grad.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+        grad.addColorStop(0.5, 'rgba(224, 242, 254, 0.94)');
+        grad.addColorStop(1, 'rgba(186, 230, 253, 0.96)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+
+        // Draw frost specks
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+        for (let i = 0; i < 150; i++) {
+            ctx.beginPath();
+            ctx.arc(Math.random() * width, Math.random() * height, Math.random() * 2.5 + 1, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        hasWipedRef.current = false;
+        setShowHint(true);
+    }, [isActive]);
+
+    const handlePointerMove = (e) => {
+        if (!isActive) return;
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Erase frost permanently along brush path
+        ctx.globalCompositeOperation = 'destination-out';
+        const grad = ctx.createRadialGradient(x, y, 5, x, y, 65);
+        grad.addColorStop(0, 'rgba(0, 0, 0, 1)');
+        grad.addColorStop(0.6, 'rgba(0, 0, 0, 0.85)');
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(x, y, 65, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (!hasWipedRef.current) {
+            hasWipedRef.current = true;
+            setShowHint(false);
+        }
+    };
+
+    return (
+        <div className="frost-wipe-container" style={{ position: 'absolute', inset: 0, zIndex: 3, borderRadius: '20px', overflow: 'hidden', pointerEvents: isActive ? 'auto' : 'none', opacity: isActive ? 1 : 0, transition: 'opacity 0.5s ease' }}>
+            <canvas 
+                ref={canvasRef}
+                onPointerMove={handlePointerMove}
+                style={{ width: '100%', height: '100%', display: 'block', cursor: 'pointer' }}
+            />
+            {showHint && isActive && (
+                <div className="frost-wipe-hint" style={{ pointerEvents: 'none' }}>❄️ Scratch cursor to wipe frost</div>
+            )}
+        </div>
+    );
+};
+
 export default function PrintingAndPouches() {
     const sectionRef = useRef(null);
     const containerRef = useRef(null);
     const cardRefs = useRef([]);
+    const [activePouchIdx, setActivePouchIdx] = useState(4); // Default to Flat Bottom Pouch
+    const isHoverLockRef = useRef(false);
+    const lastMousePosRef = useRef({ x: 0, y: 0 });
+    const dragStartXRef = useRef(null);
 
-    // Marquee State & Refs
-    const marqueeContentRef = useRef(null);
-    const [isMarqueeHovered, setIsMarqueeHovered] = useState(false);
-    const marqueeAnimRef = useRef(null);
-    const xPosRef = useRef(0);
+    const handleCardMouseMove = (e) => {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -12;
+        const rotateY = ((x - centerX) / centerX) * 12;
 
-    // Continuous Marquee Loop
-    const animateMarquee = useCallback(() => {
-        if (!isMarqueeHovered && marqueeContentRef.current) {
-            xPosRef.current -= 1.0; // Speed adjustment
-            
-            const firstSet = marqueeContentRef.current.children[0];
-            if (firstSet) {
-                const firstSetWidth = firstSet.offsetWidth;
-                const gap = window.innerWidth * 0.02; // 2vw gap
-                const resetPoint = firstSetWidth + gap;
+        gsap.to(card, {
+            rotateX,
+            rotateY,
+            z: 30,
+            boxShadow: "0 25px 40px rgba(234, 88, 12, 0.18)",
+            duration: 0.3,
+            ease: "power2.out"
+        });
+    };
 
-                if (Math.abs(xPosRef.current) >= resetPoint) {
-                    xPosRef.current += resetPoint; // Seamless wrap
-                }
-                
-                gsap.set(marqueeContentRef.current, { x: xPosRef.current });
-            }
-        }
-        marqueeAnimRef.current = requestAnimationFrame(animateMarquee);
-    }, [isMarqueeHovered]);
-
-    useEffect(() => {
-        marqueeAnimRef.current = requestAnimationFrame(animateMarquee);
-        return () => cancelAnimationFrame(marqueeAnimRef.current);
-    }, [animateMarquee]);
-
-    const handleArrowClick = (direction) => {
-        if (!marqueeContentRef.current) return;
-        
-        const firstSet = marqueeContentRef.current.children[0];
-        const cardElement = firstSet.querySelector('.simple-card');
-        if (!cardElement) return;
-
-        const cardWidth = cardElement.offsetWidth;
-        const gap = window.innerWidth * 0.02; // 2vw gap
-        const shiftAmount = cardWidth + gap;
-        
-        const firstSetWidth = firstSet.offsetWidth;
-        const resetPoint = firstSetWidth + gap;
-
-        let targetX = direction === 'left' ? xPosRef.current + shiftAmount : xPosRef.current - shiftAmount;
-        
-        // Pause auto-scroll briefly
-        setIsMarqueeHovered(true);
-        setTimeout(() => setIsMarqueeHovered(false), 800);
-        
-        gsap.to(xPosRef, {
-            current: targetX,
+    const handleCardMouseLeave = (e) => {
+        const card = e.currentTarget;
+        gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            z: 0,
+            boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
             duration: 0.6,
-            ease: 'power2.out',
-            onUpdate: () => {
-                // Wrap logic during tween
-                if (xPosRef.current <= -resetPoint) {
-                    xPosRef.current += resetPoint;
-                    targetX += resetPoint;
-                } else if (xPosRef.current > 0) {
-                    xPosRef.current -= resetPoint;
-                    targetX -= resetPoint;
-                }
-                gsap.set(marqueeContentRef.current, { x: xPosRef.current });
-            }
+            ease: "elastic.out(1.2, 0.4)"
         });
     };
 
@@ -243,38 +353,38 @@ export default function PrintingAndPouches() {
         ));
     };
 
-    // Hover splay: hovered card straightens, scales, and shifts to stay on screen. Others push apart.
+    // Hover splay: hovered card pops instantly on top without collision, then bounces with charming elastic ease
     const handleCardEnter = useCallback((index) => {
-        // Configuration for shifts to prevent bleeding off screen
-        // [hoverX (shift for active card), leftX (shift for cards to the left), rightX (shift for cards to the right)]
-        const hoverOffsets = [
-            { hoverX: -80,  leftX: 0,    rightX: 120 }, // Card 0 (Digital) hovered
-            { hoverX: -60,  leftX: -80,  rightX: 140 }, // Card 1 (Flexo) hovered
-            { hoverX: -120, leftX: -100, rightX: 0 }    // Card 2 (Roto) hovered
-        ];
-
-        const config = hoverOffsets[index];
         const cards = cardRefs.current;
-
         cards.forEach((card, i) => {
             if (!card) return;
             if (i === index) {
+                gsap.set(card, { zIndex: 30 });
+                let hoverX = 0;
+                if (index === 0) hoverX = -12;
+                if (index === 2) hoverX = 12;
+
                 gsap.to(card, {
-                    x: config.hoverX,
                     rotation: 0,
-                    scale: 1.05,
-                    zIndex: 20,
+                    scale: 1.04,
+                    x: hoverX,
+                    y: -14,
                     duration: 0.85,
                     ease: 'elastic.out(1, 0.55)',
                     overwrite: true
                 });
             } else {
-                const pushX = i < index ? config.leftX : config.rightX;
+                gsap.set(card, { zIndex: PRINTING_TYPES[i].zIndex });
+                let awayX = 0;
+                if (index === 0) awayX = i === 1 ? 14 : 22;
+                if (index === 1) awayX = i === 0 ? -14 : 14;
+                if (index === 2) awayX = i === 1 ? -14 : -22;
+
                 gsap.to(card, {
-                    x: pushX,
                     rotation: PRINTING_TYPES[i].rotation * 1.2,
-                    scale: 0.96,
-                    zIndex: PRINTING_TYPES[i].zIndex,
+                    scale: 0.98,
+                    x: awayX,
+                    y: 3,
                     duration: 0.9,
                     ease: 'elastic.out(1, 0.5)',
                     overwrite: true
@@ -287,11 +397,12 @@ export default function PrintingAndPouches() {
         const cards = cardRefs.current;
         cards.forEach((card, i) => {
             if (!card) return;
+            gsap.set(card, { zIndex: PRINTING_TYPES[i].zIndex });
             gsap.to(card, {
-                x: 0,
                 rotation: PRINTING_TYPES[i].rotation,
                 scale: 1,
-                zIndex: PRINTING_TYPES[i].zIndex,
+                x: 0,
+                y: 0,
                 duration: 1.0,
                 ease: 'elastic.out(1, 0.5)',
                 overwrite: true
@@ -319,13 +430,7 @@ export default function PrintingAndPouches() {
                     end: () => `+=${totalScrollDistance}`,
                     pin: true,
                     scrub: 1,
-                    invalidateOnRefresh: true,
-                    snap: {
-                        snapTo: [0, pouchesSnapPoint, 1],
-                        duration: { min: 0.5, max: 1.0 },
-                        delay: 0.05,
-                        ease: "power2.inOut"
-                    }
+                    invalidateOnRefresh: true
                 }
             });
 
@@ -334,7 +439,16 @@ export default function PrintingAndPouches() {
               .to({}, { duration: pauseDistance }) // Pause on Slide 1
               .to(container, { x: () => -getScrollAmount(), duration: horizontalDistance, ease: "none" }) // Scroll horizontally
               .addLabel("slide2")
-              .to({}, { duration: finalPauseDistance }); // "Second scroll" dead zone on Slide 2
+              .from('.apple-card-deck .apple-pouch-card', {
+                  scale: 0.6,
+                  y: 80,
+                  opacity: 0,
+                  rotation: () => gsap.utils.random(-12, 12),
+                  duration: finalPauseDistance * 0.45,
+                  stagger: finalPauseDistance * 0.04,
+                  ease: "back.out(1.5)"
+              }, "slide2-=0.15")
+              .to({}, { duration: finalPauseDistance * 0.55 });
 
             // Pre-animated Kinetic Entrance (time-based, not scrubbed)
             const entranceTl = gsap.timeline({
@@ -411,13 +525,13 @@ export default function PrintingAndPouches() {
                     <div className="printing-intro-slide">
 
                         {/* Background Doodles */}
-                        <div className="printing-doodles" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 5 }}>
+                        <div className="printing-doodles" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 30 }}>
                             {/* Starburst top right */}
                             <svg style={{ position: 'absolute', top: '20%', right: '12%', width: '6vw' }} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M50 5 L56 42 L95 50 L56 58 L50 95 L44 58 L5 50 L44 42 Z" stroke="var(--color-slate)" strokeWidth="3" strokeLinejoin="round" fill="none" />
                             </svg>
                             {/* Wobbly Arrow pointing toward the cards */}
-                            <svg style={{ position: 'absolute', top: '25%', left: '12%', width: '10vw', transform: 'rotate(20deg)' }} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg style={{ position: 'absolute', top: '20%', left: '8%', width: '8vw', transform: 'rotate(5deg)' }} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M 40 20 C 70 80, 100 120, 150 160" stroke="var(--color-slate)" strokeWidth="4" strokeLinecap="round" />
                                 <path d="M 110 165 L 155 165 L 140 120" stroke="var(--color-slate)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
@@ -437,7 +551,7 @@ export default function PrintingAndPouches() {
                                 <div className="printing-line" style={{
                                     fontFamily: "'Epilogue', sans-serif",
                                     fontWeight: 700,
-                                    fontSize: '1.5vw', // Increased for better legibility
+                                    fontSize: '1.3vw', // Increased for better legibility
                                     letterSpacing: '0.25em',
                                     textTransform: 'uppercase',
                                     color: '#000000',
@@ -487,6 +601,7 @@ export default function PrintingAndPouches() {
                                     ref={el => cardRefs.current[index] = el}
                                     className={`stack-card ${type.cardClass}`}
                                     onMouseEnter={() => handleCardEnter(index)}
+                                    onMouseLeave={handleCardLeave}
                                 >
                                     {/* Sticker protruding above card */}
                                     <div className="stack-sticker">
@@ -513,7 +628,7 @@ export default function PrintingAndPouches() {
                                         ))}
                                     </ul>
 
-                                    {/* Expanded Panel (Slides in on Hover) */}
+                                    {/* Expanded Panel (Permanently Visible on Right) */}
                                     <div className="stack-expanded-panel">
                                         <div className="exp-panel-heading">Specifications</div>
 
@@ -559,162 +674,203 @@ export default function PrintingAndPouches() {
                                 <path d="M 100 150 C 40 150, 40 50, 100 50 C 160 50, 160 120, 120 120 C 80 120, 80 80, 100 80" stroke="var(--color-slate)" strokeWidth="4" strokeLinecap="round" />
                             </svg>
                             {/* Small Star bottom right */}
-                            <svg style={{ position: 'absolute', bottom: '12%', right: '10%', width: '4vw' }} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg style={{ position: 'absolute', bottom: '8%', right: '5%', width: '3vw' }} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M50 5 L56 42 L95 50 L56 58 L50 95 L44 58 L5 50 L44 42 Z" stroke="var(--color-slate)" strokeWidth="3" strokeLinejoin="round" fill="none" />
                             </svg>
                         </div>
 
-                        {/* Huge Truus-style Typography */}
-                        <div className="printing-header" style={{ width: '100%', marginBottom: '4vh', paddingLeft: '0' }}>
-                            <h2 className="display" style={{ 
-                                display: 'flex', 
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                margin: 0, 
-                                position: 'relative', 
-                                zIndex: 10
-                            }}>
-                                <div className="printing-line" style={{
-                                    fontFamily: "'Epilogue', sans-serif",
-                                    fontWeight: 700,
-                                    fontSize: '2.5vw',
-                                    letterSpacing: '0.25em',
-                                    textTransform: 'uppercase',
-                                    color: '#000000',
-                                    opacity: 0.6,
-                                    marginRight: '22vw', // Push to the left of pouches
-                                    marginBottom: '-1vw',
-                                    zIndex: 4 
-                                }}>
-                                    {renderLetters('OUR '.split(''))}
-                                </div>
-                                <div className="printing-line" style={{
-                                    fontFamily: "'Epilogue', sans-serif",
-                                    fontWeight: 800,
-                                    fontSize: '11.5vw', 
-                                    letterSpacing: '-0.03em',
-                                    textTransform: 'lowercase',
-                                    color: '#f5eedf',
-                                    WebkitTextStroke: '2px var(--color-slate)',
-                                    textShadow: '5px 5px 0px #FFD700', // Yellow matching the first slide
-                                    lineHeight: '0.8',
-                                    marginLeft: '0vw', 
-                                    zIndex: 2
-                                }}>
-                                    {renderLetters('pouches'.split(''))}
-                                </div>
-                            </h2>
-                        </div>
-                        
-                        <div 
-                            className="pouches-marquee-wrapper"
-                            onMouseEnter={() => setIsMarqueeHovered(true)}
-                            onMouseLeave={() => setIsMarqueeHovered(false)}
-                        >
-                            <div ref={marqueeContentRef} style={{ display: 'flex', width: 'max-content', gap: '2vw' }}>
-                                {/* Set 1 */}
-                                <div className="pouches-simple-grid">
-                                    {POUCHES.map((pouch, idx) => (
-                                        <div key={`p1-${idx}`} className="simple-card">
-                                            <div className="simple-img-wrapper">
-                                                <img src={`/pouches section/${pouch.file}`} alt={pouch.name} className="simple-img" loading="lazy" />
-                                                {pouch.isRetort && (
-                                                    <>
-                                                        <FlameVector className="pouch-flame flame-left" />
-                                                        <FlameVector className="pouch-flame flame-right" />
-                                                        <span className="simple-heat-badge" title="You can heat this pouch">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                                                <path d="M11.666 1.004C11.666 1.004 8.652 4.417 8.358 8.01c-.147 1.782.593 3.42 1.94 4.502.83.666 1.34 1.636 1.34 2.673 0 1.947-1.631 3.525-3.642 3.525-2.01 0-3.642-1.578-3.642-3.525 0-1.127.56-2.186 1.5-2.859V9.923c-1.898.814-3.327 2.508-3.743 4.498-.553 2.66.425 5.485 2.503 7.159C6.46 23.085 8.783 24 11.238 24c4.321 0 7.828-3.411 7.828-7.614 0-1.688-.567-3.265-1.575-4.524-.877-1.092-1.353-2.434-1.353-3.829 0-2.482 1.488-4.639 3.65-5.586-1.748-1.077-3.95-1.554-6.122-1.443zm2.544 6.78c.844.757 1.332 1.83 1.332 2.96 0 1.517-1.042 2.87-2.522 3.328-1.503.465-3.15-.175-3.856-1.583-.178-.356-.254-.746-.254-1.144 0-1.107.566-2.15 1.51-2.825.862-.614 1.39-1.6 1.39-2.65 0-.585-.145-1.155-.42-1.65.65.657 1.488 1.996 2.82 3.564z"/>
-                                                            </svg>
-                                                            Heatable
-                                                        </span>
-                                                    </>
-                                                )}
+                        {/* Apple-Style Rotating Card Picker */}
+                        <div className="apple-carousel-wrapper">
+                            <div 
+                                className="apple-carousel-container"
+                                onPointerDown={(e) => {
+                                    dragStartXRef.current = e.clientX;
+                                }}
+                                onPointerMove={(e) => {
+                                    if (dragStartXRef.current !== null) {
+                                        const deltaX = e.clientX - dragStartXRef.current;
+                                        if (Math.abs(deltaX) > 45) {
+                                            isHoverLockRef.current = true;
+                                            if (deltaX > 0) {
+                                                setActivePouchIdx(prev => Math.max(0, prev - 1));
+                                            } else {
+                                                setActivePouchIdx(prev => Math.min(POUCHES.length - 1, prev + 1));
+                                            }
+                                            dragStartXRef.current = e.clientX;
+                                            setTimeout(() => { isHoverLockRef.current = false; }, 350);
+                                        }
+                                    }
+                                }}
+                                onPointerUp={() => { dragStartXRef.current = null; }}
+                                onPointerLeave={() => { dragStartXRef.current = null; }}
+                            >
+                                <div className="apple-carousel-header">
+                                    <h2 className="display" style={{ 
+                                        display: 'flex', 
+                                        justifyContent: 'center',
+                                        margin: '0vh 0 0.5vh', 
+                                        position: 'relative', 
+                                        zIndex: 10
+                                    }}>
+                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                                            <div className="printing-line" style={{
+                                                fontFamily: "'Epilogue', sans-serif",
+                                                fontWeight: 700,
+                                                fontSize: '1.5vw',
+                                                letterSpacing: '0.35em',
+                                                textTransform: 'uppercase',
+                                                color: '#000000',
+                                                opacity: 0.6,
+                                                marginLeft: '0.8vw',
+                                                marginBottom: '-0.5vw',
+                                                zIndex: 4
+                                            }}>
+                                                {renderLetters('our'.split(''))}
                                             </div>
-                                            <div className="simple-label">{pouch.name}</div>
-                                        </div>
-                                    ))}
-                                </div>
-                                {/* Set 2 */}
-                                <div className="pouches-simple-grid">
-                                    {POUCHES.map((pouch, idx) => (
-                                        <div key={`p2-${idx}`} className="simple-card">
-                                            <div className="simple-img-wrapper">
-                                                <img src={`/pouches section/${pouch.file}`} alt={pouch.name} className="simple-img" loading="lazy" />
-                                                {pouch.isRetort && (
-                                                    <>
-                                                        <FlameVector className="pouch-flame flame-left" />
-                                                        <FlameVector className="pouch-flame flame-right" />
-                                                        <span className="simple-heat-badge" title="You can heat this pouch">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                                                <path d="M11.666 1.004C11.666 1.004 8.652 4.417 8.358 8.01c-.147 1.782.593 3.42 1.94 4.502.83.666 1.34 1.636 1.34 2.673 0 1.947-1.631 3.525-3.642 3.525-2.01 0-3.642-1.578-3.642-3.525 0-1.127.56-2.186 1.5-2.859V9.923c-1.898.814-3.327 2.508-3.743 4.498-.553 2.66.425 5.485 2.503 7.159C6.46 23.085 8.783 24 11.238 24c4.321 0 7.828-3.411 7.828-7.614 0-1.688-.567-3.265-1.575-4.524-.877-1.092-1.353-2.434-1.353-3.829 0-2.482 1.488-4.639 3.65-5.586-1.748-1.077-3.95-1.554-6.122-1.443zm2.544 6.78c.844.757 1.332 1.83 1.332 2.96 0 1.517-1.042 2.87-2.522 3.328-1.503.465-3.15-.175-3.856-1.583-.178-.356-.254-.746-.254-1.144 0-1.107.566-2.15 1.51-2.825.862-.614 1.39-1.6 1.39-2.65 0-.585-.145-1.155-.42-1.65.65.657 1.488 1.996 2.82 3.564z"/>
-                                                            </svg>
-                                                            Heatable
-                                                        </span>
-                                                    </>
-                                                )}
+                                            <div className="printing-line" style={{
+                                                fontFamily: "'Epilogue', sans-serif",
+                                                fontWeight: 800,
+                                                fontSize: '10.5vw', 
+                                                letterSpacing: '-0.03em',
+                                                textTransform: 'lowercase',
+                                                color: '#f5eedf',
+                                                WebkitTextStroke: '2px var(--color-slate)',
+                                                textShadow: '5px 5px 0px #FFD700',
+                                                lineHeight: '0.8',
+                                                zIndex: 2
+                                            }}>
+                                                {renderLetters('pouches'.split(''))}
                                             </div>
-                                            <div className="simple-label">{pouch.name}</div>
                                         </div>
-                                    ))}
+                                    </h2>
+                                    <p className="apple-sub-title">Premium packaging. Every shape. Every need.</p>
                                 </div>
-                                {/* Set 3 */}
-                                <div className="pouches-simple-grid">
-                                    {POUCHES.map((pouch, idx) => (
-                                        <div key={`p3-${idx}`} className="simple-card">
-                                            <div className="simple-img-wrapper">
-                                                <img src={`/pouches section/${pouch.file}`} alt={pouch.name} className="simple-img" loading="lazy" />
-                                                {pouch.isRetort && (
-                                                    <>
-                                                        <FlameVector className="pouch-flame flame-left" />
-                                                        <FlameVector className="pouch-flame flame-right" />
-                                                        <span className="simple-heat-badge" title="You can heat this pouch">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                                                <path d="M11.666 1.004C11.666 1.004 8.652 4.417 8.358 8.01c-.147 1.782.593 3.42 1.94 4.502.83.666 1.34 1.636 1.34 2.673 0 1.947-1.631 3.525-3.642 3.525-2.01 0-3.642-1.578-3.642-3.525 0-1.127.56-2.186 1.5-2.859V9.923c-1.898.814-3.327 2.508-3.743 4.498-.553 2.66.425 5.485 2.503 7.159C6.46 23.085 8.783 24 11.238 24c4.321 0 7.828-3.411 7.828-7.614 0-1.688-.567-3.265-1.575-4.524-.877-1.092-1.353-2.434-1.353-3.829 0-2.482 1.488-4.639 3.65-5.586-1.748-1.077-3.95-1.554-6.122-1.443zm2.544 6.78c.844.757 1.332 1.83 1.332 2.96 0 1.517-1.042 2.87-2.522 3.328-1.503.465-3.15-.175-3.856-1.583-.178-.356-.254-.746-.254-1.144 0-1.107.566-2.15 1.51-2.825.862-.614 1.39-1.6 1.39-2.65 0-.585-.145-1.155-.42-1.65.65.657 1.488 1.996 2.82 3.564z"/>
-                                                            </svg>
-                                                            Heatable
-                                                        </span>
-                                                    </>
-                                                )}
+
+                                <div className="apple-card-deck">
+                                    {POUCHES.map((pouch, idx) => {
+                                        const offset = idx - activePouchIdx;
+                                        const isActive = offset === 0;
+                                        
+                                        let translateX = offset * 64;
+                                        let translateZ = offset === 0 ? 0 : -50 - Math.abs(offset) * 20;
+                                        let rotateY = offset === 0 ? 0 : (offset < 0 ? 34 : -34);
+                                        let scale = isActive ? 1.06 : 0.94;
+                                        let opacity = 1;
+                                        let zIndex = 50 - Math.abs(offset) * 5;
+
+                                        if (offset < 0) translateX -= 14;
+                                        if (offset > 0) translateX += 14;
+                                        if (offset === 0) translateX = 0;
+
+                                        return (
+                                            <div 
+                                                key={`apple-${idx}`}
+                                                className={`apple-pouch-card ${isActive ? 'is-active' : ''} ${pouch.isRetort ? 'is-thermal' : ''} ${pouch.isFreezable ? 'is-arctic' : ''}`}
+                                                style={{
+                                                    transform: `translateX(${translateX}%) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
+                                                    opacity,
+                                                    zIndex
+                                                }}
+                                                onClick={() => {
+                                                    isHoverLockRef.current = true;
+                                                    setActivePouchIdx(idx);
+                                                    setTimeout(() => { isHoverLockRef.current = false; }, 350);
+                                                }}
+                                            >
+                                                <div className="apple-card-inner">
+                                                    <div className="apple-card-media">
+                                                        {pouch.isRetort && (
+                                                            <div className="heat-glow-background">
+                                                                <div className="heat-haze-wave wave-1"></div>
+                                                                <div className="heat-haze-wave wave-2"></div>
+                                                                <div className="heat-haze-wave wave-3"></div>
+                                                                <div className="heat-ember ember-1"></div>
+                                                                <div className="heat-ember ember-2"></div>
+                                                            </div>
+                                                        )}
+                                                        <img 
+                                                            src={`/pouches section/${pouch.file}`} 
+                                                            alt={pouch.name} 
+                                                            className="apple-pouch-img" 
+                                                            style={pouch.customStyle || {}} 
+                                                            loading="lazy" 
+                                                        />
+                                                        {pouch.isFreezable && (
+                                                            <FrostWipeCanvas isActive={isActive} />
+                                                        )}
+                                                        {pouch.isRetort && (
+                                                            <div className="bento-hanging-badge badge-heat" title="Heatable Pouch">
+                                                                <span className="bento-badge-icon">🔥</span>
+                                                                <span className="bento-badge-text">HEATABLE</span>
+                                                            </div>
+                                                        )}
+                                                        {pouch.isFreezable && (
+                                                            <div className="bento-hanging-badge badge-freeze" title="Freezable Pouch">
+                                                                <span className="bento-badge-icon">❄️</span>
+                                                                <span className="bento-badge-text">FREEZABLE</span>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                    
+                                                    <div className="apple-card-info">
+                                                        <h3 className="apple-card-title">{pouch.name}</h3>
+                                                        <p className="apple-card-subtitle">{pouch.subtitle}</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="simple-label">{pouch.name}</div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
-                                {/* Set 4 */}
-                                <div className="pouches-simple-grid">
-                                    {POUCHES.map((pouch, idx) => (
-                                        <div key={`p4-${idx}`} className="simple-card">
-                                            <div className="simple-img-wrapper">
-                                                <img src={`/pouches section/${pouch.file}`} alt={pouch.name} className="simple-img" loading="lazy" />
-                                                {pouch.isRetort && (
-                                                    <>
-                                                        <FlameVector className="pouch-flame flame-left" />
-                                                        <FlameVector className="pouch-flame flame-right" />
-                                                        <span className="simple-heat-badge" title="You can heat this pouch">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                                                <path d="M11.666 1.004C11.666 1.004 8.652 4.417 8.358 8.01c-.147 1.782.593 3.42 1.94 4.502.83.666 1.34 1.636 1.34 2.673 0 1.947-1.631 3.525-3.642 3.525-2.01 0-3.642-1.578-3.642-3.525 0-1.127.56-2.186 1.5-2.859V9.923c-1.898.814-3.327 2.508-3.743 4.498-.553 2.66.425 5.485 2.503 7.159C6.46 23.085 8.783 24 11.238 24c4.321 0 7.828-3.411 7.828-7.614 0-1.688-.567-3.265-1.575-4.524-.877-1.092-1.353-2.434-1.353-3.829 0-2.482 1.488-4.639 3.65-5.586-1.748-1.077-3.95-1.554-6.122-1.443zm2.544 6.78c.844.757 1.332 1.83 1.332 2.96 0 1.517-1.042 2.87-2.522 3.328-1.503.465-3.15-.175-3.856-1.583-.178-.356-.254-.746-.254-1.144 0-1.107.566-2.15 1.51-2.825.862-.614 1.39-1.6 1.39-2.65 0-.585-.145-1.155-.42-1.65.65.657 1.488 1.996 2.82 3.564z"/>
-                                                            </svg>
-                                                            Heatable
-                                                        </span>
-                                                    </>
-                                                )}
-                                            </div>
-                                            <div className="simple-label">{pouch.name}</div>
+
+                                <div className="apple-carousel-footer">
+                                    <div className="apple-nav-row" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                                        <button 
+                                            className="apple-arrow-btn"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                isHoverLockRef.current = true;
+                                                setActivePouchIdx(prev => Math.max(0, prev - 1));
+                                                setTimeout(() => { isHoverLockRef.current = false; }, 350);
+                                            }}
+                                            disabled={activePouchIdx === 0}
+                                            aria-label="Previous pouch"
+                                        >
+                                            ←
+                                        </button>
+                                        <div className="apple-pagination-dots">
+                                            {POUCHES.map((_, dotIdx) => (
+                                                <button 
+                                                    key={`dot-${dotIdx}`}
+                                                    className={`apple-dot ${dotIdx === activePouchIdx ? 'is-active' : ''}`}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        isHoverLockRef.current = true;
+                                                        setActivePouchIdx(dotIdx);
+                                                        setTimeout(() => { isHoverLockRef.current = false; }, 350);
+                                                    }}
+                                                    aria-label={`Go to ${POUCHES[dotIdx].name}`}
+                                                />
+                                            ))}
                                         </div>
-                                    ))}
+                                        <button 
+                                            className="apple-arrow-btn"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                isHoverLockRef.current = true;
+                                                setActivePouchIdx(prev => Math.min(POUCHES.length - 1, prev + 1));
+                                                setTimeout(() => { isHoverLockRef.current = false; }, 350);
+                                            }}
+                                            disabled={activePouchIdx === POUCHES.length - 1}
+                                            aria-label="Next pouch"
+                                        >
+                                            →
+                                        </button>
+                                    </div>
+                                    <div className="apple-swipe-hint">
+                                        <span className="swipe-icon">👆</span>
+                                        <span>Swipe or drag to explore</span>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            {/* Navigation Arrows */}
-                            <div className="marquee-nav-container">
-                                <button className="marquee-arrow-btn" onClick={() => handleArrowClick('left')} aria-label="Previous">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                                </button>
-                                <button className="marquee-arrow-btn" onClick={() => handleArrowClick('right')} aria-label="Next">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-                                </button>
                             </div>
                         </div>
                     </div>

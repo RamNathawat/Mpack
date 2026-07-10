@@ -86,14 +86,27 @@ export default function Navbar() {
                 navbar.classList.add('on-dark'); navbar.classList.remove('on-light');
             }
 
-            // Hide MPACK logo when over Printing & Pouches section
+            // Hide MPACK logo when over Printing & Pouches section OR Complete Packaging section
             const printingSection = document.querySelector('.printing-pouches-section');
+            const completePackagingSection = document.querySelector('.complete-packaging-section');
             const navCenter = document.querySelector('.nav-center');
-            if (printingSection && navCenter) {
-                const pTop = printingSection.getBoundingClientRect().top + currentScrollY;
-                const pBottom = pTop + printingSection.offsetHeight;
-                // If the top of the viewport is within the printing section
-                if (currentScrollY >= pTop - 100 && currentScrollY <= pBottom - 100) {
+            if (navCenter) {
+                let isOverHidden = false;
+                if (printingSection) {
+                    const pTop = printingSection.getBoundingClientRect().top + currentScrollY;
+                    const pBottom = pTop + printingSection.offsetHeight;
+                    if (currentScrollY >= pTop - 100 && currentScrollY <= pBottom - 100) {
+                        isOverHidden = true;
+                    }
+                }
+                if (completePackagingSection && !isOverHidden) {
+                    const cTop = completePackagingSection.getBoundingClientRect().top + currentScrollY;
+                    const cBottom = cTop + completePackagingSection.offsetHeight;
+                    if (currentScrollY >= cTop - 100 && currentScrollY <= cBottom - 100) {
+                        isOverHidden = true;
+                    }
+                }
+                if (isOverHidden) {
                     navCenter.style.opacity = '0';
                     navCenter.style.pointerEvents = 'none';
                     navCenter.style.transition = 'opacity 0.3s ease';

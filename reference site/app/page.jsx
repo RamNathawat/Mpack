@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import HorizontalWords from '@/components/HorizontalWords';
 
 import PrintingAndPouches from '@/components/PrintingAndPouches';
+import CompletePackaging from '@/components/CompletePackaging';
 import IndustriesMarquee from '@/components/IndustriesMarquee';
 import ServiceCards from '@/components/ServiceCards';
 import DoubleMarquee from '@/components/DoubleMarquee';
@@ -29,6 +30,9 @@ export default function Home() {
             </div>
             <div className="slideshow-stop">
                 <PrintingAndPouches />
+            </div>
+            <div className="slideshow-stop">
+                <CompletePackaging />
             </div>
 
             <main className="slideshow-stop">

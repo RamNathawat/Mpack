@@ -1,0 +1,758 @@
+/* ─── Complete Packaging ("Boxes, Canisters & Labels") Section Styles ─── */
+
+.complete-packaging-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(1.6vh, 2.4vh, 28px) clamp(3vw, 4.2vw, 56px) clamp(2vh, 3vh, 36px);
+    background-color: #F5EEDE;
+    font-family: 'Epilogue', -apple-system, BlinkMacSystemFont, sans-serif;
+    z-index: 10;
+}
+
+/* Cohesive Faint Dot Grid Texture */
+.complete-packaging-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--color-slate, #64748b) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
+    opacity: 0.14;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─── Header Container ─── */
+.cp-header {
+    position: relative;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.cp-eyebrow {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.72rem, 0.85vw, 0.88rem);
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--color-slate, #1e293b);
+    opacity: 0.65;
+    margin-bottom: clamp(2px, 0.6vh, 6px);
+    display: inline-block;
+}
+
+/* ─── "Sandwich" Formula Heading Structure ─── */
+.cp-main-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto clamp(4px, 0.8vh, 10px);
+    z-index: 5;
+}
+
+.cp-title-top-bread {
+    font-family: var(--font-serif), 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+    color: #1E293B;
+    line-height: 1;
+    align-self: flex-start;
+    margin-left: clamp(2px, 0.6vw, 8px);
+    margin-bottom: clamp(-4px, -0.4vw, -1px);
+    transform: translateX(-20px);
+    z-index: 2;
+    position: relative;
+}
+
+.cp-title-meat {
+    font-family: var(--font-serif), 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: clamp(3.1rem, 5vw, 4.8rem);
+    letter-spacing: -0.03em;
+    color: #56B870;
+    line-height: 0.88;
+    z-index: 1;
+    position: relative;
+    text-shadow: 0 10px 24px rgba(33, 67, 50, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cp-title-bottom-bread {
+    font-family: var(--font-serif), 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+    color: #1E293B;
+    line-height: 1;
+    align-self: flex-end;
+    margin-right: clamp(2px, 0.6vw, 8px);
+    margin-top: clamp(-4px, -0.4vw, -1px);
+    z-index: 2;
+    position: relative;
+}
+
+/* Yellow Underline Squiggle below Title Meat */
+.cp-title-squiggle {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(160px, 24vw, 280px);
+    height: 10px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.cp-subtitle {
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(0.86rem, 0.98vw, 1.05rem);
+    font-weight: 400;
+    color: #475569;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.45;
+}
+
+/* Wobbly Header Doodles */
+.cp-doodles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ─── Category Filter Pills (Boxes / Canisters / Labels) - Sleek 2D Fluid Segmented Control ─── */
+.cp-pills-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin: clamp(0.8vh, 1.5vh, 16px) auto clamp(1vh, 1.6vh, 18px);
+    position: relative;
+    z-index: 10;
+    padding: 4px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(30, 41, 59, 0.1);
+    border-radius: 9999px;
+    box-shadow: none;
+    flex-shrink: 0;
+    height: clamp(38px, 4.6vh, 46px);
+}
+
+.cp-pills-slider {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    border-radius: 9999px;
+    background: #0F172A;
+    transition: left 380ms cubic-bezier(0.16, 1, 0.3, 1), width 380ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+    pointer-events: none;
+    box-shadow: none;
+}
+
+.cp-pill-btn {
+    font-family: 'Epilogue', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.82rem, 0.92vw, 0.96rem);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0 clamp(16px, 2vw, 26px);
+    height: 100%;
+    border-radius: 9999px;
+    border: none;
+    background: transparent;
+    color: #475569;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.cp-pill-btn:hover {
+    color: #0F172A;
+}
+
+.cp-pill-btn.is-active {
+    color: #FFFFFF;
+}
+
+.cp-pill-green-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #4ADE80;
+    box-shadow: none;
+}
+
+.cp-pill-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ─── Center Viewport Area (Cards Track) ─── */
+.cp-carousel-wrapper {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: 1460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.cp-cards-viewport {
+    width: 100%;
+    height: 100%;
+    max-height: clamp(380px, 58vh, 540px);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Cards Grid inside Viewport */
+.cp-cards-track {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(14px, 1.6vw, 24px);
+}
+
+/* Individual Bento Card (32px radius, flat 2D fluid style) */
+.cp-bento-card {
+    background-color: #FFF9F1;
+    border-radius: clamp(24px, 2.4vw, 32px);
+    padding: 0 0 clamp(12px, 2vh, 22px) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    border: 1px solid rgba(30, 41, 59, 0.08);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+    transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.cp-bento-card.card-bg-0,
+.cp-bento-card.card-bg-1,
+.cp-bento-card.card-bg-2,
+.cp-bento-card.card-bg-3 {
+    background-color: #FFF9F1;
+}
+
+.cp-bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+    border-color: rgba(30, 41, 59, 0.16);
+    z-index: 25;
+}
+
+/* ==========================================================================
+   Art-Directed Miniature Hero Section Compositions (Apple / Aesop / Stripe)
+   ========================================================================== */
+.cp-hero-stage {
+    width: 100%;
+    height: clamp(210px, 33vh, 310px);
+    border-radius: clamp(24px, 2.4vw, 32px) clamp(24px, 2.4vw, 32px) 0 0;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Slot 0: Large Muted Olive Circle & Botanical Sanctuary */
+.cp-hero-stage-0 {
+    background-color: transparent;
+}
+.cp-hero-circle-0 {
+    position: absolute;
+    top: -18%;
+    left: -24%;
+    width: 135%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #DFE6DF 0%, #CCDACC 100%);
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+.cp-hero-sunlight-0 {
+    position: absolute;
+    top: -15%;
+    left: -10%;
+    width: 110%;
+    height: 110%;
+    background: radial-gradient(circle at 18% 18%, rgba(255, 253, 240, 0.95) 0%, transparent 60%);
+    z-index: 2;
+    pointer-events: none;
+}
+.cp-hero-leaves-0 {
+    position: absolute;
+    top: -8%;
+    left: -5%;
+    width: 95%;
+    height: 95%;
+    opacity: 0.15;
+    filter: blur(1.5px);
+    z-index: 3;
+    pointer-events: none;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cp-hero-product-wrapper-0 {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1) translateY(0px);
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 4;
+}
+.cp-hero-shadow-0 {
+    position: absolute;
+    left: 14%;
+    right: 14%;
+    bottom: 6%;
+    width: 72%;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(18, 32, 20, 0.34);
+    filter: blur(7px);
+    transform: rotate(0deg);
+    transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cp-hero-product-img-0 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    filter: drop-shadow(0 18px 26px rgba(15, 23, 42, 0.16)) sepia(0.06) contrast(1.02);
+    z-index: 5;
+}
+.cp-hero-fade-0 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28%;
+    background: linear-gradient(to top, #FFFDF9 0%, rgba(255, 253, 249, 0.88) 35%, rgba(255, 253, 249, 0.28) 70%, transparent 100%);
+    z-index: 6;
+    pointer-events: none;
+}
+
+/* Hover Physics for Slot 0 */
+.cp-bento-card:hover .cp-hero-circle-0 { transform: scale(1.04) translate(-2%, -2%); }
+.cp-bento-card:hover .cp-hero-leaves-0 { transform: rotate(3deg) scale(1.05); }
+.cp-bento-card:hover .cp-hero-product-wrapper-0 { transform: scale(1.04) translateY(-10px); }
+.cp-bento-card:hover .cp-hero-shadow-0 { transform: scaleX(1.15) translateY(4px); opacity: 0.22; filter: blur(9px); }
+
+/* Slot 1: Vertical Architectural Ribbed Wall & Studio Floor */
+.cp-hero-stage-1 {
+    background-color: transparent;
+}
+.cp-hero-ribs-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 68%;
+    background: repeating-linear-gradient(90deg, rgba(30, 41, 59, 0.05) 0px, rgba(30, 41, 59, 0.05) 2px, transparent 2px, transparent 32px);
+    z-index: 1;
+}
+.cp-hero-floor-1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 32%;
+    background: linear-gradient(180deg, rgba(238, 244, 238, 0.5) 0%, rgba(228, 236, 228, 0.8) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.85);
+    z-index: 2;
+}
+.cp-hero-skylight-1 {
+    position: absolute;
+    top: -15%;
+    left: 15%;
+    right: 15%;
+    height: 80%;
+    background: radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.98) 0%, transparent 70%);
+    z-index: 3;
+    pointer-events: none;
+}
+.cp-hero-leaves-1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 85%;
+    height: 85%;
+    opacity: 0.12;
+    filter: blur(2px);
+    z-index: 3;
+    pointer-events: none;
+}
+.cp-hero-product-wrapper-1 {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1) translateY(0px);
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 4;
+}
+.cp-hero-shadow-1 {
+    position: absolute;
+    left: 14%;
+    right: 14%;
+    bottom: 6%;
+    width: 72%;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(15, 25, 20, 0.32);
+    filter: blur(7px);
+    transform: rotate(0deg);
+    transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cp-hero-product-img-1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: drop-shadow(0 18px 26px rgba(15, 23, 42, 0.16)) sepia(0.04) contrast(1.02);
+    z-index: 5;
+}
+.cp-hero-fade-1 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28%;
+    background: linear-gradient(to top, #F7FAF7 0%, rgba(247, 250, 247, 0.88) 35%, rgba(247, 250, 247, 0.28) 70%, transparent 100%);
+    z-index: 6;
+    pointer-events: none;
+}
+
+/* Hover Physics for Slot 1 */
+.cp-bento-card:hover .cp-hero-product-wrapper-1 { transform: scale(1.04) translateY(-10px); }
+.cp-bento-card:hover .cp-hero-shadow-1 { transform: scaleX(1.15) translateY(4px); opacity: 0.22; filter: blur(9px); }
+
+/* Slot 2: Golden Hour Sunlight & Sculptural Studio Pedestal */
+.cp-hero-stage-2 {
+    background-color: transparent;
+}
+.cp-hero-side-light-2 {
+    position: absolute;
+    top: 0;
+    right: -15%;
+    width: 115%;
+    height: 100%;
+    background: radial-gradient(circle at 95% 25%, rgba(255, 218, 140, 0.5) 0%, rgba(255, 235, 190, 0.16) 45%, transparent 75%);
+    z-index: 1;
+    pointer-events: none;
+}
+.cp-hero-pedestal-2 {
+    position: absolute;
+    bottom: 8%;
+    left: 11%;
+    right: 11%;
+    height: 26%;
+    border-radius: 50% / 100%;
+    background: linear-gradient(180deg, rgba(242, 230, 212, 0.88) 0%, rgba(226, 210, 188, 0.45) 100%);
+    border-top: 1.5px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 16px 32px rgba(180, 140, 100, 0.16);
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
+}
+.cp-hero-leaves-2 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 85%;
+    height: 85%;
+    opacity: 0.13;
+    filter: blur(1.5px);
+    z-index: 3;
+    pointer-events: none;
+}
+.cp-hero-product-wrapper-2 {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    bottom: 11%;
+    width: 88%;
+    height: 86%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    transform: translate(0, -4%) scale(1.23);
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 4;
+}
+.cp-hero-shadow-2 {
+    position: absolute;
+    left: 14%;
+    right: 14%;
+    bottom: 6%;
+    width: 72%;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(100, 70, 40, 0.34);
+    filter: blur(6px);
+    transform: rotate(0deg);
+    transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cp-hero-product-img-2 {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(-16px 24px 28px rgba(120, 80, 40, 0.2)) sepia(0.14) contrast(1.02);
+    z-index: 5;
+}
+.cp-hero-fade-2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 38%;
+    background: linear-gradient(to top, #FFF9F1 0%, rgba(255, 249, 241, 0.94) 35%, rgba(255, 249, 241, 0.45) 70%, transparent 100%);
+    z-index: 6;
+    pointer-events: none;
+}
+
+/* Hover Physics for Slot 2 */
+.cp-bento-card:hover .cp-hero-pedestal-2 { transform: scale(1.03) translateY(-2px); }
+.cp-bento-card:hover .cp-hero-product-wrapper-2 { transform: translate(0, -6%) scale(1.27); }
+.cp-bento-card:hover .cp-hero-shadow-2 { transform: scaleX(1.15) translateY(4px); opacity: 0.22; filter: blur(8px); }
+
+/* Slot 3: Luxury Roman Arch & Blush Horizon Sky */
+.cp-hero-stage-3 {
+    background-color: transparent;
+}
+.cp-hero-blush-sky-3 {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(250, 244, 247, 0.7) 0%, rgba(243, 235, 240, 0.4) 100%);
+    z-index: 1;
+}
+.cp-hero-arch-3 {
+    position: absolute;
+    top: 4%;
+    left: 14%;
+    right: 14%;
+    height: 86%;
+    border-radius: 999px 999px 0 0;
+    background: linear-gradient(180deg, rgba(238, 226, 232, 0.78) 0%, rgba(246, 238, 242, 0.3) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    box-shadow: inset 0 20px 40px rgba(255, 255, 255, 0.65);
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
+}
+.cp-hero-softbox-3 {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    right: 0;
+    height: 90%;
+    background: radial-gradient(circle at 50% 20%, rgba(255, 250, 252, 0.96) 0%, transparent 65%);
+    z-index: 3;
+    pointer-events: none;
+}
+.cp-hero-leaves-3 {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    width: 86%;
+    height: 86%;
+    opacity: 0.12;
+    filter: blur(1.5px);
+    z-index: 3;
+    pointer-events: none;
+}
+.cp-hero-product-wrapper-3 {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1) translateY(0px);
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 4;
+}
+.cp-hero-shadow-3 {
+    position: absolute;
+    left: 14%;
+    right: 14%;
+    bottom: 6%;
+    width: 72%;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(45, 30, 40, 0.34);
+    filter: blur(7px);
+    transform: rotate(0deg);
+    transition: all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cp-hero-product-img-3 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    filter: drop-shadow(0 20px 28px rgba(45, 30, 40, 0.18)) sepia(0.06) contrast(1.02);
+    z-index: 5;
+}
+.cp-hero-fade-3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28%;
+    background: linear-gradient(to top, #FBF7FA 0%, rgba(251, 247, 250, 0.88) 35%, rgba(251, 247, 250, 0.28) 70%, transparent 100%);
+    z-index: 6;
+    pointer-events: none;
+}
+
+/* Hover Physics for Slot 3 */
+.cp-bento-card:hover .cp-hero-arch-3 { transform: scale(1.03) translateY(-3px); }
+.cp-bento-card:hover .cp-hero-product-wrapper-3 { transform: scale(1.04) translateY(-10px); }
+.cp-bento-card:hover .cp-hero-shadow-3 { transform: scaleX(1.15) translateY(4px); opacity: 0.24; filter: blur(9px); }
+
+/* Floating Product Icon (Top Right of every card with 8° rotation on hover) */
+.cp-floating-icon {
+    position: absolute;
+    top: clamp(12px, 1.8vh, 18px);
+    right: clamp(12px, 1.8vh, 18px);
+    z-index: 10;
+    width: clamp(34px, 3.5vh, 40px);
+    height: clamp(34px, 3.5vh, 40px);
+    border-radius: 50%;
+    background: #0F172A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cp-bento-card:hover .cp-floating-icon {
+    transform: scale(1.06) rotate(8deg);
+    box-shadow: none;
+}
+
+/* Card Text Area */
+.cp-card-text-box {
+    text-align: center;
+    margin: clamp(4px, 0.8vh, 10px) clamp(12px, 1.5vw, 24px) clamp(6px, 1.2vh, 14px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    z-index: 3;
+}
+
+.cp-card-title {
+    font-family: 'Epilogue', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.06rem, 1.25vw, 1.4rem);
+    color: #0F223D;
+    margin: 0 0 clamp(4px, 0.8vh, 8px);
+    letter-spacing: -0.025em;
+    line-height: 1.18;
+}
+
+.cp-card-desc {
+    font-family: 'Epilogue', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.82rem, 0.9vw, 0.96rem);
+    color: #475569;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 96%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Bottom Feature Chips Row inside Card */
+.cp-card-badges-row {
+    display: flex;
+    gap: clamp(5px, 0.5vw, 7px);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding: clamp(6px, 1vh, 10px) clamp(10px, 1.2vw, 18px) 0;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.cp-feature-chip {
+    font-family: 'Epilogue', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: clamp(0.7rem, 0.76vw, 0.8rem);
+    font-weight: 600;
+    color: #1E293B;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(30, 41, 59, 0.16);
+    padding: clamp(4px, 0.6vh, 6px) clamp(8px, 0.8vw, 12px);
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.cp-chip-bullet {
+    color: #D97706;
+    font-size: 0.85em;
+    line-height: 1;
+}
+
+.cp-bento-card:hover .cp-feature-chip {
+    background: #FFFFFF;
+    border-color: rgba(30, 41, 59, 0.65);
+    color: #0F223D;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    transform: translateY(-2px);
+}
+/* End of Complete Packaging section styles */
