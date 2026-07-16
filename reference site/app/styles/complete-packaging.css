@@ -243,6 +243,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
     gap: clamp(14px, 1.6vw, 24px);
 }
 

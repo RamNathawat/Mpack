@@ -34,107 +34,30 @@ export default function Footer() {
             footerMapLink.addEventListener('mouseleave', onLeave);
         }
 
-        // ─── Credits pop-out ───
-        const creditsWrapper = document.querySelector('.footer-credits-wrapper');
-        if (creditsWrapper) {
-            const creditsBox = creditsWrapper.querySelector('.credits-box');
-            const creditsItems = creditsBox.querySelectorAll('.credits-item');
+        // ─── Option 3: Dynamic Bottom Body Background Sync & Exact Limit Lock ───
+        const handleRefresh = () => {
+            if (window.__lenis) window.__lenis.resize();
+        };
+        ScrollTrigger.addEventListener('refresh', handleRefresh);
+        const timer = setTimeout(() => {
+            if (window.__lenis) window.__lenis.resize();
+            ScrollTrigger.refresh();
+        }, 300);
 
-            // Temporarily make the box visible to measure full dimensions
-            gsap.set(creditsBox, { visibility: 'visible', width: 'auto', height: 'auto', opacity: 1 });
-            const boxRect = creditsBox.getBoundingClientRect();
-            const fullWidth = boxRect.width;
-            const fullHeight = boxRect.height;
-            const boxHeight = boxRect.height; // for text Y translation
-
-            // Distance from box's final position down to behind the credits button
-            const creditsBtn = creditsWrapper.querySelector('.footer-credits');
-            const startY = creditsBtn.offsetHeight + 15;
-
-            // Set precise initial states for box and text
-            // Box starts collapsed rather than 0 scale
-            gsap.set(creditsBox, { visibility: 'hidden', width: 0, height: 0, opacity: 0, y: startY });
-            gsap.set(creditsItems, { y: boxHeight });
-
-            const onEnter = () => {
-                gsap.set(creditsBox, { visibility: 'visible' });
-                gsap.killTweensOf(creditsBox);
-                gsap.killTweensOf(creditsItems);
-
-                // Box physically grows to full dimensions instead of scaling
-                gsap.to(creditsBox, { width: fullWidth, height: fullHeight, opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' });
-
-                // Text slides up smoothly, slightly delayed
-                gsap.to(creditsItems, { y: 0, duration: 0.5, stagger: 0.04, ease: 'power3.out', delay: 0.1 });
-            };
-
-            const onLeave = () => {
-                gsap.killTweensOf(creditsBox);
-                gsap.killTweensOf(creditsItems);
-
-                // Box physically shrinks to 0x0
-                gsap.to(creditsBox, {
-                    width: 0, height: 0, opacity: 0, y: startY, duration: 0.35, ease: 'power3.in',
-                    onComplete: () => gsap.set(creditsBox, { visibility: 'hidden' })
-                });
-
-                // Text sits perfectly still while the box begins crushing it, 
-                // and then slowly slides back down in reverse order (`stagger: -0.03`) so the rightmost column clears first
-                gsap.to(creditsItems, { y: boxHeight, duration: 0.4, ease: 'power3.in', stagger: -0.03, delay: 0.1 });
-            };
-
-            creditsWrapper.addEventListener('mouseenter', onEnter);
-            creditsWrapper.addEventListener('mouseleave', onLeave);
-        }
-
-        // ─── Footer sticker pop-up on scroll ───
-        const footerStickers = gsap.utils.toArray('.footer-sticker');
-        const stickerRotations = [12, -10, 8, -12, 10, -8];
-        gsap.set(footerStickers, { scale: 0, opacity: 0, transformOrigin: 'center bottom' });
-        footerStickers.forEach((sticker, i) => gsap.set(sticker, { rotation: stickerRotations[i % stickerRotations.length] }));
-
-        gsap.to(footerStickers, {
-            scale: 1, opacity: 1,
-            rotation: (i) => stickerRotations[i % stickerRotations.length] * 0.7,
-            duration: 0.7, ease: 'back.out(1.7)', stagger: 0.12,
-            scrollTrigger: {
-                trigger: '.footer-stickers',
-                start: 'top 80%',
-                toggleActions: 'play none none reverse' // Play on enter, reverse on leave up
+        const handleScrollSync = () => {
+            const scrollPos = window.scrollY || document.documentElement.scrollTop;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (maxScroll > 0 && scrollPos >= maxScroll - 450) {
+                document.body.style.backgroundColor = '#1D4ED8';
+                document.documentElement.style.backgroundColor = '#1D4ED8';
+            } else {
+                document.body.style.backgroundColor = '';
+                document.documentElement.style.backgroundColor = '';
             }
-        });
-
-        // ─── Sticker cursor-velocity push ───
-        footerStickers.forEach((sticker, i) => {
-            const baseRotation = stickerRotations[i % stickerRotations.length] * 0.7;
-            const PROXIMITY_RADIUS = 180, STRENGTH = 4, MAX_PUSH = 55, MIN_SPEED = 3;
-            let prevX = 0, prevY = 0;
-            const clamp = (v, max) => Math.max(-max, Math.min(max, v));
-
-            const onMove = (e) => {
-                const dx = e.clientX - prevX, dy = e.clientY - prevY;
-                prevX = e.clientX; prevY = e.clientY;
-                const rect = sticker.getBoundingClientRect();
-                const cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
-                const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-                const onSticker = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
-                const speed = Math.hypot(dx, dy);
-
-                // Disable proximity push if the mouse is hovering over the open credits popup box
-                const isOverCreditsBox = e.target.closest('.credits-box') !== null;
-
-                if (!onSticker && !isOverCreditsBox && dist < PROXIMITY_RADIUS && speed > MIN_SPEED) {
-                    const falloff = 1 - (dist / PROXIMITY_RADIUS);
-                    const pushX = clamp(dx * STRENGTH * falloff, MAX_PUSH);
-                    const pushY = clamp(dy * STRENGTH * falloff, MAX_PUSH);
-                    gsap.killTweensOf(sticker);
-                    gsap.to(sticker, { x: pushX, y: pushY, rotation: baseRotation + pushX * 0.25, duration: 0.18, ease: 'power3.out' });
-                    gsap.to(sticker, { x: 0, y: 0, rotation: baseRotation, duration: 1.1, ease: 'elastic.out(1, 0.35)', delay: 0.18 });
-                }
-            };
-            document.addEventListener('mousemove', onMove);
-            // No cleanup stored here to match original behaviour (lives for page lifetime)
-        });
+        };
+        window.addEventListener('scroll', handleScrollSync, { passive: true });
+        if (window.__lenis) window.__lenis.on('scroll', handleScrollSync);
+        handleScrollSync();
 
         // ─── Wiggle on footer interactive elements ───
         const wiggleTargets = [
@@ -151,101 +74,98 @@ export default function Footer() {
         // ─── Social icon wiggle ───
         document.querySelectorAll('.single-social').forEach(el => initWiggle(el, WIGGLE_CONFIG.socials));
 
+        return () => {
+            ScrollTrigger.removeEventListener('refresh', handleRefresh);
+            clearTimeout(timer);
+            window.removeEventListener('scroll', handleScrollSync);
+            if (window.__lenis) window.__lenis.off('scroll', handleScrollSync);
+            document.body.style.backgroundColor = '';
+            document.documentElement.style.backgroundColor = '';
+        };
     }, []);
 
     return (
         <div className="footer-inner">
             <div className="footer-top">
-                {/* Jobs */}
+                {/* Column 1: Inquiries */}
                 <div className="footer-column">
-                    <span className="footer-badge">ready for better packaging?</span>
-                    <h3 style={{ fontFamily: 'var(--font-logo)' }}>let's talk</h3>
-                    <svg width="150" height="42" viewBox="0 0 150 55" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginTop: '30px', display: 'block', overflow: 'visible' }}>
-                        <text x="0" y="44" fontFamily="var(--font-logo)" fontWeight="900" fontSize="48" fill="#1D4ED8" letterSpacing="-1px">MPACK</text>
-                    </svg>
-                </div>
-                {/* Office */}
-                <div className="footer-column">
-                    <span className="footer-badge">contact us</span>
-                    <address>
-                        Manas<br />
-                        MPACK Solutions
-                    </address>
-                    <a href="#" className="footer-map-link">
-                        <span>Google Maps</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 169 10" fill="none" className="draw-btn__svg">
-                            <path d="M1 6.5661C56.3941 3.06082 112.187 1.20095 168 0.999878" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.25"></path>
-                            <path d="M32.1313 8.63371C68.2147 6.92799 104.462 6.13378 140.695 6.25107" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.25"></path>
+                    <span className="footer-badge">[ 01 — INQUIRIES ]</span>
+                    <div className="footer-col-body">
+                        <h3 className="footer-headline">let's talk</h3>
+                        <p className="footer-subtext">Bridge the gap between your brand and world-class flexible packaging.</p>
+                    </div>
+                    <div className="footer-col-footer">
+                        <svg className="footer-mpack-svg" width="180" height="52" viewBox="0 0 150 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <text x="0" y="44" fontFamily="var(--font-logo)" fontWeight="950" fontSize="50" fill="#FFFFFF" letterSpacing="-1px">MPACK</text>
                         </svg>
-                    </a>
+                    </div>
                 </div>
-                {/* Contact */}
+
+                {/* Column 2: Headquarters */}
                 <div className="footer-column">
-                    <span className="footer-badge">connect</span>
-                    <a href="mailto:hello@mpack.co" className="footer-email">hello@mpack.co</a>
-                    <a href="#" className="footer-whatsapp">send us a whatsapp</a>
-                    <p className="footer-note">*we respond quickly.</p>
-                    <div className="footer-socials" id="footer-socials">
-                        {SOCIAL_ICONS.map(({ href, label, svg }) => (
-                            <a
-                                key={label}
-                                href={href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="single-social w-inline-block"
-                                aria-label={label}
-                                dangerouslySetInnerHTML={{ __html: svg }}
-                            />
-                        ))}
+                    <span className="footer-badge">[ 02 — HEADQUARTERS ]</span>
+                    <div className="footer-col-body">
+                        <a 
+                            href="https://www.google.com/maps/search/?api=1&query=A-1201%2C+Sarvoday+Symphony%2C+90+Feet+Road%2C+Dombivli+East%2C+Thane%2C+Maharashtra+-+421201" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="footer-address-link"
+                        >
+                            <address className="footer-address">
+                                <strong>MPACK Solutions</strong>
+                                <span>A-1201, Sarvoday Symphony,</span>
+                                <span>90 Feet Road, Dombivli East,</span>
+                                <span>Thane, Maharashtra – 421201</span>
+                            </address>
+                        </a>
+                    </div>
+                    <div className="footer-col-footer">
+                        <a 
+                            href="https://www.google.com/maps/search/?api=1&query=A-1201%2C+Sarvoday+Symphony%2C+90+Feet+Road%2C+Dombivli+East%2C+Thane%2C+Maharashtra+-+421201" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="footer-map-link"
+                        >
+                            <span>VIEW ON GOOGLE MAPS ↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                {/* Column 3: Direct Contact */}
+                <div className="footer-column">
+                    <span className="footer-badge">[ 03 — DIRECT CONTACT ]</span>
+                    <div className="footer-col-body">
+                        <a href="mailto:manaspackaging@gmail.com" className="footer-email">manaspackaging@gmail.com</a>
+                        <div className="footer-whatsapp-row">
+                            <a href="https://wa.me/919999999999?text=Hi%20Manas%2C%20I%27m%20interested%20in%20packaging%20solutions" target="_blank" rel="noopener noreferrer" className="footer-whatsapp">send us a whatsapp ↗</a>
+                            <span className="footer-note">*we respond quickly.</span>
+                        </div>
+                    </div>
+                    <div className="footer-col-footer">
+                        <div className="footer-socials" id="footer-socials">
+                            {SOCIAL_ICONS.map(({ href, label, svg }) => (
+                                <a
+                                    key={label}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="single-social w-inline-block"
+                                    aria-label={label}
+                                    dangerouslySetInnerHTML={{ __html: svg }}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Big MPACK wordmark */}
+            {/* Full viewport bottom copyright bar */}
             <div className="footer-bottom">
-                <div className="footer-big-text" style={{ padding: '40px 0', display: 'flex', justifyContent: 'center' }}>
-                    <h2 style={{ fontFamily: 'var(--font-logo)', fontSize: 'clamp(5rem, 15vw, 12rem)', fontWeight: '900', letterSpacing: '-0.02em', color: 'rgba(0,0,0,0.03)', margin: 0 }}>MPACK</h2>
+                <div className="footer-copyright-text">
+                    © 2026 MPACK SOLUTIONS. ALL RIGHTS RESERVED.
                 </div>
-
-                <div className="footer-stickers">
-                    <div className="footer-sticker sticker-smiley">
-                        <img src="/assets/footer-section/sticker_production_roll.png" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
-                    </div>
-                    <div className="footer-sticker sticker-heart">
-                        <img src="/assets/footer-section/sticker_shipping_carton.png" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
-                    </div>
-                    <div className="footer-sticker sticker-hands">
-                        <img src="/assets/Footer-Sticker SVG/footer-sticker-hands.svg" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
-                    </div>
-                    <div className="footer-sticker sticker-100">
-                        <img src="/assets/Footer-Sticker SVG/footer-sticker-100.svg" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
-                    </div>
-                    <div className="footer-sticker sticker-camera">
-                        <img src="/assets/Footer-Sticker SVG/footer-sticker-camera.svg" width="100%" alt="" aria-hidden="true" />
-                    </div>
-                    <div className="footer-sticker sticker-boom">
-                        <img src="/assets/Footer-Sticker SVG/footer-sticker-boom.svg" width="100%" alt="" data-scroll-animation-target="" aria-hidden="true" />
-                    </div>
-                </div>
-
-                {/* Bottom row: credits */}
-                <div className="footer-bottom-row">
-                    <div></div>
-                    <div className="footer-credits-wrapper">
-                        <div className="credits-box">
-                            <div className="credits-content">
-                                <div className="credits-item credit-wiggle">
-                                    <div className="overflow-wrapper"><span className="credits-label">design by</span></div>
-                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true">Ram Nathawat</a></div>
-                                </div>
-                                <div className="credits-item credit-wiggle">
-                                    <div className="overflow-wrapper"><span className="credits-label">code by</span></div>
-                                    <div className="overflow-wrapper"><a href="#" className="credits-name" data-wiggle-target="true">Ram Nathawat</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" className="footer-credits">credits</a>
-                    </div>
+                <div className="footer-copyright-subtext">
+                    PRECISION CONVERTER NETWORK & PACKAGING PARTNER.
                 </div>
             </div>
         </div>

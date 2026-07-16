@@ -119,138 +119,179 @@
         pointer-events: none;
     }
 
-    /* ── Double Marquee ─────────────── */
-    .Double-marquee {
+    /* ── Client Logo Showcase Section (Double Marquee) ── */
+    .Double-marquee.client-logos-section {
         flex-direction: column;
         align-items: flex-start;
-        padding: 60px 24px 0;
-        gap: 0;
+        padding: 50px 20px 60px;
+        gap: 40px;
         min-height: unset;
     }
 
-    .marquee-left {
+    .client-showcase-left {
         max-width: 100%;
         width: 100%;
-        justify-content: flex-start;
-        align-items: flex-start;
-        min-height: 340px;
     }
 
-    .marquee-text-container {
-        text-align: left;
+    .client-editorial-eyebrow {
+        margin-bottom: 18px;
     }
 
-    .marquee-left h2 {
-        font-size: 2.6rem;
-        letter-spacing: -1.5px;
-        margin-bottom: 0;
-        margin-right: 0;
+    .client-head-primary,
+    .client-head-subprimary {
+        font-size: 2.1rem;
     }
 
-    .marquee-blob-container {
-        width: 240px;
-        height: 280px;
-        top: 45%;
-        left: 20%;
+    .client-head-serif {
+        font-size: 2.3rem;
     }
 
-    .marquee-svg-item:nth-child(1) {
-        width: 60px;
-        bottom: 10%;
-        left: 55%;
+    .client-head-pill {
+        padding: 4px 12px;
+        font-size: 0.72rem;
     }
 
-    .marquee-svg-item:nth-child(2) {
-        width: 220px;
-        bottom: -5%;
-        left: 55%;
+    .client-editorial-body {
+        font-size: 0.92rem;
+        margin-bottom: 28px;
     }
 
-    .marquee-underline {
-        top: 5rem;
-        right: auto;
-        left: 9.5rem;
-        width: 70px;
+    .client-pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 
-    /* ── Logo columns → 2-row horizontal scroll grid ── */
-    .marquee-right {
-        display: grid;
-        grid-template-rows: 130px 130px;
-        grid-auto-flow: column;
-        grid-auto-columns: 130px;
-        gap: 8px;
+    .client-pillar-card {
+        padding: 14px 16px;
+    }
+
+    .client-pillar-title {
+        font-size: 0.92rem;
+    }
+
+    .client-pillar-sub {
+        font-size: 0.78rem;
+    }
+
+    /* Logo columns → Dual horizontal auto-scrolling bento tracks on mobile */
+    .client-showcase-right {
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        gap: 14px;
+        padding: 6px 0;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .client-marquee-col {
         width: 100%;
         height: auto;
-        margin-right: 0;
-        padding: 20px 24px 32px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
     }
 
-    .marquee-right::-webkit-scrollbar {
-        display: none;
+    .client-marquee-track {
+        flex-direction: row;
+        gap: 14px;
+        width: max-content;
     }
 
-    .marquee-column {
-        display: contents;
+    .client-col-1 .client-marquee-track,
+    .track-up {
+        animation: clientScrollLeftMobile 22s linear infinite;
     }
 
-    .marquee-column::before,
-    .marquee-column::after {
-        display: none;
+    .client-col-2 .client-marquee-track,
+    .track-down {
+        animation: clientScrollRightMobile 22s linear infinite;
     }
 
-    .marquee-column:nth-child(1) .marquee-track,
-    .marquee-column:nth-child(2) .marquee-track {
-        display: contents;
-        animation: none;
+    @keyframes clientScrollLeftMobile {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
     }
 
-    .marquee-item {
-        width: 130px;
-        height: 130px;
+    @keyframes clientScrollRightMobile {
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
+    }
+
+    .client-card {
+        width: 180px;
+        min-width: 180px;
+        height: 110px;
+        padding: 14px;
+        border-radius: 18px;
         flex-shrink: 0;
+    }
+
+    .client-logo-img {
+        max-height: 56px;
     }
 
     /* ── Footer ─────────────────────── */
     .main-footer {
-        padding: 6px;
+        padding: 0;
+        height: auto;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
     }
 
     .footer-inner {
-        padding: 50px 20px 30px;
-        border-radius: 14px;
-        min-height: 100svh;
+        padding: 36px 20px 24px;
+        border-radius: 0;
+        flex: 1;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .footer-top {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 36px;
+        padding-bottom: 28px;
     }
 
-    .footer-column h3 {
-        font-size: 1.4rem;
-        letter-spacing: -0.5px;
+    .footer-column:nth-child(1),
+    .footer-column:nth-child(2) {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.14);
+        padding-bottom: 32px;
     }
 
-    .footer-column address {
-        font-size: 1.25rem;
+    .footer-col-footer {
+        margin-top: 24px;
+        padding-top: 0;
+    }
+
+    .footer-headline {
+        font-size: clamp(2.4rem, 8vw, 3.2rem);
+    }
+
+    .footer-address {
+        font-size: 1.05rem;
     }
 
     .footer-email {
-        font-size: 1.3rem;
+        font-size: clamp(1.6rem, 6.5vw, 2.4rem);
     }
 
     .footer-whatsapp {
-        font-size: 1.1rem;
-        margin-top: -6px;
+        font-size: 1.05rem;
     }
 
     .footer-map-link {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
     }
 
     /* ── Footer Stickers (mobile) ──── */

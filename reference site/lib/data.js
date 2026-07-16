@@ -1,17 +1,20 @@
 // ─── lib/data.js — All static data for the MPACK website ─────────────────────
 // ES Module exports — imported by React components
 
-// Marquee brand logos
-export const brands = [
-    { name: "oxxio", src: "/assets/Brand Logos SVG/oxxio_logo.svg" },
-    { name: "hema", src: "/assets/Brand Logos SVG/hema_logo.svg" },
-    { name: "kfc", src: "/assets/Brand Logos SVG/kfc_logo.svg" },
-    { name: "swapfiets", src: "/assets/Brand Logos SVG/swapfiets_logo.svg" },
-    { name: "anwb", src: "/assets/Brand Logos SVG/anwb_logo.svg" },
-    { name: "netflix", src: "/assets/Brand Logos SVG/netflix_logo.svg" },
-    { name: "ace-tate", src: "/assets/Brand Logos SVG/ace_tate_logo.svg" },
-    { name: "getir", src: "/assets/Brand Logos SVG/getir_logo.svg" }
+// Client & Brand partner logos from public/client logos
+export const clientLogos = [
+    { name: "Ashok Khamkar Masala", src: "/client logos/client 1.avif" },
+    { name: "Eat Easy", src: "/client logos/client 2.avif" },
+    { name: "Tiggle", src: "/client logos/client 3.svg" },
+    { name: "TEN TEN", src: "/client logos/client 4.avif" },
+    { name: "Naturally Yours", src: "/client logos/client 5.avif" },
+    { name: "Dhanashree", src: "/client logos/client 6.png" },
+    { name: "Client Partner 7", src: "/client logos/client 7.avif", invert: true },
+    { name: "Purnamagic", src: "/client logos/client 8.webp" }
 ];
+
+export const brands = clientLogos;
+
 
 // Marquee background colors
 export const colors = [

@@ -1,238 +1,315 @@
-/* ─── Double Marquee Section ─────────────────────────────────────────────── */
-.Double-marquee {
-    background-color: var(--color-azure);
-    padding: 40px 60px;
+/* ─── Upgraded Client Logo Showcase Section Styles ───────────────────────── */
+
+.Double-marquee.client-logos-section {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 60px;
-    min-height: 100vh;
+    gap: clamp(40px, 5vw, 80px);
+    padding: clamp(60px, 8vh, 110px) clamp(24px, 5vw, 72px);
+    background-color: #F5EEDE;
+    font-family: 'Epilogue', -apple-system, BlinkMacSystemFont, sans-serif;
+    z-index: 10;
 }
 
-/* ─── Left Panel ─────────────────────────────────────────────────────────── */
-.marquee-left {
-    flex: 1;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 600px;
+/* Cohesive Faint Dot Grid Texture (Continuing from Complete Packaging & Industries) */
+.Double-marquee.client-logos-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--color-slate, #64748b) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
+    opacity: 0.14;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.marquee-text-container {
+/* Soft Ambient Architectural Light */
+.client-ambient-light {
+    position: absolute;
+    top: 50%;
+    right: 15%;
+    transform: translate(50%, -50%);
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(86, 184, 112, 0.13) 0%, rgba(245, 238, 222, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Floating Wobbly Doodles */
+.client-doodles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ─── Left Panel: Fresh Editorial Typography & Value Pillars ─────────────── */
+.client-showcase-left {
+    flex: 1 1 48%;
+    max-width: 640px;
     position: relative;
     z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     text-align: left;
 }
 
-.marquee-left h2 {
+.client-editorial-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(30, 41, 59, 0.12);
+    border-radius: 6px;
     font-family: 'Epilogue', sans-serif;
-    font-size: 4rem;
-    font-weight: 1000;
-    line-height: 0.95;
-    letter-spacing: -2px;
-    color: var(--color-white);
-    margin-bottom: 120px;
-    margin-right: 50px;
-    cursor: url("/assets/Cursor SVG/cursor-text.svg") 12 12, auto;
+    font-weight: 700;
+    font-size: clamp(0.72rem, 0.82vw, 0.84rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1E293B;
+    margin-bottom: clamp(20px, 3vh, 32px);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
 }
 
-.text-with {
-    font-family: 'Times New Roman', serif;
-    font-style: italic;
-    font-weight: 400;
-    position: relative;
+.client-editorial-bar {
+    width: 4px;
+    height: 14px;
+    border-radius: 2px;
+    background: #56B870;
 }
 
-.marquee-underline {
-    position: absolute;
-    top: 7.5rem;
-    right: 7.8rem;
-    width: 100px;
-    height: auto;
-    color: var(--color-black);
-    z-index: 6;
-    transform: scaleX(0);
-    opacity: 0;
-    transform-origin: left;
-}
-
-/* ─── Blob + Decorative SVGs ─────────────────────────────────────────────── */
-.marquee-blob-container {
-    position: absolute;
-    top: 55%;
-    left: 30%;
-    transform: translate(-50%, -50%);
-    width: 420px;
-    height: 500px;
-    z-index: 1;
-}
-
-.marquee-blob {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.marquee-svg-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
-
-.marquee-svg-item {
-    position: absolute;
-}
-
-.marquee-svg-item:nth-child(1) {
-    bottom: 18%;
-    left: 68%;
-    width: 90px;
-    height: auto;
-    transform: translateX(-50%) scale(0) rotate(-20deg);
-    opacity: 0;
-    z-index: 2;
-}
-
-.marquee-svg-item:nth-child(2) {
-    bottom: 3%;
-    left: 70%;
-    width: 350px;
-    height: auto;
-    color: var(--color-dark);
-    transform: rotate(190deg) scaleX(-1);
-    z-index: 1;
-}
-
-.marquee-svg-item:nth-child(2) path {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-}
-
-/* ─── Right Panel — Scrolling Columns ────────────────────────────────────── */
-.marquee-right {
-    flex: 0 0 auto;
+/* Fresh Editorial Heading (High-contrast Sans + Serif Italic + Inline Pill) */
+.client-editorial-heading {
     display: flex;
-    gap: 5px;
-    height: 850px;
-    position: relative;
-    overflow: hidden;
-    width: 500px;
-    margin-right: 80px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+    margin: 0 0 clamp(20px, 3vh, 28px) 0;
+    z-index: 5;
 }
 
-.marquee-column {
+.client-head-primary,
+.client-head-subprimary {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    letter-spacing: -0.035em;
+    color: #1E293B;
+    line-height: 1.05;
+}
+
+.client-head-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(10px, 1.2vw, 16px);
+    margin: 2px 0;
+}
+
+.client-head-serif {
+    font-family: var(--font-serif), 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(2.6rem, 4.4vw, 4.2rem);
+    color: #2D6A4F;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+}
+
+.client-head-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    background: #E6F4EA;
+    border: 1px solid #56B870;
+    border-radius: 100px;
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.75rem, 0.9vw, 0.92rem);
+    color: #1E293B;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(86, 184, 112, 0.15);
+    transform: rotate(-2.5deg);
+}
+
+.client-editorial-body {
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(0.98rem, 1.12vw, 1.18rem);
+    font-weight: 400;
+    color: #475569;
+    line-height: 1.65;
+    margin-bottom: clamp(32px, 4.5vh, 44px);
+    max-width: 580px;
+}
+
+/* ─── Authentic Value Pillars Grid (Grounded in context.txt) ────────────── */
+.client-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 1.5vw, 18px);
+    width: 100%;
+}
+
+.client-pillar-card {
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(30, 41, 59, 0.09);
+    border-radius: 16px;
+    padding: clamp(14px, 2vh, 20px) clamp(12px, 1.5vw, 18px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.client-pillar-card:hover {
+    background: rgba(255, 255, 255, 0.96);
+    transform: translateY(-4px);
+    border-color: rgba(86, 184, 112, 0.4);
+    box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
+}
+
+.client-pillar-title {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.88rem, 0.98vw, 1rem);
+    color: #1E293B;
+    line-height: 1.25;
+}
+
+.client-pillar-sub {
+    font-family: 'Epilogue', sans-serif;
+    font-size: clamp(0.74rem, 0.8vw, 0.82rem);
+    font-weight: 400;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+/* ─── Right Panel: Dual Scrolling Columns ────────────────────────────────── */
+.client-showcase-right {
+    flex: 1 1 52%;
+    max-width: 630px;
+    height: clamp(540px, 78vh, 700px);
+    display: flex;
+    gap: clamp(16px, 2.2vw, 24px);
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+    /* Soft gradient fade mask at top and bottom */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.client-marquee-col {
     flex: 1;
     position: relative;
-    overflow: hidden;
+    height: 100%;
 }
 
-.marquee-column::before,
-.marquee-column::after {
+.client-marquee-track {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2.2vw, 24px);
+    will-change: transform;
+}
+
+.track-up {
+    animation: clientScrollUp 28s linear infinite;
+}
+
+.track-down {
+    animation: clientScrollDown 28s linear infinite;
+}
+
+/* Pause scroll gently on hover over right panel for interactive exploration */
+.client-showcase-right:hover .client-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes clientScrollUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+@keyframes clientScrollDown {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+}
+
+/* ─── Architectural Bento Logo Cards (Purely Logos, Full Color) ─────────── */
+.client-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(30, 41, 59, 0.08);
+    border-radius: 24px;
+    height: clamp(120px, 15vh, 140px);
+    width: 100%;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -8px rgba(15, 23, 42, 0.05), 0 4px 10px -3px rgba(15, 23, 42, 0.02);
+    transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+/* Shimmer accent on card top-right */
+.client-card::after {
     content: '';
     position: absolute;
-    left: 0;
-    right: 0;
-    height: 100px;
-    z-index: 2;
+    top: -50%;
+    right: -50%;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(86, 184, 112, 0.14) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.45s ease;
     pointer-events: none;
 }
 
-.marquee-column::before {
-    top: 0;
-    background: linear-gradient(to bottom, var(--color-azure) 0%, transparent 100%);
+.client-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: rgba(86, 184, 112, 0.45);
+    box-shadow: 0 20px 38px -10px rgba(15, 23, 42, 0.12), 0 8px 16px -6px rgba(86, 184, 112, 0.09);
 }
 
-.marquee-column::after {
-    bottom: 0;
-    background: linear-gradient(to top, var(--color-azure) 0%, transparent 100%);
+.client-card:hover::after {
+    opacity: 1;
 }
 
-.marquee-track {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-.marquee-column:nth-child(1) .marquee-track {
-    animation: marqueeUp 22s linear infinite;
-}
-
-.marquee-column:nth-child(2) .marquee-track {
-    animation: marqueeDown 22s linear infinite;
-}
-
-@keyframes marqueeUp {
-    0% {
-        transform: translateY(0);
-    }
-
-    100% {
-        transform: translateY(-50%);
-    }
-}
-
-@keyframes marqueeDown {
-    0% {
-        transform: translateY(-50%);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-/* ─── Marquee Items ──────────────────────────────────────────────────────── */
-.marquee-item {
-    width: 90%;
-    height: 240px;
-    border-radius: 10px;
+.client-card-inner {
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* Legacy theme attributes (kept for compatibility) */
-.marquee-item[data-logo-theme="a"] {
-    background-color: #a52a5f;
-}
-
-.marquee-item[data-logo-theme="b"] {
-    background-color: var(--color-darkblue);
-}
-
-.marquee-item[data-logo-theme="c"] {
-    background-color: #ff6b4a;
-}
-
-.marquee-item[data-logo-theme="d"] {
-    background-color: var(--color-green);
-}
-
-.marquee-logo {
     position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.marquee-logo__before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.cover-image {
-    width: 100%;
+/* Full natural color by default, crisp shadow, zooms slightly on hover */
+.client-logo-img {
+    max-width: 82%;
+    max-height: 72px;
+    width: auto;
     height: auto;
     object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.03));
+    opacity: 1;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.client-card:hover .client-logo-img {
+    transform: scale(1.08);
 }

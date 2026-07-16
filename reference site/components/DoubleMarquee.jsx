@@ -1,134 +1,184 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { brands, colors } from '@/lib/data';
-
-// ─── Shuffle helpers ─────────────────────────────────────────────────────────
-function shuffleArray(array) {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-}
-
-function shuffleNoAdjacentSrc(array) {
-    const arr = shuffleArray([...array]);
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i].src === arr[i - 1].src) {
-            for (let j = i + 1; j < arr.length; j++) {
-                if (arr[j].src !== arr[i - 1].src) { [arr[i], arr[j]] = [arr[j], arr[i]]; break; }
-            }
-        }
-    }
-    if (arr[arr.length - 1].src === arr[0].src) {
-        for (let j = 1; j < arr.length - 1; j++) {
-            if (arr[j].src !== arr[0].src && arr[j].src !== arr[arr.length - 2].src) {
-                [arr[arr.length - 1], arr[j]] = [arr[j], arr[arr.length - 1]]; break;
-            }
-        }
-    }
-    return arr;
-}
-
-function assignColorsNoAdjacent(count, colorPool) {
-    const result = [];
-    for (let i = 0; i < count; i++) {
-        const prev = i > 0 ? result[i - 1] : null;
-        const seamColor = i === count - 1 ? result[0] : null;
-        const available = colorPool.filter(c => c !== prev && c !== seamColor);
-        const pool = available.length > 0 ? available : colorPool.filter(c => c !== prev);
-        result.push(pool[Math.floor(Math.random() * pool.length)]);
-    }
-    return result;
-}
-
-function buildMarqueeItems(isMobile) {
-    const tracks = [[], []];
-    for (let t = 0; t < 2; t++) {
-        const shuffledBrands = shuffleNoAdjacentSrc(brands);
-        const assignedColors = assignColorsNoAdjacent(shuffledBrands.length, colors);
-        const items = shuffledBrands.map((brand, i) => ({ brand, color: assignedColors[i] }));
-        tracks[t] = isMobile ? items : [...items, ...items]; // duplicate for seamless loop
-    }
-    return tracks;
-}
+import { clientLogos } from '@/lib/data';
+import '../app/styles/marquee.css';
 
 export default function DoubleMarquee() {
-    const [tracks, setTracks] = useState([[], []]);
+    const sectionRef = useRef(null);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
+        if (typeof window !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            const media = window.matchMedia('(max-width: 768px)');
+            setIsMobile(media.matches);
 
-        const mobile = window.matchMedia('(max-width: 768px)').matches;
-        setIsMobile(mobile);
-        setTracks(buildMarqueeItems(mobile));
+            const handleResize = (e) => setIsMobile(e.matches);
+            media.addEventListener('change', handleResize);
 
-        // Arrow path animation
-        gsap.set('.marquee-left .marquee-svg-item:nth-child(1) path', { strokeDashoffset: 1000 });
-
-        const marqueeTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: '.Double-marquee',
-                start: 'top 70%',
-                toggleActions: 'play none none reverse' // Allow replaying on scroll out/in
-            }
-        });
-
-        marqueeTl
-            .to('.marquee-underline', { scaleX: 1, opacity: 1, duration: 1, ease: 'power2.out' })
-            .to('.marquee-left .marquee-svg-item:nth-child(1) path', { strokeDashoffset: 0, duration: 1.5, ease: 'power2.out' }, '-=0.3');
-
-        return () => {
-            ScrollTrigger.getAll().forEach(t => { if (t.vars.trigger === '.Double-marquee') t.kill(); });
-        };
+            return () => media.removeEventListener('change', handleResize);
+        }
     }, []);
 
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            // Scroll stop / pin at top of viewport exactly matching CompletePackaging & Industries
+            ScrollTrigger.create({
+                trigger: sectionRef.current,
+                start: 'top top',
+                end: '+=650',
+                pin: true,
+                pinSpacing: true,
+                invalidateOnRefresh: true
+            });
+
+            // Editorial layout stagger entrance
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 75%',
+                    end: 'top 30%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            tl.fromTo(
+                [
+                    '.client-editorial-eyebrow',
+                    '.client-editorial-heading',
+                    '.client-editorial-body',
+                    '.client-pillar-card'
+                ],
+                {
+                    y: 32,
+                    opacity: 0
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.65,
+                    stagger: 0.08,
+                    ease: 'power3.out'
+                }
+            );
+
+            // Subtle floating wobbly doodles
+            gsap.utils.toArray('.client-doodles svg').forEach((doodle, i) => {
+                gsap.to(doodle, {
+                    y: i % 2 === 0 ? '+=14' : '-=14',
+                    rotation: () => gsap.utils.random(-8, 8),
+                    duration: () => gsap.utils.random(3.5, 4.8),
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+            });
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    // Split clientLogos into two balanced tracks for dual column / dual row marquee
+    const midIndex = Math.ceil(clientLogos.length / 2);
+    const col1Logos = clientLogos.slice(0, midIndex);
+    const col2Logos = clientLogos.slice(midIndex);
+
+    // Triplicate for infinite seamless scroll
+    const track1 = [...col1Logos, ...col1Logos, ...col1Logos, ...col1Logos];
+    const track2 = [...col2Logos, ...col2Logos, ...col2Logos, ...col2Logos];
+
     return (
-        <>
-            {/* Left: Text + Blob */}
-            <div className="marquee-left">
-                <div className="marquee-text-container">
-                    <h2>premium<br />packaging <span className="text-with">solutions</span></h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="marquee-underline" viewBox="0 0 132 5" fill="none">
-                        <path d="M1 2.08377C44.3458 3.90451 87.9791 5.71442 131 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+        <section ref={sectionRef} className="Double-marquee client-logos-section">
+            {/* Ambient Lighting & Wobbly Doodles */}
+            <div className="client-ambient-light" />
+            <div className="client-doodles">
+                <svg style={{ position: 'absolute', top: '24%', left: '28%', width: '5.5vw' }} viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 20 120 C 30 80, 80 60, 60 110 C 40 160, 110 140, 100 90 C 90 40, 140 20, 145 50" stroke="var(--color-slate, #64748b)" strokeWidth="3" strokeLinecap="round" opacity="0.28" />
+                </svg>
+                <svg style={{ position: 'absolute', bottom: '15%', left: '42%', width: '3.5vw' }} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 5 L56 42 L95 50 L56 58 L50 95 L44 58 L5 50 L44 42 Z" stroke="var(--color-slate, #64748b)" strokeWidth="2.5" strokeLinejoin="round" fill="none" opacity="0.45" />
+                </svg>
+            </div>
+
+            {/* Left: Fresh Editorial Typography & Value Pillars */}
+            <div className="client-showcase-left">
+                <div className="client-editorial-eyebrow">
+                    <span className="client-editorial-bar" />
+                    <span>OUR PARTNER NETWORK</span>
                 </div>
-                <div className="marquee-blob-container">
-                    <img src="/assets/Marquee-blob SVG/marquee-blob.svg" className="marquee-blob" alt="" aria-hidden="true" />
-                    <div className="marquee-svg-container">
-                        {/* Hand sticker removed for industrial credibility */}
-                        <div className="marquee-svg-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 386 127" fill="none">
-                                <path d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118L356.5 105.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M2 123C9 35.9999 84.5 17 124 25.9999C217.764 47.3635 207 115 177.5 123C105.777 142.45 110.737 1.99991 232.5 2C310.5 2.00006 366.5 79 376 118L384 97" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </div>
+
+                <h2 className="client-editorial-heading">
+                    <span className="client-head-primary">Your end-to-end</span>
+                    <div className="client-head-row">
+                        <span className="client-head-serif">packaging partner</span>
+                        <span className="client-head-pill">MOQ Flexible</span>
+                    </div>
+                    <span className="client-head-subprimary">from concept to shelf.</span>
+                </h2>
+
+                <p className="client-editorial-body">
+                    MPACK bridges the gap between ambitious brands and world-class manufacturing. Whether you need custom flexible pouches, rigid boxes, sleeves, or specialized labels, our vetted converter network delivers precision printing and flexible MOQs without the sourcing friction.
+                </p>
+
+                <div className="client-pillars-grid">
+                    <div className="client-pillar-card">
+                        <span className="client-pillar-title">Vetted Converter Network</span>
+                        <span className="client-pillar-sub">Access top-tier print &amp; structural capabilities nationwide.</span>
+                    </div>
+                    <div className="client-pillar-card">
+                        <span className="client-pillar-title">Flexible MOQ &amp; Scaling</span>
+                        <span className="client-pillar-sub">Agile batch runs for D2C brands up to commercial volume rolls.</span>
+                    </div>
+                    <div className="client-pillar-card">
+                        <span className="client-pillar-title">End-to-End Guidance</span>
+                        <span className="client-pillar-sub">Full structural DTP, barrier selection &amp; press-check support.</span>
                     </div>
                 </div>
             </div>
 
-            {/* Right: Two scrolling columns */}
-            <div className="marquee-right">
-                {tracks.map((trackItems, colIndex) => (
-                    <div key={colIndex} className="marquee-column">
-                        <div className="marquee-track">
-                            {trackItems.map((item, i) => (
-                                <div key={i} className="marquee-item" data-brand={item.brand.name} style={{ backgroundColor: item.color }}>
-                                    <div className="marquee-logo">
-                                        <div className="marquee-logo__before"></div>
-                                        <img src={item.brand.src} loading="lazy" alt={item.brand.name} className="cover-image" />
-                                    </div>
+            {/* Right: Dual Architectural Bento Logo Marquee (Purely Logos, Full Color) */}
+            <div className="client-showcase-right">
+                {/* Track 1: Scrolling Up on Desktop / Left on Mobile */}
+                <div className="client-marquee-col client-col-1">
+                    <div className="client-marquee-track track-up">
+                        {track1.map((item, idx) => (
+                            <div key={`t1-${idx}`} className="client-card">
+                                <div className="client-card-inner">
+                                    <img
+                                        src={item.src}
+                                        alt={item.name}
+                                        className="client-logo-img"
+                                        style={item.invert ? { filter: 'invert(0.88)' } : undefined}
+                                        loading="lazy"
+                                    />
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                </div>
+
+                {/* Track 2: Scrolling Down on Desktop / Right on Mobile */}
+                <div className="client-marquee-col client-col-2">
+                    <div className="client-marquee-track track-down">
+                        {track2.map((item, idx) => (
+                            <div key={`t2-${idx}`} className="client-card">
+                                <div className="client-card-inner">
+                                    <img
+                                        src={item.src}
+                                        alt={item.name}
+                                        className="client-logo-img"
+                                        style={item.invert ? { filter: 'invert(0.88)' } : undefined}
+                                        loading="lazy"
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
-        </>
+        </section>
     );
 }

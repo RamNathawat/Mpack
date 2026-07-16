@@ -103,36 +103,12 @@ const CATEGORY_DATA = {
     ],
     canisters: [
         {
-            title: 'FOOD & SUPPLEMENT CANISTERS',
-            desc: 'Hermetically sealed composite structure engineered to preserve freshness, aroma and barrier integrity.',
-            img: '/assets/our-range-section/canisters_mockup_1780303355600.png',
+            title: 'COMPOSITE PAPER CANISTERS',
+            desc: 'Hermetically sealed composite paper canisters engineered to preserve freshness, aroma and barrier integrity.',
+            img: '/boxes,labels,canisters section/Composite paper canisters.png',
             bgClass: 'card-bg-0',
             iconComponent: <CylinderIcon />,
             chips: ['Hermetic Seal', 'Food Grade Lining', '360° Custom Wrap']
-        },
-        {
-            title: 'ORGANIC POWDER & TEA TUBES',
-            desc: 'Precision cylindrical tubes designed for high-end teas, protein powders and organic dry blends.',
-            img: '/assets/our-range-section/canisters_mockup_1780303355600.png',
-            bgClass: 'card-bg-1',
-            iconComponent: <CylinderIcon />,
-            chips: ['Aroma Preserve', 'Recyclable Core', 'Gloss & Matte UV']
-        },
-        {
-            title: 'LUXURY FOIL COMPOSITE CANS',
-            desc: 'Premium metal or foil inner barrier canisters with tactile finishes and foil stamped branding.',
-            img: '/assets/our-range-section/canisters_mockup_1780303355600.png',
-            bgClass: 'card-bg-2',
-            iconComponent: <CylinderIcon />,
-            chips: ['Metal Lid Options', 'Gold Foil Stamping', 'High Shelf Impact']
-        },
-        {
-            title: 'ECO KRAFT PAPER CYLINDERS',
-            desc: '100% biodegradable kraft cylinders crafted with sustainably sourced fibers and natural finishes.',
-            img: '/assets/our-range-section/canisters_mockup_1780303355600.png',
-            bgClass: 'card-bg-3',
-            iconComponent: <CylinderIcon />,
-            chips: ['100% Biodegradable', 'Natural Kraft Core', 'Sustainably Sourced']
         }
     ],
     labels: [
@@ -151,22 +127,6 @@ const CATEGORY_DATA = {
             bgClass: 'card-bg-0',
             iconComponent: <TagIcon />,
             chips: ['360° Contoured', 'Perfect Bottle Fit', 'Gloss & Matte']
-        },
-        {
-            title: 'FOIL & EMBOSSED LABELS',
-            desc: 'Tactile luxury labels with hot foil stamping and embossing that command immediate shelf attention.',
-            img: '/boxes,labels,canisters section/Product-Labels.png',
-            bgClass: 'card-bg-3',
-            iconComponent: <TagIcon />,
-            chips: ['Metallic Gold Foil', 'Tactile Embossing', 'Luxury Branding']
-        },
-        {
-            title: 'CLEAR & WATERPROOF LABELS',
-            desc: 'Ultra-clear and oil-resistant films that create a seamless no-label look on high-end packaging.',
-            img: '/boxes,labels,canisters section/Shrink-sleeve-labels.png',
-            bgClass: 'card-bg-1',
-            iconComponent: <TagIcon />,
-            chips: ['No-Label Look', 'Oil & Moisture Proof', 'Ultra Durable']
         }
     ]
 };
@@ -432,7 +392,18 @@ export default function CompletePackaging() {
 
             <div className="cp-carousel-wrapper">
                 <div className="cp-cards-viewport">
-                    <div className="cp-cards-track" style={{ gridTemplateColumns: `repeat(${activeCards.length}, 1fr)` }}>
+                    <div
+                        className="cp-cards-track"
+                        style={{
+                            gridTemplateColumns:
+                                activeCards.length === 4
+                                    ? 'repeat(4, 1fr)'
+                                    : activeCards.length === 2
+                                    ? 'repeat(2, minmax(310px, 365px))'
+                                    : 'minmax(320px, 380px)',
+                            justifyContent: 'center'
+                        }}
+                    >
                         {activeCards.map((card, index) => (
                             <div
                                 key={index}

@@ -1,43 +1,158 @@
 .industries-worlds-section {
-    padding: 120px 0;
-    background-color: var(--bg-color, #f4f4f0);
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    padding: clamp(20px, 3vh, 40px) 0 clamp(35px, 5.5vh, 65px);
+    background-color: #F5EEDE;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 80px;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(20px, 3vh, 36px);
     position: relative;
     z-index: 1;
 }
 
-.industries-worlds-header {
+/* Cohesive Faint Dot Grid Texture */
+.industries-worlds-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--color-slate, #64748b) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
+    opacity: 0.14;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─── Horizontal Studio Header (Balanced Bespoke Editorial Lockup) ──────── */
+.industries-studio-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1340px;
+    padding: 0 clamp(24px, 4vw, 50px);
+    margin: 0 auto clamp(16px, 2.5vh, 28px) auto;
+    position: relative;
+    z-index: 5;
+}
+
+.studio-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(30, 41, 59, 0.14);
+}
+
+.studio-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 800;
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    color: #0F172A;
+}
+
+.eyebrow-num {
+    color: #D97706;
+}
+
+.eyebrow-dash {
+    color: #94a3b8;
+}
+
+.studio-meta-badges {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.meta-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    background: #FFFFFF;
+    border: 1px solid rgba(30, 41, 59, 0.12);
+    border-radius: 100px;
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 700;
+    font-size: 0.73rem;
+    color: #334155;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+}
+
+.meta-badge-pill.gold-border {
+    border-color: rgba(217, 119, 6, 0.4);
+    color: #B45309;
+    background: rgba(254, 243, 199, 0.35);
+}
+
+.studio-header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: clamp(30px, 4vw, 60px);
+    padding-top: 0;
+}
+
+.studio-header-main.centered {
+    justify-content: center;
     text-align: center;
-    padding: 0 20px;
 }
 
-.industries-worlds-header h2 {
-    font-family: var(--font-primary), sans-serif;
-    font-weight: 900;
-    font-size: 5vw;
-    color: var(--color-dark);
-    text-transform: lowercase;
-    margin-bottom: 20px;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+.studio-title {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 4.4vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    color: #0F172A;
+    margin: 0;
+    white-space: nowrap;
 }
 
-.industries-worlds-header p {
-    font-family: var(--font-secondary), sans-serif;
-    font-size: 1.25rem;
-    color: var(--color-slate);
-    max-width: 650px;
+.studio-title.centered {
+    font-size: clamp(3.2rem, 5vw, 4.8rem);
+    text-align: center;
     margin: 0 auto;
-    line-height: 1.6;
+}
+
+.title-italic-gold {
+    font-family: var(--font-serif), 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    color: #B45309;
+}
+
+@media (max-width: 992px) {
+    .studio-header-top,
+    .studio-header-main {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .studio-title {
+        white-space: normal;
+    }
+    .studio-blurb {
+        max-width: 100%;
+    }
 }
 
 .industries-marquee-container {
     width: 100%;
     overflow: hidden;
     position: relative;
+    z-index: 2;
     /* Fade edges for a smoother entrance/exit */
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -57,9 +172,6 @@
         transform: translateX(0);
     }
     100% {
-        /* Move exactly one set of 5 items. 
-           We have 15 items total, 5 per set. 
-           So translate by -33.3333% to seamlessly loop. */
         transform: translateX(calc(-100% / 3));
     }
 }
@@ -68,31 +180,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 0 40px; /* Space between items */
-    /* Transition for hover effect */
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    cursor: pointer;
+    gap: clamp(12px, 1.6vh, 16px);
+    padding: 0 45px; /* Space between items */
+    cursor: default;
+    width: 340px;
 }
 
-.industry-world-item:hover {
-    /* Extremely subtle hover */
-    transform: scale(1.03) translateY(-4px);
-}
-
-.industry-world-stage {
-    width: 200px;
-    height: 200px;
+.industry-card-image-wrapper {
+    width: 290px;
+    height: 290px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Invisible stage - no background, no border, no shadow */
 }
 
-.industry-world-stage img {
-    /* Removes the solid white background generated by the AI model, seamlessly blending the illustration into the off-white stage */
-    mix-blend-mode: multiply;
+.industry-vector-sticker {
+    width: 280px;
+    height: 280px;
+    object-fit: contain;
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.12));
 }
 
 /* Placeholder styling until AI images are available */
@@ -105,39 +212,103 @@
     text-align: center;
     background-color: transparent;
     color: #888;
-    font-size: 1rem;
-    letter-spacing: 0.02em;
-    padding: 20px;
+    font-size: 0.9rem;
 }
 
-.industry-world-placeholder small {
-    font-size: 0.8rem;
-    color: #999;
+.industry-world-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.industry-name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.industry-index {
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 800;
+    font-size: 0.74rem;
+    color: #B45309;
+    background: rgba(180, 83, 9, 0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.06em;
 }
 
 .industry-world-name {
-    font-size: 1.25rem;
-    font-weight: 500;
-    text-align: center;
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1.38rem;
+    font-weight: 800;
     margin: 0;
-    color: #111;
-    letter-spacing: -0.01em;
+    color: #0F172A;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+}
+
+.industry-world-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    max-width: 310px;
+}
+
+.tag-color-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+
+.industry-world-tag {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Epilogue', sans-serif;
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #1E293B;
+    background: #FFFFFF;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(30, 41, 59, 0.14);
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
 }
 
 @media (max-width: 768px) {
     .industries-worlds-section {
-        padding: 60px 0;
-        gap: 40px;
-    }
-    .industry-world-stage {
-        width: 150px;
-        height: 150px;
+        height: 100vh;
+        min-height: 100vh;
+        max-height: 100vh;
+        padding: clamp(16px, 2.5vh, 30px) 0 clamp(24px, 4vh, 45px);
+        gap: clamp(16px, 2.5vh, 24px);
     }
     .industry-world-item {
-        padding: 0 20px;
-        gap: 16px;
+        width: 250px;
+        padding: 0 25px;
+        gap: 12px;
+    }
+    .industry-card-image-wrapper,
+    .industry-vector-sticker,
+    .industry-world-stage {
+        width: 200px;
+        height: 200px;
     }
     .industry-world-name {
-        font-size: 1.1rem;
+        font-size: 1.15rem;
+    }
+    .industry-world-tag {
+        font-size: 0.65rem;
+        padding: 3px 8px;
     }
 }
