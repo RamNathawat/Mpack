@@ -29,13 +29,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en" className={`${playfair.variable} ${montserrat.variable}`}>
+        <html lang="en" className={`${playfair.variable} ${montserrat.variable}`} suppressHydrationWarning>
             <head>
                 <link rel="icon" href="/assets/hero-section/logo_mpack-removebg.png" type="image/png" />
                 <link rel="shortcut icon" href="/assets/hero-section/logo_mpack-removebg.png" type="image/png" />
                 <link rel="apple-touch-icon" href="/assets/hero-section/logo_mpack-removebg.png" />
             </head>
-            <body>{children}</body>
+            <body suppressHydrationWarning>{children}</body>
         </html>
     );
 }

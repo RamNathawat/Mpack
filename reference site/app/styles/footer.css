@@ -128,17 +128,6 @@
 }
 
 /* Address & Headquarters */
-.footer-address-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    transition: opacity 0.25s ease;
-}
-
-.footer-address-link:hover {
-    opacity: 0.75;
-}
-
 .footer-address {
     font-family: var(--font-secondary), "Epilogue", sans-serif;
     font-style: normal;
@@ -160,41 +149,20 @@
     letter-spacing: -0.02em;
 }
 
-.footer-map-link {
-    color: #A5F3FC;
-    text-decoration: none;
-    font-size: clamp(0.82rem, 0.9vw, 0.92rem);
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    width: fit-content;
-    padding-bottom: 2px;
-    display: inline-flex;
-    align-items: center;
-    border-bottom: 2px solid rgba(165, 243, 252, 0.45);
-    transition: all 0.25s ease;
-}
-
-.footer-map-link:hover {
-    color: #FFFFFF;
-    border-color: #FFFFFF;
-}
-
-.footer-map-link span {
-    cursor: url("/assets/Cursor SVG/cursor-pointer.svg") 12 12, pointer;
-}
 
 /* Direct Contact */
 .footer-email {
     font-family: var(--font-logo), "Epilogue", sans-serif;
-    font-size: clamp(1.7rem, 2.5vw, 2.9rem);
+    font-size: clamp(1.4rem, 2.2vw, 2.7rem);
     font-weight: 900;
     color: #FFFFFF;
     text-decoration: none;
     letter-spacing: -0.04em;
     line-height: 1.1;
     display: block;
-    word-break: break-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: color 0.25s ease;
 }
 

@@ -35,6 +35,7 @@ const Hero = () => {
 
     // Grid State tracking for 3D hover
     const isGridState = useRef(false);
+    const hasSnappedToGrid = useRef(false);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -87,12 +88,24 @@ const Hero = () => {
                     end: "bottom bottom",
                     scrub: 1.2,
                     pin: pinnedRef.current,
+                    snap: {
+                        snapTo: (progress, self) => {
+                            if (progress >= 0.95 || hasSnappedToGrid.current) {
+                                return progress;
+                            }
+                            return progress > 0.5 ? 1 : 0;
+                        },
+                        duration: { min: 0.3, max: 0.8 },
+                        delay: 0.1,
+                        ease: "power2.inOut"
+                    },
                     onUpdate: (self) => {
                         // Enable 3D hover only when grid is mostly formed
                         isGridState.current = self.progress > 0.8;
                         
-                        // No process indicator to update anymore
-                        const p = self.progress;
+                        if (self.progress < 0.6) {
+                            hasSnappedToGrid.current = false;
+                        }
                     }
                 }
             });
@@ -192,7 +205,81 @@ const Hero = () => {
 
         }, wrapperRef);
 
-        return () => ctx.revert();
+        const checkScrollGesture = () => {
+            const st = ScrollTrigger.getAll().find(s => s.trigger === wrapperRef.current);
+            if (!st) return;
+
+            const currentY = window.scrollY;
+            if (currentY < st.end - 600) {
+                hasSnappedToGrid.current = false;
+            }
+
+            const lenis = window.__lenis;
+            if (lenis && !hasSnappedToGrid.current) {
+                // If lenis has decelerated and come to a halt right at st.end, unlock so next scroll moves on smoothly!
+                const isNearEnd = currentY >= st.end - 15;
+                const isSettled = Math.abs(lenis.velocity || 0) < 0.05 && Math.abs(lenis.targetScroll - lenis.actualScroll) < 3;
+                if (isNearEnd && isSettled) {
+                    hasSnappedToGrid.current = true;
+                } else if (lenis.targetScroll > st.end) {
+                    lenis.targetScroll = st.end;
+                    if (lenis.animatedScroll > st.end) {
+                        lenis.animatedScroll = st.end;
+                    }
+                }
+            } else if (!lenis && !hasSnappedToGrid.current) {
+                if (currentY >= st.end - 5) {
+                    hasSnappedToGrid.current = true;
+                }
+            }
+        };
+
+        const handleWheelClamp = (e) => {
+            const st = ScrollTrigger.getAll().find(s => s.trigger === wrapperRef.current);
+            if (!st) return;
+
+            const currentY = window.scrollY;
+            const lenis = window.__lenis;
+
+            if (currentY < st.end - 600) {
+                hasSnappedToGrid.current = false;
+            }
+
+            // If sitting right at our primary section and velocity is settled, unlock on any new downward scroll
+            if (!hasSnappedToGrid.current && currentY >= st.end - 20 && Math.abs(lenis?.velocity || 0) < 0.05) {
+                hasSnappedToGrid.current = true;
+                return;
+            }
+
+            if (!hasSnappedToGrid.current && e.deltaY > 0) {
+                const projected = lenis ? lenis.targetScroll + e.deltaY : currentY + e.deltaY;
+                if (projected >= st.end) {
+                    if (lenis) {
+                        lenis.targetScroll = st.end;
+                    } else if (currentY >= st.end - 2) {
+                        if (e.preventDefault) e.preventDefault();
+                        window.scrollTo({ top: st.end });
+                    }
+                }
+            }
+        };
+
+        const handleTouchMove = () => {
+            checkScrollGesture();
+        };
+
+        window.addEventListener('scroll', checkScrollGesture, { passive: true });
+        window.addEventListener('wheel', handleWheelClamp, { passive: false });
+        window.addEventListener('touchmove', handleTouchMove, { passive: true });
+        gsap.ticker.add(checkScrollGesture);
+
+        return () => {
+            window.removeEventListener('scroll', checkScrollGesture);
+            window.removeEventListener('wheel', handleWheelClamp);
+            window.removeEventListener('touchmove', handleTouchMove);
+            gsap.ticker.remove(checkScrollGesture);
+            ctx.revert();
+        };
     }, []);
 
     // Cursor Parallax Logic

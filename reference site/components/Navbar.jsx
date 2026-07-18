@@ -26,6 +26,7 @@ export default function Navbar() {
     useEffect(() => {
         const navbar = document.querySelector('.navbar');
         const contentSection = document.querySelector('.content-section');
+        const mainHeader = document.querySelector('.main-header');
         const footerEl = document.querySelector('.main-footer');
 
         // ② Start white (on-dark) — video is dark background
@@ -38,8 +39,9 @@ export default function Navbar() {
             const currentScrollY = window.scrollY;
             // Removed auto-hide logic to keep Navbar constant
 
-            // "Why?" text visibility logic
+            // "Why MPACK?" text and question mark visibility logic
             const logoWhy = document.querySelector('.logo-why-text');
+            const logoWhyQuestion = document.querySelector('.logo-why-question');
             const hwSection = document.querySelector('.horizontal-words-section');
             if (logoWhy && hwSection) {
                 const hwTop = hwSection.getBoundingClientRect().top + currentScrollY;
@@ -47,14 +49,17 @@ export default function Navbar() {
                 const midScreen = currentScrollY + window.innerHeight / 2;
                 if (midScreen >= hwTop && midScreen <= hwBottom) {
                     logoWhy.classList.add('visible');
+                    if (logoWhyQuestion) logoWhyQuestion.classList.add('visible');
                 } else {
                     logoWhy.classList.remove('visible');
+                    if (logoWhyQuestion) logoWhyQuestion.classList.remove('visible');
                 }
             }
             lastScrollY = currentScrollY;
 
             const scrollPos = currentScrollY + navbar.offsetHeight / 2;
-            const contentTop = contentSection.getBoundingClientRect().top + currentScrollY;
+            // Hero section is pinned for ~2500px. Phase 1 (PREMIUM PACKAGING Solutions) ends and Phase 2 (our Primary range) starts around scrollY = 450px.
+            const contentTop = 450;
 
             if (currentScrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -84,6 +89,12 @@ export default function Navbar() {
                 navbar.classList.add('on-light'); navbar.classList.remove('on-dark');
             } else {
                 navbar.classList.add('on-dark'); navbar.classList.remove('on-light');
+            }
+
+            if (scrollPos < contentTop) {
+                navbar.classList.add('on-landing');
+            } else {
+                navbar.classList.remove('on-landing');
             }
 
             // Hide MPACK logo when over Printing & Pouches section OR Complete Packaging section
@@ -350,7 +361,7 @@ export default function Navbar() {
     return (
         <>
             <div className="nav-overlay"></div>
-            <nav className="navbar">
+            <nav className="navbar on-landing">
                 <div className="nav-left"></div>
                 <div className="nav-center" style={{ position: 'absolute', left: 'calc(50% - 15px)', cursor: "url('/assets/Cursor SVG/cursor-pointer.svg') 12 12, pointer" }}>
                     <img src="/assets/hero-section/logo_mpack-removebg.png" alt="MPACK Logo" className="logo-mpack-icon" />
@@ -382,7 +393,8 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-            <div className="logo-why-text">why?</div>
+            <div className="logo-why-text">why</div>
+            <div className="logo-why-question">?</div>
         </>
     );
 }

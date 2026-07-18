@@ -33,7 +33,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 6vh 5vw 4vh 5vw;
+    padding: 5vh 1.5vw 3vh 1.5vw;
     position: relative;
     background-color: #f5eedf;
     z-index: 10;
@@ -67,26 +67,31 @@
 .stacked-cards-area {
     position: relative;
     width: 96vw;
-    max-width: 1540px;
+    max-width: 1420px;
     height: 62vh;
     margin: 0 auto;
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    gap: clamp(0.8rem, 1.4vw, 1.6rem);
     z-index: 10;
 }
 
 /* ─── Individual Stacked Card ─── */
 .stack-card {
-    position: absolute;
-    width: clamp(390px, 31vw, 470px);
-    height: clamp(380px, 55vh, 470px);
+    position: relative;
+    flex: 1;
+    max-width: 440px;
+    min-width: 330px;
+    height: auto;
+    min-height: clamp(380px, 55vh, 470px);
     border-radius: 14px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    padding: clamp(4.4rem, 5.5vh, 4.8rem) clamp(190px, 15vw, 215px) clamp(1.4rem, 2vh, 1.8rem) clamp(1.4rem, 1.6vw, 1.6rem);
+    padding: clamp(3.8rem, 4.8vh, 4.2rem) clamp(150px, 11.5vw, 175px) clamp(1.2rem, 1.8vh, 1.5rem) clamp(1.1rem, 1.3vw, 1.3rem);
     cursor: pointer;
     overflow: visible;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
@@ -116,23 +121,13 @@
     color: #000000;
 }
 
-/* ─── Fanned-out Stack Positions with Charming Overlap ─── */
-.stack-card.card-digital {
-    left: calc(50% - clamp(500px, 40vw, 580px));
-    top: 55px;
-    z-index: 1;
-}
-
-.stack-card.card-flexo {
-    left: calc(50% - clamp(210px, 16vw, 235px));
-    top: 15px;
-    z-index: 3;
-}
-
+/* ─── Side-by-Side Clean Positions (No Overlap) ─── */
+.stack-card.card-digital,
+.stack-card.card-flexo,
 .stack-card.card-roto {
-    left: calc(50% + clamp(80px, 7.5vw, 110px));
-    top: 45px;
-    z-index: 2;
+    left: auto !important;
+    top: auto !important;
+    z-index: 1;
 }
 
 /* ─── Sticker (Protrudes Above Card) ─── */
@@ -147,24 +142,24 @@
 /* Per-card sticker position + rotation */
 /* Positioned right near the dashed boundary where the color shift is */
 .stack-card.card-digital .stack-sticker {
-    width: 125px;
-    top: -64px;
-    left: clamp(130px, 12vw, 150px);
-    transform: rotate(5deg);
+    width: 120px;
+    top: -60px;
+    left: clamp(105px, 9vw, 128px);
+    transform: rotate(3deg);
 }
 
 .stack-card.card-flexo .stack-sticker {
-    width: 115px;
-    top: -60px;
-    left: clamp(135px, 12.5vw, 155px);
-    transform: rotate(-3deg);
+    width: 118px;
+    top: -58px;
+    left: clamp(108px, 9.2vw, 130px);
+    transform: rotate(-2deg);
 }
 
 .stack-card.card-roto .stack-sticker {
-    width: 130px;
-    top: -64px;
-    left: clamp(130px, 12vw, 150px);
-    transform: rotate(4deg);
+    width: 120px;
+    top: -60px;
+    left: clamp(105px, 9vw, 128px);
+    transform: rotate(3deg);
 }
 
 .stack-sticker-svg {
@@ -259,10 +254,10 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: clamp(180px, 14vw, 210px);
+    width: clamp(145px, 11vw, 170px);
     height: 100%;
     border-radius: 0 14px 14px 0;
-    padding: clamp(2.3rem, 3.2vh, 2.7rem) clamp(1rem, 1.1vw, 1.2rem) clamp(1rem, 1.5vh, 1.2rem);
+    padding: clamp(2.2rem, 3.2vh, 2.6rem) clamp(0.75rem, 0.9vw, 0.95rem) clamp(0.8rem, 1.2vh, 1rem);
     opacity: 1;
     display: flex;
     flex-direction: column;
@@ -707,6 +702,7 @@
     transform-style: preserve-3d;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
     will-change: transform, opacity;
+    pointer-events: none; /* Let clicks pass through transparent bounding box */
 }
 
 .apple-card-inner {
@@ -722,6 +718,7 @@
     box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(232, 223, 208, 0.8);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: auto; /* Re-enable clicks on the visual card */
 }
 
 .apple-pouch-card.is-active .apple-card-inner {

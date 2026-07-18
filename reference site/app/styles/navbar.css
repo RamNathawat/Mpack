@@ -36,10 +36,10 @@
 /* "why?" text under MPACK logo */
 .logo-why-text {
     position: fixed;
-    top: 0px; /* Shifted down to prevent cutoff and perfectly match the visual overlap */
-    left: calc(50% - 98px); /* Shifted right to overlap the 'M' closely */
-    font-family: 'Courgette', 'Yellowtail', cursive; /* Script font used in hero */
-    font-size: 1.9rem; /* Restored original size */
+    top: 3px;
+    left: calc(50% - 94px);
+    font-family: 'Courgette', 'Yellowtail', cursive;
+    font-size: 2.2rem;
     font-weight: 700;
     color: var(--color-maroon, #B1536E);
     /* Creates a solid beige 'sticker' halo around the text to protect it from dark images, plus a soft shadow to lift it */
@@ -54,18 +54,52 @@
         -3px  0px 0 #f5eedf,
          0px  6px 12px rgba(0,0,0,0.15);
     transform-origin: right bottom;
-    transform: translateX(-100%) rotate(-15deg);
+    transform: translateX(-100%) rotate(-12deg);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
     pointer-events: none;
-    z-index: 1005; /* Increased to render in front of the navbar (which is z-index 1000) */
+    z-index: 1005;
 }
 
 .logo-why-text.visible {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-100%) rotate(-15deg) scale(1);
+    transform: translateX(-110%) rotate(-12deg) scale(1);
+}
+
+/* "?" question mark after MPACK logo */
+.logo-why-question {
+    position: fixed;
+    top: 24px;
+    left: calc(50% + 82px); /* Placed right next to the K on the same line as MPACK */
+    font-family: 'Courgette', 'Yellowtail', cursive;
+    font-size: 2.5rem; /* Perfectly matches the visual height of the bold 3rem MPACK letters */
+    font-weight: 700;
+    color: var(--color-maroon, #B1536E);
+    text-shadow: 
+        -2px -2px 0 #f5eedf,  
+         2px -2px 0 #f5eedf,
+        -2px  2px 0 #f5eedf,
+         2px  2px 0 #f5eedf,
+         0px  3px 0 #f5eedf,
+         0px -3px 0 #f5eedf,
+         3px  0px 0 #f5eedf,
+        -3px  0px 0 #f5eedf,
+         0px  6px 12px rgba(0,0,0,0.15);
+    transform-origin: left bottom;
+    transform: rotate(-8deg);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    z-index: 1005;
+}
+
+.logo-why-question.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: rotate(-8deg) scale(1);
 }
 
 .navbar {
@@ -156,6 +190,10 @@ body.ecosystem-open .navbar {
     letter-spacing: -1px;
     line-height: 1;
     transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.navbar.on-landing .logo-mpack-text {
+    color: #284D9E; /* MPACK Blue */
 }
 
 .logo-mpack path,

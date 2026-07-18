@@ -7,111 +7,35 @@ import '../app/styles/printing-pouches.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Clean, precision Line Art style stickers
+// Ultra-Sincere, Photorealistic Industrial Engineering Artwork (Clean Reference Circular Framing)
 const DigitalSticker = () => (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', overflow: 'visible', filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.14))' }}>
-        {/* Clean geometric die-cut backing with bold outline */}
-        <rect x="12" y="10" width="76" height="80" rx="14" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" transform="rotate(-3 50 50)" />
-        
-        {/* Artistic crosshair (+) top right */}
-        <path d="M 82 12 L 82 24 M 76 18 L 88 18" stroke="#1C1917" strokeWidth="3" strokeLinecap="round" />
-
-        {/* Subtle purple shadow glow */}
-        <rect x="25" y="35" width="50" height="35" rx="6" fill="#A855F7" opacity="0.15" />
-
-        {/* Top Feeder / Open Lid */}
-        <path d="M 32 40 L 36 24 L 64 24 L 68 40 Z" fill="#D8B4FE" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
-        <path d="M 37 36 L 40 28 L 60 28 L 63 36 Z" fill="#A855F7" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
-
-        {/* Main Printer Body Box */}
-        <rect x="20" y="40" width="60" height="26" rx="5" fill="#C084FC" stroke="#1C1917" strokeWidth="2.5" />
-        <circle cx="73" cy="48" r="2" fill="#FACC15" stroke="#1C1917" strokeWidth="1" />
-        <rect x="28" y="52" width="44" height="6" rx="2" fill="#3B0764" stroke="#1C1917" strokeWidth="2" />
-
-        {/* Printed Paper Sheet emerging from slot */}
-        <path d="M 32 55 L 68 55 L 75 86 L 25 86 Z" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
-
-        {/* 4 Colorful Vibrant Print Squares (CMYK grid) */}
-        <path d="M 34 60 L 48 60 L 47 70 L 32 70 Z" fill="#FACC15" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
-        <path d="M 52 60 L 66 60 L 68 70 L 53 70 Z" fill="#FB923C" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
-        <path d="M 31 73 L 47 73 L 45 83 L 28 83 Z" fill="#22C55E" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
-        <path d="M 53 73 L 69 73 L 72 83 L 55 83 Z" fill="#EC4899" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
-    </svg>
+    <div style={{ filter: 'drop-shadow(0px 14px 28px rgba(0,0,0,0.25))', width: '100%' }}>
+        <img 
+            src="/assets/printing-technologies/digital_icon.png" 
+            alt="Digital Printing Press" 
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '50%', clipPath: 'circle(49.5% at 50% 50%)' }} 
+        />
+    </div>
 );
 
 const FlexoSticker = () => (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', overflow: 'visible', filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.14))' }}>
-        {/* Clean geometric die-cut backing with bold outline matching Digital sticker */}
-        <rect x="12" y="10" width="76" height="80" rx="14" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" transform="rotate(3 50 50)" />
-        
-        {/* Artistic crosshair (+) top right */}
-        <path d="M 82 12 L 82 24 M 76 18 L 88 18" stroke="#1C1917" strokeWidth="3" strokeLinecap="round" />
-
-        {/* Angled subtle green shadow glow */}
-        <polygon points="20,40 75,30 80,65 25,75" rx="6" fill="#22C55E" opacity="0.15" />
-
-        {/* Base Bar slanting up to right in isometric view */}
-        <polygon points="16,66 78,54 82,58 20,72" fill="#1E293B" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
-
-        {/* Right Side Bracket (Further back, smaller and higher) */}
-        <path d="M 68 22 C 68 17, 76 15, 76 20 L 76 52 C 76 57, 68 59, 68 54 Z" fill="#334155" stroke="#1C1917" strokeWidth="2.5" />
-
-        {/* Dual Angled Rollers (Top White, Bottom Green with Orange Core) */}
-        <path d="M 28 30 L 68 22 C 71 22, 71 32, 68 32 L 28 40 C 25 40, 25 30, 28 30 Z" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
-        <path d="M 28 42 L 68 34 C 71 34, 71 46, 68 46 L 28 54 C 25 54, 25 42, 28 42 Z" fill="#22C55E" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
-        <ellipse cx="28" cy="48" rx="2.5" ry="5" fill="#F97316" stroke="#1C1917" strokeWidth="1.5" transform="rotate(-10 28 48)" />
-
-        {/* Left Side Bracket (Prominent front side pillar) */}
-        <path d="M 18 30 C 18 24, 28 22, 28 28 L 28 64 C 28 70, 18 72, 18 66 Z" fill="#334155" stroke="#1C1917" strokeWidth="2.5" />
-        <ellipse cx="23" cy="34" rx="3.5" ry="4.5" fill="#FACC15" stroke="#1C1917" strokeWidth="1.5" transform="rotate(-10 23 34)" />
-
-        {/* Flowing Printed Paper Sheet cascading forward at isometric angle */}
-        <polygon points="30,48 66,40 78,82 36,88" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" strokeLinejoin="round" />
-
-        {/* Printed Green Leaf & Orange Pattern Blocks angled along sheet */}
-        <path d="M 40 58 C 40 54, 50 52, 52 57 C 54 62, 42 64, 40 58 Z" fill="#22C55E" stroke="#1C1917" strokeWidth="1.5" />
-        <path d="M 56 55 C 56 51, 66 49, 68 54 C 70 59, 58 61, 56 55 Z" fill="#16A34A" stroke="#1C1917" strokeWidth="1.5" />
-        <polygon points="38,76 52,73 54,83 40,86" fill="#F97316" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
-        <polygon points="58,72 72,69 74,79 60,82" fill="#FACC15" stroke="#1C1917" strokeWidth="1.5" strokeLinejoin="round" />
-    </svg>
+    <div style={{ filter: 'drop-shadow(0px 14px 28px rgba(0,0,0,0.25))', width: '100%' }}>
+        <img 
+            src="/assets/printing-technologies/flexo_icon.png" 
+            alt="Flexographic Printing Press" 
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '50%', clipPath: 'circle(49.5% at 50% 50%)' }} 
+        />
+    </div>
 );
 
 const RotoSticker = () => (
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', overflow: 'visible', filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.14))' }}>
-        {/* Clean geometric die-cut backing matching Digital & Flexo sticker style */}
-        <rect x="12" y="10" width="76" height="80" rx="14" fill="#FFFFFF" stroke="#1C1917" strokeWidth="2.5" transform="rotate(-3 50 50)" />
-        
-        {/* Artistic crosshair (+) top right */}
-        <path d="M 82 12 L 82 24 M 76 18 L 88 18" stroke="#1C1917" strokeWidth="3" strokeLinecap="round" />
-
-        {/* Subtle orange shadow glow angled under cylinder */}
-        <polygon points="20,55 75,40 80,65 25,80" rx="8" fill="#F97316" opacity="0.15" />
-
-        {/* Angled Horizontal Rotogravure Cylinder (Rotated -15 deg to match isometric reference) */}
-        <g transform="rotate(-15 50 52)">
-            {/* Back / Right End Cap */}
-            <ellipse cx="76" cy="52" rx="7" ry="18" fill="#1E293B" stroke="#1C1917" strokeWidth="2.5" />
-            
-            {/* Vibrant Orange Engraved Cylinder Main Body */}
-            <rect x="28" y="34" width="48" height="36" fill="#F97316" stroke="#1C1917" strokeWidth="2.5" />
-            
-            {/* Dark Slate Collar Bands near left and right ends */}
-            <rect x="68" y="34" width="5" height="36" fill="#1E293B" stroke="#1C1917" strokeWidth="2.5" />
-            <rect x="33" y="34" width="5" height="36" fill="#1E293B" stroke="#1C1917" strokeWidth="2.5" />
-            
-            {/* Engraved Metallic White Highlight Sweep across orange cylinder surface */}
-            <path d="M 40 40 L 64 40 C 66 40, 66 46, 64 46 L 40 46 C 38 46, 38 40, 40 40 Z" fill="#FFFFFF" opacity="0.85" />
-            <path d="M 46 50 L 62 50 C 63 50, 63 54, 62 54 L 46 54 C 45 54, 45 50, 46 50 Z" fill="#FFFFFF" opacity="0.6" />
-
-            {/* Front / Left Circular End Cap facing viewer */}
-            <ellipse cx="28" cy="52" rx="8" ry="18" fill="#1E293B" stroke="#1C1917" strokeWidth="2.5" />
-            <ellipse cx="26" cy="52" rx="5.5" ry="13" fill="#334155" stroke="#1C1917" strokeWidth="1.5" />
-            
-            {/* Orange Center Axle Hub & Core */}
-            <ellipse cx="25" cy="52" rx="3" ry="7" fill="#F97316" stroke="#1C1917" strokeWidth="1.5" />
-            <circle cx="25" cy="52" r="1.5" fill="#0F172A" />
-        </g>
-    </svg>
+    <div style={{ filter: 'drop-shadow(0px 14px 28px rgba(0,0,0,0.25))', width: '100%' }}>
+        <img 
+            src="/assets/printing-technologies/roto_icon.png" 
+            alt="Rotogravure Printing Cylinder" 
+            style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '50%', clipPath: 'circle(49.5% at 50% 50%)' }} 
+        />
+    </div>
 );
 
 const UpgradedHeatVector = ({ className }) => (
@@ -161,13 +85,13 @@ const IceVector = ({ className }) => (
 
 const POUCHES = [
     { file: '3_side_seal-removebg-preview.png', name: '3 Side Seal', subtitle: 'Spices, powders & dry ingredients.' },
-    { file: '5_panel_pouch-removebg-preview.png', name: '5 Panel Pouch', subtitle: 'Box-like structure with 5 printable panels.' },
-    { file: 'Center_Seal_Side_gusset_pouch-removebg-preview.png', name: 'Center Seal Side Gusset', subtitle: 'Expandable sides for bulk volume & coffee.' },
     { file: 'Center_seal-removebg-preview.png', name: 'Center Seal', subtitle: 'Balanced sealing for maximum protection.' },
-    { file: 'Gemini_Generated_Image_s7b4xls7b4xls7b4-removebg-preview.png', name: 'Flat Bottom Pouch', subtitle: 'Extra stability. Maximum shelf impact.', isFreezable: true, customStyle: { transform: 'scale(1.75)' } },
-    { file: 'Retort_pouch_-_add_heat_vector_to_denote_that_you_can_heat_it-removebg-preview.png', name: 'Retort Pouch', subtitle: 'Heat resistant up to 130°C. Ready-to-cook.', isRetort: true },
+    { file: 'Stand_Up_Pouch-removebg-preview.png', name: 'Stand Up Pouch', subtitle: 'Perfect for liquids, powders & everyday essentials.' },
+    { file: 'Center_Seal_Side_gusset_pouch-removebg-preview.png', name: 'Center Seal Side Gusset', subtitle: 'Expandable sides for bulk volume & coffee.' },
+    { file: '5_panel_pouch-removebg-preview.png', name: '5 Panel Pouch', subtitle: 'Box-like structure with 5 printable panels.' },
     { file: 'Spout_pouch-removebg-preview.png', name: 'Spout Pouch', subtitle: 'Easy pour. Mess-free liquid dispensing.' },
-    { file: 'Stand_Up_Pouch-removebg-preview.png', name: 'Stand Up Pouch', subtitle: 'Perfect for liquids, powders & everyday essentials.' }
+    { file: 'Gemini_Generated_Image_s7b4xls7b4xls7b4-removebg-preview.png', name: 'Freezable Pouch', subtitle: 'Extra stability. Maximum shelf impact.', isFreezable: true, customStyle: { transform: 'scale(1.75)' } },
+    { file: 'Retort_pouch_-_add_heat_vector_to_denote_that_you_can_heat_it-removebg-preview.png', name: 'Retort Pouch', subtitle: 'Heat resistant up to 130°C. Ready-to-cook.', isRetort: true }
 ];
 
 const PRINTING_TYPES = [
@@ -176,7 +100,7 @@ const PRINTING_TYPES = [
         title: 'digital',
         cardClass: 'card-digital',
         StickerComponent: DigitalSticker,
-        rotation: -6,
+        rotation: 0,
         zIndex: 1,
         subtitle: 'Best for Short Runs & Quick Turnaround',
         // Visible by default on card face (like Truus)
@@ -194,7 +118,7 @@ const PRINTING_TYPES = [
         title: 'flexographic',
         cardClass: 'card-flexo',
         StickerComponent: FlexoSticker,
-        rotation: 5,
+        rotation: 0,
         zIndex: 3,
         subtitle: 'Best Balance of Cost, Quality & Versatility',
         bullets: ['Good Print Quality', 'Works on Various Materials', 'Lower Setup Costs', 'Moderate MOQ', 'Consistent Output', 'Wide Substrate Range'],
@@ -210,7 +134,7 @@ const PRINTING_TYPES = [
         title: 'rotogravure',
         cardClass: 'card-roto',
         StickerComponent: RotoSticker,
-        rotation: -4,
+        rotation: 0,
         zIndex: 2,
         subtitle: 'Best for High Volumes & Premium Quality',
         bullets: ['Superior Print Quality', 'Ideal for High Volume', 'Consistent & Long-lasting', 'Rich Color Depth', 'Fine Detail Rendering', 'Lowest Unit Cost'],
@@ -303,10 +227,21 @@ export default function PrintingAndPouches() {
     const sectionRef = useRef(null);
     const containerRef = useRef(null);
     const cardRefs = useRef([]);
-    const [activePouchIdx, setActivePouchIdx] = useState(4); // Default to Flat Bottom Pouch
+    const [activePouchIdx, setActivePouchIdx] = useState(0); // Default to 3 Side Seal
     const isHoverLockRef = useRef(false);
+    const isAutoPlayingRef = useRef(true);
     const lastMousePosRef = useRef({ x: 0, y: 0 });
     const dragStartXRef = useRef(null);
+
+    // Auto-rotating marquee: moves left every 1.5 seconds and loops after 8th product (index 7 -> 0)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (isAutoPlayingRef.current && dragStartXRef.current === null && !isHoverLockRef.current) {
+                setActivePouchIdx(prev => (prev + 1) % POUCHES.length);
+            }
+        }, 1500);
+        return () => clearInterval(interval);
+    }, []);
 
     const handleCardMouseMove = (e) => {
         const card = e.currentTarget;
@@ -360,33 +295,24 @@ export default function PrintingAndPouches() {
             if (!card) return;
             if (i === index) {
                 gsap.set(card, { zIndex: 30 });
-                let hoverX = 0;
-                if (index === 0) hoverX = -12;
-                if (index === 2) hoverX = 12;
-
                 gsap.to(card, {
                     rotation: 0,
-                    scale: 1.04,
-                    x: hoverX,
+                    scale: 1.03,
+                    x: 0,
                     y: -14,
-                    duration: 0.85,
+                    duration: 0.8,
                     ease: 'elastic.out(1, 0.55)',
                     overwrite: true
                 });
             } else {
                 gsap.set(card, { zIndex: PRINTING_TYPES[i].zIndex });
-                let awayX = 0;
-                if (index === 0) awayX = i === 1 ? 14 : 22;
-                if (index === 1) awayX = i === 0 ? -14 : 14;
-                if (index === 2) awayX = i === 1 ? -14 : -22;
-
                 gsap.to(card, {
-                    rotation: PRINTING_TYPES[i].rotation * 1.2,
+                    rotation: 0,
                     scale: 0.98,
-                    x: awayX,
-                    y: 3,
-                    duration: 0.9,
-                    ease: 'elastic.out(1, 0.5)',
+                    x: 0,
+                    y: 2,
+                    duration: 0.8,
+                    ease: 'elastic.out(1, 0.55)',
                     overwrite: true
                 });
             }
@@ -399,12 +325,12 @@ export default function PrintingAndPouches() {
             if (!card) return;
             gsap.set(card, { zIndex: PRINTING_TYPES[i].zIndex });
             gsap.to(card, {
-                rotation: PRINTING_TYPES[i].rotation,
+                rotation: 0,
                 scale: 1,
                 x: 0,
                 y: 0,
-                duration: 1.0,
-                ease: 'elastic.out(1, 0.5)',
+                duration: 0.9,
+                ease: 'elastic.out(1, 0.55)',
                 overwrite: true
             });
         });
@@ -525,15 +451,15 @@ export default function PrintingAndPouches() {
                     <div className="printing-intro-slide">
 
                         {/* Background Doodles */}
-                        <div className="printing-doodles" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 30 }}>
+                        <div className="printing-doodles" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 15 }}>
                             {/* Starburst top right */}
                             <svg style={{ position: 'absolute', top: '20%', right: '12%', width: '6vw' }} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M50 5 L56 42 L95 50 L56 58 L50 95 L44 58 L5 50 L44 42 Z" stroke="var(--color-slate)" strokeWidth="3" strokeLinejoin="round" fill="none" />
                             </svg>
-                            {/* Wobbly Arrow pointing toward the cards */}
-                            <svg style={{ position: 'absolute', top: '20%', left: '8%', width: '8vw', transform: 'rotate(5deg)' }} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M 40 20 C 70 80, 100 120, 150 160" stroke="var(--color-slate)" strokeWidth="4" strokeLinecap="round" />
-                                <path d="M 110 165 L 155 165 L 140 120" stroke="var(--color-slate)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                            {/* Wobbly Arrow pointing toward the cards (adjusted for zero overlap with digital sticker) */}
+                            <svg style={{ position: 'absolute', top: '14%', left: '5%', width: '5.5vw', transform: 'rotate(-8deg)' }} viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M 20 20 C 45 60, 70 95, 110 120" stroke="var(--color-slate)" strokeWidth="4" strokeLinecap="round" />
+                                <path d="M 75 125 L 115 122 L 105 85" stroke="var(--color-slate)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         </div>
 
@@ -685,6 +611,7 @@ export default function PrintingAndPouches() {
                                 className="apple-carousel-container"
                                 onPointerDown={(e) => {
                                     dragStartXRef.current = e.clientX;
+                                    isAutoPlayingRef.current = false;
                                 }}
                                 onPointerMove={(e) => {
                                     if (dragStartXRef.current !== null) {
@@ -692,9 +619,9 @@ export default function PrintingAndPouches() {
                                         if (Math.abs(deltaX) > 45) {
                                             isHoverLockRef.current = true;
                                             if (deltaX > 0) {
-                                                setActivePouchIdx(prev => Math.max(0, prev - 1));
+                                                setActivePouchIdx(prev => (prev - 1 + POUCHES.length) % POUCHES.length);
                                             } else {
-                                                setActivePouchIdx(prev => Math.min(POUCHES.length - 1, prev + 1));
+                                                setActivePouchIdx(prev => (prev + 1) % POUCHES.length);
                                             }
                                             dragStartXRef.current = e.clientX;
                                             setTimeout(() => { isHoverLockRef.current = false; }, 350);
@@ -746,20 +673,27 @@ export default function PrintingAndPouches() {
                                     <p className="apple-sub-title">Premium packaging. Every shape. Every need.</p>
                                 </div>
 
-                                <div className="apple-card-deck">
+                                <div 
+                                    className="apple-card-deck"
+                                    onMouseEnter={() => { isAutoPlayingRef.current = false; }}
+                                    onMouseLeave={() => { isAutoPlayingRef.current = true; }}
+                                    style={{ transformStyle: 'preserve-3d' }}
+                                >
                                     {POUCHES.map((pouch, idx) => {
-                                        const offset = idx - activePouchIdx;
+                                        let offset = idx - activePouchIdx;
+                                        if (offset > POUCHES.length / 2) offset -= POUCHES.length;
+                                        if (offset < -POUCHES.length / 2) offset += POUCHES.length;
                                         const isActive = offset === 0;
                                         
-                                        let translateX = offset * 64;
-                                        let translateZ = offset === 0 ? 0 : -50 - Math.abs(offset) * 20;
-                                        let rotateY = offset === 0 ? 0 : (offset < 0 ? 34 : -34);
-                                        let scale = isActive ? 1.06 : 0.94;
-                                        let opacity = 1;
+                                        let translateX = offset * 75;
+                                        let translateZ = offset === 0 ? 40 : -60 - Math.abs(offset) * 150;
+                                        let rotateY = offset === 0 ? 0 : (offset < 0 ? 28 : -28);
+                                        let scale = isActive ? 1.05 : 0.95;
+                                        let opacity = Math.abs(offset) >= 4 ? 0 : 1;
                                         let zIndex = 50 - Math.abs(offset) * 5;
 
-                                        if (offset < 0) translateX -= 14;
-                                        if (offset > 0) translateX += 14;
+                                        if (offset < 0) translateX -= 18;
+                                        if (offset > 0) translateX += 18;
                                         if (offset === 0) translateX = 0;
 
                                         return (
@@ -829,10 +763,9 @@ export default function PrintingAndPouches() {
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 isHoverLockRef.current = true;
-                                                setActivePouchIdx(prev => Math.max(0, prev - 1));
+                                                setActivePouchIdx(prev => (prev - 1 + POUCHES.length) % POUCHES.length);
                                                 setTimeout(() => { isHoverLockRef.current = false; }, 350);
                                             }}
-                                            disabled={activePouchIdx === 0}
                                             aria-label="Previous pouch"
                                         >
                                             ←
@@ -857,10 +790,9 @@ export default function PrintingAndPouches() {
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 isHoverLockRef.current = true;
-                                                setActivePouchIdx(prev => Math.min(POUCHES.length - 1, prev + 1));
+                                                setActivePouchIdx(prev => (prev + 1) % POUCHES.length);
                                                 setTimeout(() => { isHoverLockRef.current = false; }, 350);
                                             }}
-                                            disabled={activePouchIdx === POUCHES.length - 1}
                                             aria-label="Next pouch"
                                         >
                                             →

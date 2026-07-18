@@ -112,13 +112,7 @@ const HorizontalWords = () => {
                 trigger: container,
                 start: "top top",
                 end: "+=1000", // Pin for 1000px of scrolling
-                pin: true,
-                snap: {
-                    snapTo: [0, 1], // Snap to the start or end of the pin
-                    duration: { min: 0.5, max: 1.0 },
-                    delay: 0.1,
-                    ease: "power2.inOut"
-                }
+                pin: true
             });
 
             // 2. The Text Entrance Animation
@@ -178,14 +172,14 @@ const HorizontalWords = () => {
             });
 
             gsap.to(".parallax-bg-2", {
-                y: 120,
-                rotation: 210, // starts at 85
+                y: 60,
+                rotation: 90, // starts at 85 (gentle 5deg tilt like other items)
                 ease: "none",
                 scrollTrigger: {
                     trigger: container,
                     start: "top top",
                     end: "+=1000",
-                    scrub: 1.5
+                    scrub: 1
                 }
             });
 

@@ -103,31 +103,16 @@ export default function Footer() {
 
                 {/* Column 2: Headquarters */}
                 <div className="footer-column">
-                    <span className="footer-badge">[ 02 — HEADQUARTERS ]</span>
+                    <span className="footer-badge">[ 02 — OFFICE ADDRESS ]</span>
                     <div className="footer-col-body">
-                        <a 
-                            href="https://www.google.com/maps/search/?api=1&query=A-1201%2C+Sarvoday+Symphony%2C+90+Feet+Road%2C+Dombivli+East%2C+Thane%2C+Maharashtra+-+421201" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="footer-address-link"
-                        >
+                        <div className="footer-address-wrapper">
                             <address className="footer-address">
-                                <strong>MPACK Solutions</strong>
+                                <strong>MPACK</strong>
                                 <span>A-1201, Sarvoday Symphony,</span>
                                 <span>90 Feet Road, Dombivli East,</span>
                                 <span>Thane, Maharashtra – 421201</span>
                             </address>
-                        </a>
-                    </div>
-                    <div className="footer-col-footer">
-                        <a 
-                            href="https://www.google.com/maps/search/?api=1&query=A-1201%2C+Sarvoday+Symphony%2C+90+Feet+Road%2C+Dombivli+East%2C+Thane%2C+Maharashtra+-+421201" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="footer-map-link"
-                        >
-                            <span>VIEW ON GOOGLE MAPS ↗</span>
-                        </a>
+                        </div>
                     </div>
                 </div>
 
@@ -137,7 +122,7 @@ export default function Footer() {
                     <div className="footer-col-body">
                         <a href="mailto:manaspackaging@gmail.com" className="footer-email">manaspackaging@gmail.com</a>
                         <div className="footer-whatsapp-row">
-                            <a href="https://wa.me/919999999999?text=Hi%20Manas%2C%20I%27m%20interested%20in%20packaging%20solutions" target="_blank" rel="noopener noreferrer" className="footer-whatsapp">send us a whatsapp ↗</a>
+                            <a href="https://wa.me/919769098018?text=Hi%20Manas%2C%20I%27m%20interested%20in%20packaging%20solutions" target="_blank" rel="noopener noreferrer" className="footer-whatsapp">send us a whatsapp (+91 97690 98018) ↗</a>
                             <span className="footer-note">*we respond quickly.</span>
                         </div>
                     </div>
@@ -162,7 +147,7 @@ export default function Footer() {
             {/* Full viewport bottom copyright bar */}
             <div className="footer-bottom">
                 <div className="footer-copyright-text">
-                    © 2026 MPACK SOLUTIONS. ALL RIGHTS RESERVED.
+                    © 2026 MPACK. ALL RIGHTS RESERVED.
                 </div>
                 <div className="footer-copyright-subtext">
                     PRECISION CONVERTER NETWORK & PACKAGING PARTNER.
