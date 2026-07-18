@@ -8,7 +8,7 @@ import '../app/styles/printing-pouches.css';
 gsap.registerPlugin(ScrollTrigger);
 
 // Ultra-Sincere, Photorealistic Industrial Engineering Artwork (Clean Reference Circular Framing)
-const DigitalSticker = () => (
+export const DigitalSticker = () => (
     <div style={{ filter: 'drop-shadow(0px 14px 28px rgba(0,0,0,0.25))', width: '100%' }}>
         <img 
             src="/assets/printing-technologies/digital_icon.png" 
@@ -18,7 +18,7 @@ const DigitalSticker = () => (
     </div>
 );
 
-const FlexoSticker = () => (
+export const FlexoSticker = () => (
     <div style={{ filter: 'drop-shadow(0px 14px 28px rgba(0,0,0,0.25))', width: '100%' }}>
         <img 
             src="/assets/printing-technologies/flexo_icon.png" 
@@ -28,7 +28,7 @@ const FlexoSticker = () => (
     </div>
 );
 
-const RotoSticker = () => (
+export const RotoSticker = () => (
     <div style={{ filter: 'drop-shadow(0px 14px 28px rgba(0,0,0,0.25))', width: '100%' }}>
         <img 
             src="/assets/printing-technologies/roto_icon.png" 
@@ -94,7 +94,7 @@ const POUCHES = [
     { file: 'Retort_pouch_-_add_heat_vector_to_denote_that_you_can_heat_it-removebg-preview.png', name: 'Retort Pouch', subtitle: 'Heat resistant up to 130°C. Ready-to-cook.', isRetort: true }
 ];
 
-const PRINTING_TYPES = [
+export const PRINTING_TYPES = [
     {
         id: 'digital',
         title: 'digital',
@@ -338,79 +338,104 @@ export default function PrintingAndPouches() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            const container = containerRef.current;
-            const getScrollAmount = () => container.scrollWidth - window.innerWidth;
+            const mm = gsap.matchMedia();
 
-            // Horizontal scroll with an initial pause, then slide, then final pause (dead zone)
-            const pauseDistance = 800; // Physical scroll distance to pause and let user read Slide 1
-            const horizontalDistance = getScrollAmount();
-            const finalPauseDistance = 1000; // "Hard stop" distance for Slide 2
-            const totalScrollDistance = horizontalDistance + pauseDistance + finalPauseDistance;
+            // DESKTOP ANIMATIONS
+            mm.add("(min-width: 769px)", () => {
+                const container = containerRef.current;
+                const getScrollAmount = () => container.scrollWidth - window.innerWidth;
 
-            const pouchesSnapPoint = (pauseDistance + horizontalDistance) / totalScrollDistance;
+                // Horizontal scroll with an initial pause, then slide, then final pause (dead zone)
+                const pauseDistance = 800; // Physical scroll distance to pause and let user read Slide 1
+                const horizontalDistance = getScrollAmount();
+                const finalPauseDistance = 1000; // "Hard stop" distance for Slide 2
+                const totalScrollDistance = horizontalDistance + pauseDistance + finalPauseDistance;
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top top",
-                    end: () => `+=${totalScrollDistance}`,
-                    pin: true,
-                    scrub: 1,
-                    invalidateOnRefresh: true
-                }
+                const pouchesSnapPoint = (pauseDistance + horizontalDistance) / totalScrollDistance;
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top top",
+                        end: () => `+=${totalScrollDistance}`,
+                        pin: true,
+                        scrub: 1,
+                        invalidateOnRefresh: true
+                    }
+                });
+
+                // The duration values in a scrubbed timeline represent relative proportions of the total scroll distance.
+                tl.addLabel("slide1")
+                  .to({}, { duration: pauseDistance }) // Pause on Slide 1
+                  .to(container, { x: () => -getScrollAmount(), duration: horizontalDistance, ease: "none" }) // Scroll horizontally
+                  .addLabel("slide2")
+                  .from('.apple-card-deck .apple-pouch-card', {
+                      scale: 0.6,
+                      y: 80,
+                      opacity: 0,
+                      rotation: () => gsap.utils.random(-12, 12),
+                      duration: finalPauseDistance * 0.45,
+                      stagger: finalPauseDistance * 0.04,
+                      ease: "back.out(1.5)"
+                  }, "slide2-=0.15")
+                  .to({}, { duration: finalPauseDistance * 0.55 });
+
+                // Pre-animated Kinetic Entrance (time-based, not scrubbed)
+                const entranceTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 75%", // Play when section enters the viewport
+                        toggleActions: "play none none reverse"
+                    }
+                });
+
+                // Slide the three lines in from the right
+                entranceTl.from('.printing-line', {
+                    x: "100vw",
+                    opacity: 0,
+                    duration: 1.2,
+                    stagger: 0.15,
+                    ease: "power3.out"
+                }, 0);
+
+                // Chaotic bouncy letter entrance (Truus style)
+                entranceTl.from('.typewriter-letter', {
+                    yPercent: () => (Math.random() - 0.5) * 500,
+                    rotation: () => (Math.random() - 0.5) * 60,
+                    duration: 1.5,
+                    ease: "elastic.out(1.2, 1)",
+                    stagger: {
+                        amount: 0.5,
+                        from: "random"
+                    }
+                }, 0.2);
+
+                // Set initial rotations
+                cardRefs.current.forEach((card, i) => {
+                    if (card) gsap.set(card, { rotation: PRINTING_TYPES[i].rotation });
+                });
             });
 
-            // The duration values in a scrubbed timeline represent relative proportions of the total scroll distance.
-            tl.addLabel("slide1")
-              .to({}, { duration: pauseDistance }) // Pause on Slide 1
-              .to(container, { x: () => -getScrollAmount(), duration: horizontalDistance, ease: "none" }) // Scroll horizontally
-              .addLabel("slide2")
-              .from('.apple-card-deck .apple-pouch-card', {
-                  scale: 0.6,
-                  y: 80,
-                  opacity: 0,
-                  rotation: () => gsap.utils.random(-12, 12),
-                  duration: finalPauseDistance * 0.45,
-                  stagger: finalPauseDistance * 0.04,
-                  ease: "back.out(1.5)"
-              }, "slide2-=0.15")
-              .to({}, { duration: finalPauseDistance * 0.55 });
-
-            // Pre-animated Kinetic Entrance (time-based, not scrubbed)
-            const entranceTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 75%", // Play when section enters the viewport
-                    toggleActions: "play none none reverse"
-                }
+            // MOBILE ANIMATIONS (Simplified)
+            mm.add("(max-width: 768px)", () => {
+                const entranceTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 85%", 
+                        toggleActions: "play none none reverse"
+                    }
+                });
+                
+                entranceTl.from('.printing-line', {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: "power3.out"
+                }, 0);
             });
 
-            // Slide the three lines in from the right
-            entranceTl.from('.printing-line', {
-                x: "100vw",
-                opacity: 0,
-                duration: 1.2,
-                stagger: 0.15,
-                ease: "power3.out"
-            }, 0);
-
-            // Chaotic bouncy letter entrance (Truus style)
-            entranceTl.from('.typewriter-letter', {
-                yPercent: () => (Math.random() - 0.5) * 500,
-                rotation: () => (Math.random() - 0.5) * 60,
-                duration: 1.5,
-                ease: "elastic.out(1.2, 1)",
-                stagger: {
-                    amount: 0.5,
-                    from: "random"
-                }
-            }, 0.2);
-
-            // Set initial rotations
-            cardRefs.current.forEach((card, i) => {
-                if (card) gsap.set(card, { rotation: PRINTING_TYPES[i].rotation });
-            });
-
+            // Shared Animations (Stickers/Doodles bobbing)
             // Sticker bobbing
             gsap.utils.toArray('.stack-sticker').forEach((sticker) => {
                 gsap.to(sticker, {
@@ -435,7 +460,6 @@ export default function PrintingAndPouches() {
                     ease: "sine.inOut"
                 });
             });
-
 
         }, sectionRef);
         return () => ctx.revert();

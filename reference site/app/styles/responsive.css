@@ -68,6 +68,30 @@
         width: 26px;
     }
 
+    /* Hide the scroll-spy "why MPACK" text on mobile */
+    .logo-why-text,
+    .logo-why-question {
+        display: none !important;
+    }
+
+    /* Restrict the size of the MPACK logo on mobile */
+    .logo-mpack-text {
+        font-size: 1.8rem !important;
+    }
+
+    /* Ensure the center logo container stays small and centered */
+    .nav-center {
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        top: 20px !important; /* Adjust vertical alignment */
+        width: auto !important;
+    }
+
+    .logo-mpack-icon {
+        height: 30px !important; /* Scale down the overall icon container */
+    }
+
     /* ── Header Hero ────────────────── */
     .header-content {
         height: 100svh;
@@ -362,5 +386,371 @@
 
     .credits-name {
         font-size: 0.95rem;
+    }
+
+    /* ── Printing & Pouches Section Overrides ── */
+    .printing-pouches-section {
+        height: auto !important;
+        overflow: visible !important;
+        min-height: unset !important;
+    }
+
+    .printing-pouches-container,
+    .pouches-track {
+        height: auto !important;
+        width: 100% !important;
+        flex-direction: column !important;
+        display: flex !important;
+        overflow: visible !important;
+    }
+
+    .printing-intro-slide {
+        height: auto !important;
+        min-height: auto !important;
+        width: 100vw !important;
+        padding: 60px 20px 40px !important;
+    }
+
+    .stacked-cards-area {
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 60px !important;
+        width: 100% !important;
+        margin-top: 30px !important;
+    }
+
+    .stack-card {
+        max-width: 100% !important;
+        width: 100% !important;
+        min-height: auto !important;
+        height: auto !important;
+        padding: 60px 20px 30px 20px !important; /* Uniform padding, no huge right gap */
+        margin: 0 !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        display: flex !important;
+        flex-direction: column !important; /* Ensure children stack */
+    }
+
+    .stack-expanded-panel {
+        position: relative !important;
+        width: 100% !important;
+        border-radius: 10px !important;
+        padding: 20px !important;
+        margin-top: 20px !important;
+        border-left: none !important;
+        border-top: 1px dashed rgba(0,0,0,0.12) !important;
+        background: rgba(0,0,0,0.03) !important;
+    }
+
+    .exp-data-row {
+        align-items: center !important; /* Better alignment on mobile */
+    }
+
+    .stack-sticker {
+        top: -50px !important;
+        left: 20px !important;
+        width: 100px !important;
+        transform: rotate(0deg) !important;
+    }
+
+    .stack-card-title {
+        font-size: 2.2rem !important;
+    }
+
+    .apple-card-deck {
+        height: auto !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 30px !important;
+        padding: 40px 20px !important;
+    }
+
+    .apple-pouch-card {
+        width: 100% !important;
+        margin: 0 !important;
+        transform: none !important;
+        position: relative !important;
+    }
+
+    /* ── Complete Packaging Section Overrides ── */
+    .complete-packaging-section {
+        height: auto !important;
+        max-height: none !important;
+        padding: 60px 20px !important;
+        overflow: visible !important;
+    }
+
+    .cp-header {
+        margin-bottom: 30px !important;
+    }
+
+    .cp-main-title {
+        margin: 0 auto 20px !important;
+    }
+
+    .cp-title-top-bread,
+    .cp-title-bottom-bread {
+        font-size: 1.8rem !important;
+    }
+
+    .cp-title-meat {
+        font-size: 3rem !important;
+        line-height: 1 !important;
+    }
+
+    .cp-title-squiggle {
+        width: 180px !important;
+        bottom: -10px !important;
+    }
+
+    .cp-subtitle {
+        font-size: 1rem !important;
+        padding: 0 10px !important;
+    }
+
+    .cp-pills-container {
+        flex-wrap: wrap !important;
+        height: auto !important;
+        padding: 10px !important;
+        gap: 10px !important;
+        border-radius: 20px !important;
+    }
+
+    .cp-pill-btn {
+        padding: 10px 15px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .cp-cards-viewport {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .cp-cards-track {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .cp-bento-card {
+        min-height: 350px !important;
+        height: auto !important;
+    }
+
+    .cp-hero-stage {
+        min-height: 250px !important;
+    }
+
+    /* ── Horizontal Words Section Overrides ── */
+    .horizontal-words-section {
+        height: auto !important;
+        padding: 80px 20px !important;
+        overflow: hidden !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .horizontal-words__relative {
+        position: relative !important;
+        top: auto !important;
+        transform: none !important;
+        padding: 0 !important;
+        white-space: normal !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .horizontal-words__h2 {
+        font-size: 3.5rem !important;
+        white-space: normal !important;
+        text-align: center !important;
+        margin-bottom: 40px !important;
+    }
+
+    .horizontal-words__bottom-text {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin-top: 40px !important;
+        width: 100% !important;
+        padding: 0 10px !important;
+    }
+
+    .horizontal-words__bottom-text-l {
+        font-size: 1.1rem !important;
+    }
+
+    .horizontal-words__arrow-svg {
+        display: none !important; /* Hide arrows on mobile */
+    }
+
+    .ecosystem-badge-wrapper {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        margin: 20px auto 40px !important;
+        transform: none !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .doodle-click-wrapper {
+        position: relative !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        pointer-events: none !important; /* Disable click interaction on mobile */
+    }
+
+    .doodle-svg img {
+        width: auto !important;
+        max-width: 70vw !important; /* Prevent massive stickers */
+        height: auto !important;
+        transform: none !important; /* Cancel bouncy hover animations */
+    }
+
+    /* Make the expanded content statically visible under the sticker */
+    .eco-badge-expanded {
+        position: static !important;
+        transform: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        width: 90% !important;
+        max-width: 400px !important;
+        margin-top: 15px !important;
+        padding: 30px 25px !important;
+        border-radius: 20px !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    .eco-badge-header h4 {
+        font-size: 1.4rem !important;
+    }
+
+    .eco-badge-expanded p {
+        font-size: 0.9rem !important;
+    }
+
+    /* ── Hero Section Overrides ── */
+    .hero-morph-wrapper {
+        height: auto !important; /* Remove 250vh scroll area */
+        padding-bottom: 60px !important;
+    }
+
+    .hero-morph-pinned {
+        height: auto !important;
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: visible !important;
+    }
+
+    .hero-new__content {
+        position: relative !important;
+        margin-top: 120px !important;
+        margin-bottom: 60px !important;
+    }
+
+    .hero-new__title {
+        font-size: 3rem !important;
+    }
+
+    .hero-new__subtitle {
+        font-size: 1.1rem !important;
+    }
+
+    .hero-products-container {
+        position: relative !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 60px !important;
+        margin-top: 40px !important;
+    }
+
+    .hero-grid-header {
+        position: relative !important;
+        top: auto !important;
+        opacity: 1 !important;
+        margin-bottom: 40px !important;
+    }
+
+    .hero-grid-title {
+        font-size: 2.5rem !important;
+    }
+
+    .pouch-wrapper {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 350px !important;
+        margin: 0 auto !important;
+        transform: none !important;
+    }
+
+    .mockup-layer {
+        transform: none !important; /* Remove the massive scale(2.0) */
+    }
+
+    .printed-mockup, .blank-mockup {
+        transform: scale(1) !important; /* Override inline scales */
+    }
+
+    .pouch-label-group {
+        opacity: 1 !important;
+        position: relative !important;
+        top: auto !important;
+        transform: none !important;
+        margin-top: 20px !important;
+        text-align: center !important;
+    }
+
+    /* ── Double Marquee / Client Logos Overrides ── */
+    .Double-marquee.client-logos-section {
+        flex-direction: column !important;
+        padding: 60px 20px !important;
+        gap: 40px !important;
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    .client-showcase-left {
+        max-width: 100% !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .client-editorial-heading {
+        align-items: center !important;
+    }
+
+    .client-head-primary, .client-head-subprimary, .client-head-serif {
+        font-size: 2.2rem !important;
+    }
+
+    .client-head-row {
+        justify-content: center !important;
+    }
+
+    .client-pillars-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    .client-showcase-right {
+        max-width: 100% !important;
+        width: 100% !important;
+        height: 400px !important; /* Keep a fixed height so they scroll within this box */
     }
 }

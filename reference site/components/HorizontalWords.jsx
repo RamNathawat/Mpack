@@ -108,11 +108,14 @@ const HorizontalWords = () => {
             gsap.set(letters, { opacity: 0 });
 
             // 1. The Main Pinning Trigger to "Stop" the section
-            ScrollTrigger.create({
-                trigger: container,
-                start: "top top",
-                end: "+=1000", // Pin for 1000px of scrolling
-                pin: true
+            const mm = gsap.matchMedia();
+            mm.add("(min-width: 769px)", () => {
+                ScrollTrigger.create({
+                    trigger: container,
+                    start: "top top",
+                    end: "+=1000", // Pin for 1000px of scrolling
+                    pin: true
+                });
             });
 
             // 2. The Text Entrance Animation

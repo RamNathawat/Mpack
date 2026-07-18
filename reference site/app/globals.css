@@ -28,3 +28,31 @@
 /* Custom MPACK components styles */
 @import './styles/responsive.css';
 /* All media queries (tablet + mobile)      */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   View Toggling (Desktop vs Mobile-First React Component)
+───────────────────────────────────────────────────────────────────────────── */
+
+/* By default (desktop), show desktop view, hide mobile view */
+.desktop-view {
+    display: block;
+}
+.mobile-view {
+    display: none;
+}
+
+/* On mobile, hide desktop view completely and show mobile view */
+@media (max-width: 768px) {
+    .desktop-view {
+        display: none !important;
+    }
+    .mobile-view {
+        display: block !important;
+    }
+    /* Reset html/body overflow in case Desktop GSAP messed it up */
+    html, body {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        position: relative !important;
+    }
+}

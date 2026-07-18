@@ -160,9 +160,8 @@
     letter-spacing: -0.04em;
     line-height: 1.1;
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: normal;
     transition: color 0.25s ease;
 }
 

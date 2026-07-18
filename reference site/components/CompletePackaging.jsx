@@ -242,13 +242,17 @@ export default function CompletePackaging() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            ScrollTrigger.create({
-                trigger: sectionRef.current,
-                start: 'top top',
-                end: '+=700',
-                pin: true,
-                pinSpacing: true,
-                invalidateOnRefresh: true
+            const mm = gsap.matchMedia();
+
+            mm.add("(min-width: 769px)", () => {
+                ScrollTrigger.create({
+                    trigger: sectionRef.current,
+                    start: 'top top',
+                    end: '+=700',
+                    pin: true,
+                    pinSpacing: true,
+                    invalidateOnRefresh: true
+                });
             });
 
             gsap.utils.toArray('.cp-doodles svg').forEach((doodle, i) => {

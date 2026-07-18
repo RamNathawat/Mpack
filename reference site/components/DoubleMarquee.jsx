@@ -25,14 +25,17 @@ export default function DoubleMarquee() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Scroll stop / pin at top of viewport exactly matching CompletePackaging & Industries
-            ScrollTrigger.create({
-                trigger: sectionRef.current,
-                start: 'top top',
-                end: '+=650',
-                pin: true,
-                pinSpacing: true,
-                invalidateOnRefresh: true
+            const mm = gsap.matchMedia();
+            mm.add("(min-width: 769px)", () => {
+                // Scroll stop / pin at top of viewport exactly matching CompletePackaging & Industries
+                ScrollTrigger.create({
+                    trigger: sectionRef.current,
+                    start: 'top top',
+                    end: '+=650',
+                    pin: true,
+                    pinSpacing: true,
+                    invalidateOnRefresh: true
+                });
             });
 
             // Editorial layout stagger entrance

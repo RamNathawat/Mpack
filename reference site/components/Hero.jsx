@@ -39,169 +39,198 @@ const Hero = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // 1. Initial State Setting
-            gsap.set([pouchRef.current, boxRef.current, labelRef.current, canisterRef.current], { 
-                xPercent: -50, 
-                yPercent: -50 
-            });
+            const mm = gsap.matchMedia();
             
-            // --- 1. INITIAL EDITORIAL STATE (Framing the text) ---
-            gsap.set(pouchRef.current, { x: '-40vw', y: '-35vh', rotation: -10, scale: 1.2 }); // Top Left
-            gsap.set(boxRef.current, { x: '40vw', y: '-35vh', rotation: 12, scale: 1.1 }); // Top Right
-            gsap.set(labelRef.current, { x: '-40vw', y: '35vh', rotation: -15, scale: 1.2 }); // Bottom Left
-            gsap.set(canisterRef.current, { x: '40vw', y: '35vh', rotation: 10, scale: 1.2 }); // Bottom Right
+            // DESKTOP ANIMATIONS
+            mm.add("(min-width: 769px)", () => {
+                // 1. Initial State Setting
+                gsap.set([pouchRef.current, boxRef.current, labelRef.current, canisterRef.current], { 
+                    xPercent: -50, 
+                    yPercent: -50 
+                });
+                
+                // --- 1. INITIAL EDITORIAL STATE (Framing the text) ---
+                gsap.set(pouchRef.current, { x: '-40vw', y: '-35vh', rotation: -10, scale: 1.2 }); // Top Left
+                gsap.set(boxRef.current, { x: '40vw', y: '-35vh', rotation: 12, scale: 1.1 }); // Top Right
+                gsap.set(labelRef.current, { x: '-40vw', y: '35vh', rotation: -15, scale: 1.2 }); // Bottom Left
+                gsap.set(canisterRef.current, { x: '40vw', y: '35vh', rotation: 10, scale: 1.2 }); // Bottom Right
 
-            // Entrance Animation (Text)
-            gsap.from(".hero-new__word", {
-                y: 50,
-                opacity: 0,
-                duration: 1.4,
-                stagger: 0.1,
-                ease: "expo.out",
-                delay: 0.2
-            });
-            
-            // Fade in labels softly
-            gsap.fromTo(".floating-product-label",
-                { opacity: 0 },
-                { opacity: 1, duration: 1.4, ease: "power2.out", delay: 0.8 }
-            );
-            
-            // Entrance Animation (Products)
-            gsap.from(innersRef.current, {
-                scale: 0.4,
-                opacity: 0,
-                y: 100,
-                duration: 1.8,
-                stagger: 0.1,
-                ease: "expo.out",
-                delay: 0.6
-            });
+                // Entrance Animation (Text)
+                gsap.from(".hero-new__word", {
+                    y: 50,
+                    opacity: 0,
+                    duration: 1.4,
+                    stagger: 0.1,
+                    ease: "expo.out",
+                    delay: 0.2
+                });
+                
+                // Fade in labels softly
+                gsap.fromTo(".floating-product-label",
+                    { opacity: 0 },
+                    { opacity: 1, duration: 1.4, ease: "power2.out", delay: 0.8 }
+                );
+                
+                // Entrance Animation (Products)
+                gsap.from(innersRef.current, {
+                    scale: 0.4,
+                    opacity: 0,
+                    y: 100,
+                    duration: 1.8,
+                    stagger: 0.1,
+                    ease: "expo.out",
+                    delay: 0.6
+                });
 
-            // Continuous slow float effect removed to improve scroll performance and eliminate lag
-
-            // 2. The Layout Morph Timeline (On Scroll)
-            const morphTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: wrapperRef.current,
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: 1.2,
-                    pin: pinnedRef.current,
-                    snap: {
-                        snapTo: (progress, self) => {
-                            if (progress >= 0.95 || hasSnappedToGrid.current) {
-                                return progress;
-                            }
-                            return progress > 0.5 ? 1 : 0;
+                // 2. The Layout Morph Timeline (On Scroll)
+                const morphTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: wrapperRef.current,
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 1.2,
+                        pin: pinnedRef.current,
+                        snap: {
+                            snapTo: (progress, self) => {
+                                if (progress >= 0.95 || hasSnappedToGrid.current) {
+                                    return progress;
+                                }
+                                return progress > 0.5 ? 1 : 0;
+                            },
+                            duration: { min: 0.3, max: 0.8 },
+                            delay: 0.1,
+                            ease: "power2.inOut"
                         },
-                        duration: { min: 0.3, max: 0.8 },
-                        delay: 0.1,
-                        ease: "power2.inOut"
-                    },
-                    onUpdate: (self) => {
-                        // Enable 3D hover only when grid is mostly formed
-                        isGridState.current = self.progress > 0.8;
-                        
-                        if (self.progress < 0.6) {
-                            hasSnappedToGrid.current = false;
+                        onUpdate: (self) => {
+                            // Enable 3D hover only when grid is mostly formed
+                            isGridState.current = self.progress > 0.8;
+                            
+                            if (self.progress < 0.6) {
+                                hasSnappedToGrid.current = false;
+                            }
                         }
                     }
-                }
+                });
+
+                // Fade out the text content on scroll
+                morphTl.fromTo(".hero-new__content", 
+                    { opacity: 1, y: 0 },
+                    { opacity: 0, y: -50, duration: 0.6, ease: "power2.in" }, 
+                    0
+                );
+
+                // Fade out labels on scroll
+                morphTl.to(".floating-product-label", {
+                    opacity: 0,
+                    duration: 0.3,
+                    ease: "power2.in"
+                }, 0);
+
+                // Morph Products into Grid (Start large, smoothly scale down to grid size)
+                const gridEase = "power3.inOut";
+                
+                morphTl.fromTo(pouchRef.current, 
+                    { x: '-32vw', y: '-30vh', rotation: -10, scale: 1.8 }, 
+                    { x: '-38vw', y: '-8vh', rotation: 0, scale: 1.4, duration: 1.5, ease: gridEase }, 0);
+                    
+                morphTl.fromTo(boxRef.current,    
+                    { x: '35vw', y: '-30vh', rotation: 12, scale: 1.45 }, 
+                    { x: '-13vw', y: '-8vh', rotation: 0, scale: 1.2, duration: 1.5, ease: gridEase }, 0);
+                    
+                morphTl.fromTo(labelRef.current,   
+                    { x: '-32vw', y: '25vh', rotation: -15, scale: 1.7 }, 
+                    { x: '13vw',  y: '-8vh', rotation: 0, scale: 1.4, duration: 1.5, ease: gridEase }, 0);
+                    
+                morphTl.fromTo(canisterRef.current,  
+                    { x: '32vw', y: '25vh', rotation: 10, scale: 1.75 }, 
+                    { x: '38vw',  y: '-8vh', rotation: 0, scale: 1.4, duration: 1.5, ease: gridEase }, 0);
+
+                // Minimize and fade out the blobs as the mockups move into the grid
+                morphTl.to(".mockup-backdrop", {
+                    scale: 0,
+                    opacity: 0,
+                    duration: 1.2,
+                    ease: "power2.inOut"
+                }, 0);
+
+                // Dynamically add shadow as they reach the grid (position 2)
+                morphTl.fromTo([imgsRef.current[1], imgsRef.current[2]],
+                    { filter: "drop-shadow(0 0px 0px rgba(0,0,0,0))" },
+                    { filter: "drop-shadow(0 40px 50px rgba(0,0,0,0.25))", duration: 1.5, ease: gridEase }, 0
+                );
+
+                // Set initial printing states for elegant soft mask reveal
+                gsap.set(".printed-mockup", { 
+                    opacity: 1, 
+                    webkitMaskPosition: "100% 0%",
+                    maskPosition: "100% 0%"
+                });
+
+                const printDuration = 2.4; // Slightly slower, more luxurious
+
+                // Elegant, feathered ink sweep animation
+                morphTl.to(".printed-mockup", {
+                    webkitMaskPosition: "0% 0%",
+                    maskPosition: "0% 0%",
+                    duration: printDuration,
+                    ease: "power2.inOut",
+                    stagger: 0.15
+                }, 0.3);
+
+                // Concurrently fade out the old competitor mockups behind them
+                morphTl.to(".blank-mockup-container", {
+                    opacity: 0,
+                    duration: printDuration * 0.8,
+                    ease: "power2.inOut",
+                    stagger: 0.15
+                }, 0.3);
+
+                // Fade in grid labels
+                morphTl.fromTo(labelsRef.current, 
+                    { opacity: 0, y: 30 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        stagger: 0.1,
+                        ease: "expo.out"
+                    }, 
+                    0.8
+                );
+
+                // Fade in grid title
+                morphTl.fromTo(gridHeaderRef.current,
+                    { opacity: 0, y: -20 },
+                    { opacity: 1, y: 0, duration: 1.0, ease: "power2.out" },
+                    0.6 // Starts appearing as products settle into grid
+                );
             });
 
-            // Fade out the text content on scroll
-            morphTl.fromTo(".hero-new__content", 
-                { opacity: 1, y: 0 },
-                { opacity: 0, y: -50, duration: 0.6, ease: "power2.in" }, 
-                0
-            );
-
-            // Fade out labels on scroll
-            morphTl.to(".floating-product-label", {
-                opacity: 0,
-                duration: 0.3,
-                ease: "power2.in"
-            }, 0);
-
-            // Morph Products into Grid (Start large, smoothly scale down to grid size)
-            const gridEase = "power3.inOut";
-            
-            morphTl.fromTo(pouchRef.current, 
-                { x: '-32vw', y: '-30vh', rotation: -10, scale: 1.8 }, 
-                { x: '-38vw', y: '-8vh', rotation: 0, scale: 1.4, duration: 1.5, ease: gridEase }, 0);
-                
-            morphTl.fromTo(boxRef.current,    
-                { x: '35vw', y: '-30vh', rotation: 12, scale: 1.45 }, 
-                { x: '-13vw', y: '-8vh', rotation: 0, scale: 1.2, duration: 1.5, ease: gridEase }, 0);
-                
-            morphTl.fromTo(labelRef.current,   
-                { x: '-32vw', y: '25vh', rotation: -15, scale: 1.7 }, 
-                { x: '13vw',  y: '-8vh', rotation: 0, scale: 1.4, duration: 1.5, ease: gridEase }, 0);
-                
-            morphTl.fromTo(canisterRef.current,  
-                { x: '32vw', y: '25vh', rotation: 10, scale: 1.75 }, 
-                { x: '38vw',  y: '-8vh', rotation: 0, scale: 1.4, duration: 1.5, ease: gridEase }, 0);
-
-            // Minimize and fade out the blobs as the mockups move into the grid
-            morphTl.to(".mockup-backdrop", {
-                scale: 0,
-                opacity: 0,
-                duration: 1.2,
-                ease: "power2.inOut"
-            }, 0);
-
-            // Dynamically add shadow as they reach the grid (position 2)
-            morphTl.fromTo([imgsRef.current[1], imgsRef.current[2]],
-                { filter: "drop-shadow(0 0px 0px rgba(0,0,0,0))" },
-                { filter: "drop-shadow(0 40px 50px rgba(0,0,0,0.25))", duration: 1.5, ease: gridEase }, 0
-            );
-
-            // Set initial printing states for elegant soft mask reveal
-            gsap.set(".printed-mockup", { 
-                opacity: 1, 
-                webkitMaskPosition: "100% 0%",
-                maskPosition: "100% 0%"
-            });
-
-            const printDuration = 2.4; // Slightly slower, more luxurious
-
-            // Elegant, feathered ink sweep animation
-            morphTl.to(".printed-mockup", {
-                webkitMaskPosition: "0% 0%",
-                maskPosition: "0% 0%",
-                duration: printDuration,
-                ease: "power2.inOut",
-                stagger: 0.15
-            }, 0.3);
-
-            // Concurrently fade out the old competitor mockups behind them
-            morphTl.to(".blank-mockup-container", {
-                opacity: 0,
-                duration: printDuration * 0.8,
-                ease: "power2.inOut",
-                stagger: 0.15
-            }, 0.3);
-
-            // Fade in grid labels
-            morphTl.fromTo(labelsRef.current, 
-                { opacity: 0, y: 30 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
+            // MOBILE ANIMATIONS
+            mm.add("(max-width: 768px)", () => {
+                // Entrance Animation (Text)
+                gsap.from(".hero-new__word", {
+                    y: 30,
+                    opacity: 0,
+                    duration: 1,
                     stagger: 0.1,
-                    ease: "expo.out"
-                }, 
-                0.8
-            );
-
-            // Fade in grid title
-            morphTl.fromTo(gridHeaderRef.current,
-                { opacity: 0, y: -20 },
-                { opacity: 1, y: 0, duration: 1.0, ease: "power2.out" },
-                0.6 // Starts appearing as products settle into grid
-            );
+                    ease: "expo.out",
+                    delay: 0.1
+                });
+                
+                // Products stack normally via CSS
+                gsap.set([pouchRef.current, boxRef.current, labelRef.current, canisterRef.current], { 
+                    clearProps: "all"
+                });
+                
+                // Reveal print mockups instantly on mobile
+                gsap.set(".printed-mockup", { 
+                    opacity: 1, 
+                    webkitMaskPosition: "0% 0%",
+                    maskPosition: "0% 0%"
+                });
+                gsap.set(".blank-mockup-container", { opacity: 0 });
+            });
 
         }, wrapperRef);
 
